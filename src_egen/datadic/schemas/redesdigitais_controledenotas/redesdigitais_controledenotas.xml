@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
 <DataDicSchema>
 <class>com.egen.tool.datadic.DataDicSchema</class>
-<mainSchema>true</mainSchema>
+<mainSchema>false</mainSchema>
 <componentName>redesdigitais_controledenotas</componentName>
 <componentDescription></componentDescription>
-<lastChange>1434463687318</lastChange>
+<lastChange>1434464284769</lastChange>
 <dataDicTables>
 </dataDicTables>
 <dataDicViews>
