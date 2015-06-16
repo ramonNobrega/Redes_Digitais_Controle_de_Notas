@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+	<ui:define name="body">
+		<div id="indexcontent">
+			<div id="indexmessagebox">
+				<div id="indexmessagetitle">#{messages['home.app.title']}</div>
+				<div id="indexmessage">#{messages['home.app.message']}</div>
+			</div>
+		<h:form id="homeForm">
+			<p:dashboard id="homeDashboard" model="#{homeBean.homeModel}" styleClass="homeDashboard">
+				<p:panel id="home2Panel" styleClass="dashboardpanel">
+					<p:commandLink id="home2Link" action="/system/maintainRole.jsf" ajax="false">
+						<h:outputText value="#{messages['system.maintainrole.app.title']}"></h:outputText>
+					</p:commandLink>
+				</p:panel>
+				<p:panel id="home3Panel" styleClass="dashboardpanel">
+					<p:commandLink id="home3Link" action="/system/maintainUser.jsf" ajax="false">
+						<h:outputText value="#{messages['system.maintainuser.app.title']}"></h:outputText>
+					</p:commandLink>
+				</p:panel>
+			</p:dashboard>
+		</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

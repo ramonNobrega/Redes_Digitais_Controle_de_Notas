@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<DataDicGeneratorProfile>
+<class>com.egen.tool.datadic.DataDicGeneratorProfile</class>
+<usedSchema>false</usedSchema>
+<instanceSchemaName></instanceSchemaName>
+<defaultMasterTemplate>mysql55_ddl</defaultMasterTemplate>
+<doNotUseSchema>true</doNotUseSchema>
+<defaultProfile>true</defaultProfile>
+<defaultDataSource>redesdigitais_controledenotas</defaultDataSource>
+<profileCaseManipulation></profileCaseManipulation>
+<defaultExtractTemplate>jdbc_extraction</defaultExtractTemplate>
+<componentName>redesdigitais_controledenotas</componentName>
+<componentDescription></componentDescription>
+<lastChange>1434463668763</lastChange>
+<dataDicComponentSetProperties>
+</dataDicComponentSetProperties>
+</DataDicGeneratorProfile>

@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+	<ui:define name="body">
+		<div id="pagetitle" class="pagetitle">Manter Configura&#231;&#227;o do Sistema</div>
+		<h:form id="editForm">
+			<p:focus id="editFocus" for="adminEmail"/>
+			<div id="editTitle" class="blocktitle">#{messages['pages.app.edit']}</div>
+			<p:toolbar id="editToolbar">
+				<p:toolbarGroup id="editLeftToolbarGroup" align="left">
+					<p:commandButton id="back" value="#{messages['button.back']}" action="#{maintainParameterMB.getPreviousView}" immediate="true" ajax="false" title="#{messages['button.back']}" icon="ui-icon-arrowthick-1-w"></p:commandButton>
+					<p:commandButton id="update" rendered="#{securityContext.hasRole('admin')}" value="#{messages['button.save']}" action="#{maintainParameterMB.update}" ajax="false" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
+				</p:toolbarGroup>
+			</p:toolbar>
+			<div id="editFormMessages" class="formmessages">
+				<p:messages id="editMessages" autoUpdate="true" closable="true"/>
+			</div>
+			<p:outputPanel id="editPanel">
+				<h:inputHidden id="id" value="#{maintainParameterMB.parameter.id}"></h:inputHidden>
+				<div class="formrow">
+					<div id="adminEmailformcell" class="formcell">
+						<p:outputLabel id="adminEmailLabel" value="E-mail do Administrador" for="adminEmail" styleClass="text-input"></p:outputLabel>
+						<p:inputText id="adminEmail" value="#{maintainParameterMB.parameter.adminEmail}" required="true" validatorMessage="#{messages['validation.invalidemail']}" maxlength="255" size="80">
+							<f:validateRegex pattern="([a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]{2,3})?"/>
+						</p:inputText>
+					</div>
+				</div>
+				<div class="formrow">
+					<div id="lastUpdateformcell" class="formcell">
+						<p:outputLabel id="lastUpdateLabel" value="&#218;ltima Altera&#231;&#227;o" for="lastUpdate" styleClass="text-input"></p:outputLabel>
+						<p:inputText id="lastUpdate" value="#{maintainParameterMB.parameter.lastUpdate}" maxlength="19" readonly="true" size="19" style="text-align:center;">
+							<f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"/>
+						</p:inputText>
+					</div>
+				</div>
+			</p:outputPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>

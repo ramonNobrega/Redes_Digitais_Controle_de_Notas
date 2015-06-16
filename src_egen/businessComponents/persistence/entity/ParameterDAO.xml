@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.egen.tool.business.BusinessComponent>
+<class>com.egen.tool.business.BusinessComponent</class>
+<businessComponentName>ParameterDAO</businessComponentName>
+<businessComponentModule>persistence/entity</businessComponentModule>
+<businessComponentAlias>ParameterDAO</businessComponentAlias>
+<businessComponentMasterTemplate>EntityCrudDAOTemplate</businessComponentMasterTemplate>
+<businessComponentSetProperties></businessComponentSetProperties>
+<businessCodeUnits>
+<businessCodeUnits_item>
+<class>com.egen.tool.business.BusinessCodeUnit</class>
+<businessCodeUnitIdentification>DAO</businessCodeUnitIdentification>
+<businessCodeUnitTemplate>EntityDAOUnit</businessCodeUnitTemplate>
+<businessCodeUnitContent>package redes_digitais_controle_de_notas.persistence.entity;
+
+import java.util.*;
+import javax.inject.Inject;
+import javax.persistence.*;
+
+import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
+
+import redes_digitais_controle_de_notas.domain.entity.Parameter;
+import br.gov.frameworkdemoiselle.template.JPACrud;
+import javax.persistence.criteria.*;
+
+@PersistenceController
+public class ParameterDAO extends JPACrud<Parameter, Long> {
+
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public List<Parameter> findByExample(Parameter example) {
+		if (example == null) {
+			example = new Parameter();
+		}
+		return super.findByExample(example);
+	}
+
+	public List<Parameter> findByCriteria(java.util.Map<String, Object> parameters) {
+		if (parameters == null) {
+			parameters = new java.util.HashMap<String, Object>();
+		}
+		CriteriaBuilder cb = super.getCriteriaBuilder();
+		CriteriaQuery<Parameter> q = cb.createQuery(Parameter.class);
+		Root<Parameter> r = q.from(Parameter.class);
+		Predicate where = null;
+		Object parameter = null; 
+		parameter = parameters.get("id");
+		if (parameter != null) {
+			Predicate expression = null;
+			if (parameter instanceof java.util.List<?>) {
+				@SuppressWarnings("unchecked")
+				List<Long> collection = (List<Long>)parameter;
+				expression = r.get("id").in(collection);
+			} else if (parameter instanceof Long) {
+				expression = cb.equal(r.get("id"), parameter);
+			}
+			if (expression != null) {
+				where = expression;
+			}
+		}
+		parameter = parameters.get("adminEmail");
+		if (parameter != null) {
+			Predicate expression = null;
+			if (parameter instanceof java.util.List<?>) {
+				@SuppressWarnings("unchecked")
+				List<String> collection = (List<String>)parameter;
+				expression = r.get("adminEmail").in(collection);
+			} else if (parameter instanceof String) {
+				expression = cb.equal(r.get("adminEmail"), parameter);
+			}
+			if (expression != null) {
+				if (where == null) {
+					where = expression;
+				} else {
+					where = cb.and(where, expression);
+				}
+			}
+		}
+		parameter = parameters.get("lastUpdate");
+		if (parameter != null) {
+			Predicate expression = null;
+			if (parameter instanceof java.util.List<?>) {
+				@SuppressWarnings("unchecked")
+				List<Date> collection = (List<Date>)parameter;
+				expression = r.get("lastUpdate").in(collection);
+			} else if (parameter instanceof Date) {
+				expression = cb.equal(r.get("lastUpdate"), parameter);
+			}
+			if (expression != null) {
+				if (where == null) {
+					where = expression;
+				} else {
+					where = cb.and(where, expression);
+				}
+			}
+		}
+		if (where != null) {
+			q.where(where);
+		}
+		List<Parameter> results =  getEntityManager().createQuery(q).getResultList();
+		return results;
+	}
+
+}
+
+</businessCodeUnitContent>
+<businessCodeBlocks>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
+<businessCodeBlockContent>package redes_digitais_controle_de_notas.persistence.entity;
+
+</businessCodeBlockContent>
+<intraCodeBlocks></intraCodeBlocks>
+<businessCodeBlockTemplate>PackageBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
+<businessCodeBlockContent>import java.util.*;
+import javax.inject.Inject;
+import javax.persistence.*;
+
+import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
+
+import redes_digitais_controle_de_notas.domain.entity.Parameter;
+import br.gov.frameworkdemoiselle.template.JPACrud;
+import javax.persistence.criteria.*;
+
+</businessCodeBlockContent>
+<businessCodeBlockTemplate>EntityDAOImportBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+<intraCodeBlocks>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport</businessCodeBlockIdentification>
+<businessCodeBlockContent>import br.gov.frameworkdemoiselle.template.JPACrud;</businessCodeBlockContent>
+<intraCodeBlocks></intraCodeBlocks>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyValue>custom</setPropertyValue>
+<setPropertyEnumeration></setPropertyEnumeration>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+</intraCodeBlocks_item>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport_1</businessCodeBlockIdentification>
+<businessCodeBlockContent>import javax.persistence.criteria.*;
+</businessCodeBlockContent>
+<intraCodeBlocks></intraCodeBlocks>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyValue>custom</setPropertyValue>
+<setPropertyEnumeration></setPropertyEnumeration>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+</intraCodeBlocks_item>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
+<businessCodeBlockContent>@PersistenceController
+public class ParameterDAO extends JPACrud<Parameter, Long> {
+
+	private static final long serialVersionUID = 1L;
+
+</businessCodeBlockContent>
+<businessCodeBlockTemplate>EntityDAOClassDefinitionBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+<intraCodeBlocks>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>serialVersionUID</businessCodeBlockIdentification>
+<businessCodeBlockContent>	private static final long serialVersionUID = 1L;
+
+</businessCodeBlockContent>
+<intraCodeBlocks></intraCodeBlocks>
+<businessCodeBlockTemplate>SerialVersionUIDBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+</intraCodeBlocks_item>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>findByExample</businessCodeBlockIdentification>
+<businessCodeBlockContent>	@Override
+	public List<Parameter> findByExample(Parameter example) {
+		if (example == null) {
+			example = new Parameter();
+		}
+		return super.findByExample(example);
+	}
+
+</businessCodeBlockContent>
+<intraCodeBlocks></intraCodeBlocks>
+<businessCodeBlockTemplate>EntityDAOFindByExampleBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>findByCriteria</businessCodeBlockIdentification>
+<businessCodeBlockContent>	public List<Parameter> findByCriteria(java.util.Map<String, Object> parameters) {
+		if (parameters == null) {
+			parameters = new java.util.HashMap<String, Object>();
+		}
+		CriteriaBuilder cb = super.getCriteriaBuilder();
+		CriteriaQuery<Parameter> q = cb.createQuery(Parameter.class);
+		Root<Parameter> r = q.from(Parameter.class);
+		Predicate where = null;
+		Object parameter = null; 
+		parameter = parameters.get("id");
+		if (parameter != null) {
+			Predicate expression = null;
+			if (parameter instanceof java.util.List<?>) {
+				@SuppressWarnings("unchecked")
+				List<Long> collection = (List<Long>)parameter;
+				expression = r.get("id").in(collection);
+			} else if (parameter instanceof Long) {
+				expression = cb.equal(r.get("id"), parameter);
+			}
+			if (expression != null) {
+				where = expression;
+			}
+		}
+		parameter = parameters.get("adminEmail");
+		if (parameter != null) {
+			Predicate expression = null;
+			if (parameter instanceof java.util.List<?>) {
+				@SuppressWarnings("unchecked")
+				List<String> collection = (List<String>)parameter;
+				expression = r.get("adminEmail").in(collection);
+			} else if (parameter instanceof String) {
+				expression = cb.equal(r.get("adminEmail"), parameter);
+			}
+			if (expression != null) {
+				if (where == null) {
+					where = expression;
+				} else {
+					where = cb.and(where, expression);
+				}
+			}
+		}
+		parameter = parameters.get("lastUpdate");
+		if (parameter != null) {
+			Predicate expression = null;
+			if (parameter instanceof java.util.List<?>) {
+				@SuppressWarnings("unchecked")
+				List<Date> collection = (List<Date>)parameter;
+				expression = r.get("lastUpdate").in(collection);
+			} else if (parameter instanceof Date) {
+				expression = cb.equal(r.get("lastUpdate"), parameter);
+			}
+			if (expression != null) {
+				if (where == null) {
+					where = expression;
+				} else {
+					where = cb.and(where, expression);
+				}
+			}
+		}
+		if (where != null) {
+			q.where(where);
+		}
+		List<Parameter> results =  getEntityManager().createQuery(q).getResultList();
+		return results;
+	}
+</businessCodeBlockContent>
+<intraCodeBlocks></intraCodeBlocks>
+<businessCodeBlockTemplate>EntityDAOFindByCriteriaBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
+<businessCodeBlockContent>}</businessCodeBlockContent>
+<intraCodeBlocks></intraCodeBlocks>
+<businessCodeBlockTemplate>ClosingCodeBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+</businessCodeBlocks_item>
+</businessCodeBlocks>
+<businessCodeUnitSetProperty>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>extends</setPropertyKey>
+<setPropertyValue>br.gov.frameworkdemoiselle.template.JPACrud<[ENTITY], [ID_TYPE]></setPropertyValue>
+<setPropertyEnumeration></setPropertyEnumeration>
+</businessCodeUnitSetProperty_item>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>file</setPropertyKey>
+<setPropertyValue>C:\home\demoiselle\repos\tsfdref2\src\main\java\br\com\egen\tsfdref\\persistence\entity\ParameterDAO.java</setPropertyValue>
+<setPropertyEnumeration></setPropertyEnumeration>
+</businessCodeUnitSetProperty_item>
+</businessCodeUnitSetProperty>
+</businessCodeUnits_item>
+<businessCodeUnits_item>
+<class>com.egen.tool.business.BusinessCodeUnit</class>
+<businessCodeUnitIdentification>DAOTest</businessCodeUnitIdentification>
+<businessCodeUnitTemplate>EntityDAOTestUnit</businessCodeUnitTemplate>
+<businessCodeUnitContent>package redes_digitais_controle_de_notas.persistence.entity;
+
+import redes_digitais_controle_de_notas.domain.entity.Parameter;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import java.util.*;
+import javax.inject.Inject;
+import org.junit.*;
+import org.junit.runner.RunWith;
+import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
+
+@RunWith(DemoiselleRunner.class)
+public class ParameterDAOTest {
+
+	@Inject
+	private ParameterDAO parameterDAO;
+
+	@Before
+	public void before() {
+		for (Parameter parameter : parameterDAO.findAll()) {
+		  parameterDAO.delete(parameter.getId());
+		}
+	}
+
+	@After
+	public void after() {
+		before();
+	}
+
+	@Test
+	public void insert() {
+		Parameter parameter = new Parameter();
+		parameter.setId(new Long("1"));
+		parameterDAO.insert(parameter);
+		List<Parameter> parameterList = parameterDAO.findAll();
+		assertNotNull(parameterList);
+		assertEquals(1, parameterList.size());
+	}
+
+	@Test
+	public void update() {
+		Parameter parameter = new Parameter();
+		parameter.setId(new Long("1"));
+		parameter.setAdminEmail("XXXXXXXXXXXXXXXXXXXX");
+		parameterDAO.insert(parameter);
+		List<Parameter> parameterList = parameterDAO.findAll();
+		assertNotNull(parameterList);
+		assertTrue(parameterList.size()>0);
+		Parameter beforeUpdate = parameterList.get(0);
+		assertEquals("XXXXXXXXXXXXXXXXXXXX", beforeUpdate.getAdminEmail());
+		beforeUpdate.setAdminEmail("YYYYYYYYYYYYYYYYYYYY");
+		parameterDAO.update(beforeUpdate);
+		parameterList = parameterDAO.findAll();
+		Parameter afterUpdate = parameterList.get(0);
+		assertEquals("YYYYYYYYYYYYYYYYYYYY", afterUpdate.getAdminEmail());
+	}
+
+	@Test
+	public void delete() {
+		Parameter parameter = new Parameter();
+		parameter.setId(new Long("1"));
+		parameterDAO.insert(parameter);
+		List<Parameter> parameterList = parameterDAO.findAll();
+		assertNotNull(parameterList);
+		assertEquals(1, parameterList.size());
+		parameterDAO.delete(parameter.getId());
+		parameterList = parameterDAO.findAll();
+		assertEquals(0, parameterList.size());
+	}
+
+}
+
+</businessCodeUnitContent>
+<businessCodeBlocks>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
+<businessCodeBlockContent>package redes_digitais_controle_de_notas.persistence.entity;
+
+</businessCodeBlockContent>
+<intraCodeBlocks></intraCodeBlocks>
+<businessCodeBlockTemplate>PackageBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
+<businessCodeBlockContent>import redes_digitais_controle_de_notas.domain.entity.Parameter;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import java.util.*;
+import javax.inject.Inject;
+import org.junit.*;
+import org.junit.runner.RunWith;
+import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
+
+</businessCodeBlockContent>
+<intraCodeBlocks></intraCodeBlocks>
+<businessCodeBlockTemplate>EntityDAOTestImportBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
+<businessCodeBlockContent>@RunWith(DemoiselleRunner.class)
+public class ParameterDAOTest {
+
+</businessCodeBlockContent>
+<intraCodeBlocks></intraCodeBlocks>
+<businessCodeBlockTemplate>EntityDAOTestClassDefinitionBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>attributes</businessCodeBlockIdentification>
+<businessCodeBlockContent>	@Inject
+	private ParameterDAO parameterDAO;
+
+</businessCodeBlockContent>
+<intraCodeBlocks></intraCodeBlocks>
+<businessCodeBlockTemplate>EntityDAOTestAttributesBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>setup</businessCodeBlockIdentification>
+<businessCodeBlockContent>	@Before
+	public void before() {
+		for (Parameter parameter : parameterDAO.findAll()) {
+		  parameterDAO.delete(parameter.getId());
+		}
+	}
+
+	@After
+	public void after() {
+		before();
+	}
+
+</businessCodeBlockContent>
+<intraCodeBlocks></intraCodeBlocks>
+<businessCodeBlockTemplate>EntityDAOTestSetupBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>insert</businessCodeBlockIdentification>
+<businessCodeBlockContent>	@Test
+	public void insert() {
+		Parameter parameter = new Parameter();
+		parameter.setId(new Long("1"));
+		parameterDAO.insert(parameter);
+		List<Parameter> parameterList = parameterDAO.findAll();
+		assertNotNull(parameterList);
+		assertEquals(1, parameterList.size());
+	}
+
+</businessCodeBlockContent>
+<intraCodeBlocks></intraCodeBlocks>
+<businessCodeBlockTemplate>EntityDAOTestInsertBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>update</businessCodeBlockIdentification>
+<businessCodeBlockContent>	@Test
+	public void update() {
+		Parameter parameter = new Parameter();
+		parameter.setId(new Long("1"));
+		parameter.setAdminEmail("XXXXXXXXXXXXXXXXXXXX");
+		parameterDAO.insert(parameter);
+		List<Parameter> parameterList = parameterDAO.findAll();
+		assertNotNull(parameterList);
+		assertTrue(parameterList.size()>0);
+		Parameter beforeUpdate = parameterList.get(0);
+		assertEquals("XXXXXXXXXXXXXXXXXXXX", beforeUpdate.getAdminEmail());
+		beforeUpdate.setAdminEmail("YYYYYYYYYYYYYYYYYYYY");
+		parameterDAO.update(beforeUpdate);
+		parameterList = parameterDAO.findAll();
+		Parameter afterUpdate = parameterList.get(0);
+		assertEquals("YYYYYYYYYYYYYYYYYYYY", afterUpdate.getAdminEmail());
+	}
+
+</businessCodeBlockContent>
+<intraCodeBlocks></intraCodeBlocks>
+<businessCodeBlockTemplate>EntityDAOTestUpdateBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>delete</businessCodeBlockIdentification>
+<businessCodeBlockContent>	@Test
+	public void delete() {
+		Parameter parameter = new Parameter();
+		parameter.setId(new Long("1"));
+		parameterDAO.insert(parameter);
+		List<Parameter> parameterList = parameterDAO.findAll();
+		assertNotNull(parameterList);
+		assertEquals(1, parameterList.size());
+		parameterDAO.delete(parameter.getId());
+		parameterList = parameterDAO.findAll();
+		assertEquals(0, parameterList.size());
+	}
+
+</businessCodeBlockContent>
+<intraCodeBlocks></intraCodeBlocks>
+<businessCodeBlockTemplate>EntityDAOTestDeleteBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
+<businessCodeBlockContent>}</businessCodeBlockContent>
+<intraCodeBlocks></intraCodeBlocks>
+<businessCodeBlockTemplate>ClosingCodeBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+</businessCodeBlocks_item>
+</businessCodeBlocks>
+<businessCodeUnitSetProperty>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>file</setPropertyKey>
+<setPropertyValue>C:\home\demoiselle\repos\tsfdref2\src\test\java\br\com\egen\tsfdref\\persistence\entity\ParameterDAOTest.java</setPropertyValue>
+<setPropertyEnumeration></setPropertyEnumeration>
+</businessCodeUnitSetProperty_item>
+</businessCodeUnitSetProperty>
+</businessCodeUnits_item>
+</businessCodeUnits>
+<inputParameters>
+</inputParameters>
+<outputParameters>
+</outputParameters>
+<variables>
+<variables_item>
+<class>com.egen.tool.business.BusinessVariable</class>
+<businessVariableName>parameter</businessVariableName>
+<variableComponentType></variableComponentType>
+<businessVariableType>@entity(redes_digitais_controle_de_notas.domain.entity.Parameter)</businessVariableType>
+<businessVariableDomainReference></businessVariableDomainReference>
+<businessVariableDescription></businessVariableDescription>
+<businessVariableInitialization></businessVariableInitialization>
+<businessVariableSetProperties></businessVariableSetProperties>
+</variables_item>
+</variables>
+</com.egen.tool.business.BusinessComponent>

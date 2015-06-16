@@ -1,0 +1,68 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+	<ui:define name="body">
+		<div id="pagetitle" class="pagetitle">#{messages['system.maintainrole.app.title']}</div>
+		<h:form id="listForm">
+			<p:focus id="listFocus"/>
+			<div id="listTitle" class="blocktitle">#{messages['pages.app.list']}</div>
+			<p:toolbar id="listToolbar">
+				<p:toolbarGroup id="listLeftToolbarGroup" align="left">
+					<p:commandButton id="newRecord" value="#{messages['button.new']}" action="#{maintainRoleMB.newRecord}" actionListener="#{maintainRoleMB.clear}" immediate="true" ajax="false" title="#{messages['button.new']}" icon="ui-icon-document"></p:commandButton>
+					<p:commandButton id="delete" value="#{messages['button.delete']}" type="button" ajax="false" onclick="deleteConfirmation.show();" title="#{messages['button.delete']}" icon="ui-icon-trash"></p:commandButton>
+					<p:confirmDialog id="deleteConfirmDialog" widgetVar="deleteConfirmation" message="#{messages['label.confirm.delete']}" header="#{messages['label.dialog.delete']}" severity="alert">
+						<h:commandButton action="#{maintainRoleMB.delete}" actionListener="#{maintainRoleMB.clear}" value="#{messages['button.dialog.yes']}"></h:commandButton>
+						<h:commandButton onclick="deleteConfirmation.hide()" type="button" value="#{messages['button.dialog.no']}"></h:commandButton>
+					</p:confirmDialog>
+				</p:toolbarGroup>
+				<p:toolbarGroup id="listRightToolbarGroup" align="right">
+					<ui:include src="/template/exportToolbar.xhtml">
+						<ui:param name="target" value="listDataTable" />
+					</ui:include>
+				</p:toolbarGroup>
+			</p:toolbar>
+			<div id="listFormMessages" class="formmessages">
+				<p:messages id="listMessages" autoUpdate="true" closable="true"/>
+			</div>
+			<p:outputPanel id="listPanel">
+				<p:dataTable id="listDataTable" value="#{maintainRoleMB.resultList}" var="bean" rows="5" paginator="true" rowsPerPageTemplate="5,10,15,20,50,100" rowIndexVar="rowIndexVar" resizableColumns="true" tableStyle="width:100%">
+					<p:column id="selectionFieldDTColumn" style="text-align:center;" styleClass="gridstandardcolumn" exportable="false">
+						<h:selectBooleanCheckbox id="selectionField" value="#{maintainRoleMB.selection[bean.name]}"></h:selectBooleanCheckbox>
+					</p:column>
+					<p:column id="nameDTColumn" sortBy="#{bean.name}" filterBy="#{bean.name}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="#{messages['label.name']}"></h:outputText>
+						</f:facet>
+						<h:outputText id="name" value="#{bean.name}">
+						</h:outputText>
+					</p:column>
+					<p:column id="descriptionDTColumn" sortBy="#{bean.description}" filterBy="#{bean.description}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="#{messages['label.description']}"></h:outputText>
+						</f:facet>
+						<h:outputText id="description" value="#{bean.description}">
+						</h:outputText>
+					</p:column>
+					<p:column id="activeDTColumn" style="text-align:center;" sortBy="#{bean.active}" filterBy="#{bean.active}" filterOptions="#{maintainRoleMB.activeOptions}" filterMatchMode="exact">
+						<f:facet name="header">
+							<h:outputText value="#{messages['label.active']}"></h:outputText>
+						</f:facet>
+						<h:outputText id="active" converter="#{yesNoConverter}" value="#{bean.active}">
+						</h:outputText>
+					</p:column>
+					<p:column id="lastUpdateDTColumn" style="text-align:center;" sortBy="#{bean.lastUpdate}" filterBy="#{bean.lastUpdate}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="#{messages['label.lastchange']}"></h:outputText>
+						</f:facet>
+						<h:outputText id="lastUpdate" value="#{bean.lastUpdate}">
+							<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
+						</h:outputText>
+					</p:column>
+					<p:column id="editLinkFieldDTColumn" style="text-align:center;" styleClass="gridstandardcolumn" exportable="false">
+						<p:commandLink action="#{maintainRoleMB.getNextView}" actionListener="#{maintainRoleMB.clear}" ajax="false" styleClass="ui-button ui-icon ui-icon-search">
+							<f:param name="id" value="#{bean.name}"></f:param>
+						</p:commandLink>
+					</p:column>
+				</p:dataTable>
+			</p:outputPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>

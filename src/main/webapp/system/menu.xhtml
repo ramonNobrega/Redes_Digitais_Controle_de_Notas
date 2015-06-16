@@ -1,0 +1,11 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:form id="mainmenuForm">
+		<p:menubar id="mainmenuMenubar" styleClass="mainmenubar">
+			<p:submenu id="mainmenu_2" label="#{messages['mainmenu.maintainsystem']}">
+				<p:menuitem id="mainmenu_3" value="Manter Configura&#231;&#227;o do Sistema" url="/system/maintainParameter.jsf" ajax="false"></p:menuitem>
+				<p:menuitem id="mainmenu_4" value="#{messages['system.maintainrole.app.title']}" url="/system/maintainRole.jsf" ajax="false"></p:menuitem>
+				<p:menuitem id="mainmenu_5" value="#{messages['system.maintainuser.app.title']}" url="/system/maintainUser.jsf" ajax="false"></p:menuitem>
+			</p:submenu>
+		</p:menubar>
+	</h:form>
+</ui:composition>

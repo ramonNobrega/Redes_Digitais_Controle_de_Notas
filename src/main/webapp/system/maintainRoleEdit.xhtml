@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+	<ui:define name="body">
+		<div id="pagetitle" class="pagetitle">#{messages['system.maintainrole.app.title']}</div>
+		<h:form id="editForm">
+			<p:focus id="editFocus"/>
+			<div id="editTitle" class="blocktitle">#{messages['pages.app.edit']}</div>
+			<p:toolbar id="editToolbar">
+				<p:toolbarGroup id="editLeftToolbarGroup" align="left">
+					<p:commandButton id="back" value="#{messages['button.back']}" action="#{maintainRoleEditMB.getPreviousView}" immediate="true" ajax="false" title="#{messages['button.back']}" icon="ui-icon-arrowthick-1-w"></p:commandButton>
+					<p:commandButton id="insert" rendered="#{!maintainRoleEditMB.updateMode}" value="#{messages['button.save']}" action="#{maintainRoleEditMB.insert}" ajax="false" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
+					<p:commandButton id="update" rendered="#{maintainRoleEditMB.updateMode}" value="#{messages['button.save']}" action="#{maintainRoleEditMB.update}" ajax="false" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
+					<p:commandButton id="delete" rendered="#{maintainRoleEditMB.updateMode}" value="#{messages['button.delete']}" type="button" ajax="false" onclick="deleteConfirmation.show();" title="#{messages['button.delete']}" icon="ui-icon-trash"></p:commandButton>
+					<p:confirmDialog id="deleteConfirmDialog" widgetVar="deleteConfirmation" message="#{messages['label.confirm.delete']}" header="#{messages['label.dialog.delete']}" severity="alert">
+						<h:commandButton action="#{maintainRoleEditMB.delete}" value="#{messages['button.dialog.yes']}"></h:commandButton>
+						<h:commandButton onclick="deleteConfirmation.hide()" type="button" value="#{messages['button.dialog.no']}"></h:commandButton>
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+			<div id="editFormMessages" class="formmessages">
+				<p:messages id="editMessages" autoUpdate="true" closable="true"/>
+			</div>
+			<p:outputPanel id="editPanel">
+				<div class="formrow">
+					<div id="nameformcell" class="formcell">
+						<p:outputLabel id="nameLabel" value="#{messages['label.name']}" for="name" styleClass="text-input"></p:outputLabel>
+						<p:inputText id="name" value="#{maintainRoleEditMB.bean.name}" required="true" maxlength="30" size="30">
+						</p:inputText>
+					</div>
+				</div>
+				<div class="formrow">
+					<div id="descriptionformcell" class="formcell">
+						<p:outputLabel id="descriptionLabel" value="#{messages['label.description']}" for="description" styleClass="text-input"></p:outputLabel>
+						<p:inputTextarea id="description" value="#{maintainRoleEditMB.bean.description}" size="255" rows="2" cols="100" maxlength="255" counter="descriptionCounter" counterTemplate="{0} #{messages['pages.app.charactersremaining']}"></p:inputTextarea>
+						<div class="formtextareamessage">
+							<h:outputText id="descriptionCounter"/>
+						</div>
+					</div>
+				</div>
+				<div class="formrow">
+					<div id="activeformcell" class="formcell">
+						<p:outputLabel id="activeLabel" value="#{messages['label.active']}" for="active" styleClass="text-input"></p:outputLabel>
+						<p:selectBooleanCheckbox id="active" value="#{maintainRoleEditMB.bean.active}"></p:selectBooleanCheckbox>
+					</div>
+				</div>
+				<div class="formrow">
+					<div id="lastUpdateformcell" class="formcell">
+						<p:outputLabel id="lastUpdateLabel" value="#{messages['label.lastchange']}" for="lastUpdate" styleClass="text-input"></p:outputLabel>
+						<p:inputText id="lastUpdate" value="#{maintainRoleEditMB.bean.lastUpdate}" maxlength="19" readonly="true" size="19" style="text-align:center;">
+							<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
+						</p:inputText>
+					</div>
+				</div>
+			</p:outputPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>

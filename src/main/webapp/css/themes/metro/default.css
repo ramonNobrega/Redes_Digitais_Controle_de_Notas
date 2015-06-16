@@ -1,0 +1,366 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: .85em;
+	font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+	color: #232323;
+	background-color: white;
+}
+
+header, footer, nav, section {
+	display: block;
+}
+
+h1, h2, h3 {
+	margin-top: 0;
+}
+
+h1 {
+	font-size: 1.6em;
+	font-weight: normal;
+}
+
+h2 {
+	font-size: 1.6em;
+}
+
+h3 {
+	font-size: 1em;
+	margin-top:20px;
+}
+
+ul {
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: bold;
+}
+
+a img {
+	border: none;
+}
+
+img.left {
+	float: left;
+	margin: 0 20px 0 0;
+}
+
+img.right {
+	float: right;
+	margin: 0 0 0 20px;
+}
+
+/* main */
+#maincontainer {
+	min-height: 100%;
+	position: relative;
+}
+
+#mainheader {
+	height: 50px;
+	background-color: #2D2D2D;
+}
+
+#mainheader a:hover {
+	text-decoration: none;
+}
+
+.pagemargin {
+	width: 940px;
+	margin: 0 auto;
+}
+
+#mainheadertitle {
+	height: 50px;
+	margin: 0;
+	float: left;
+	font-weight: normal;
+	font-size: 2em;
+	line-height: 50px;
+	color: #0172b6;
+}
+
+#mainlogincontrol {
+	float: right;
+	height: 50px;
+	line-height: 50px;
+	margin-right: 20px;
+	display: inline-block;
+}
+
+#mainuseridentification {
+	margin-right: 10px;	
+}
+
+#usermenuform span {
+	background-color: #2D2D2D !IMPORTANT;
+	color: #ffffff !IMPORTANT;
+}
+
+#usermenuform span button {
+	border: 0;
+}
+
+#usermenuform a {
+	background-color: #6EB53D;
+	border: 0;
+	border-radius: 0;
+	box-shadow: 0 0 0;
+	color: #ffffff;
+	font-size: 13px;
+	margin-bottom: 0;
+	padding: 6px 20px 6px;
+	text-align: center;
+}
+
+#usermenuform a span {
+	background-color: #6EB53D !IMPORTANT;
+	padding: 4px 10px 4px;
+}
+
+#mainmenu {
+}
+
+#maincontent {
+	min-height: 350px;
+	margin-bottom: 60px;
+}
+
+#mainfooter {
+	background-color: #2D2D2D;
+	color: #706E6E;
+	font-size: 11px;
+	height: 60px;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	z-index: 999;
+}
+
+#mainfootercontainer {
+	padding-top: 20px;
+}
+
+#mainfooterleft {
+	color: #706E6E;
+	float: left;
+	text-align: left;
+	width:20%;
+}
+
+#mainfootercenter {
+	color: #6EB53C;
+	float: left;
+	text-align: center;
+	width:60%;
+}
+
+#mainfooterright {
+	float: right;
+	text-align: right;
+	width:20%;
+}
+
+.mainmenubar {
+	border: 0px solid #D4D4D4 !IMPORTANT;
+}
+
+.ui-menu .ui-menu-parent .ui-menu-child {
+	width: 250 !IMPORTANT;
+}
+
+/* index */
+
+#indexcontent {
+	background-color: #0071b6;
+	height: 250px;
+	padding-top: 10px;
+	margin-top: 20px;
+}
+
+#indexmessagebox {
+	color: #ffffff;
+	float: left;
+	font-weight: normal;
+	height: 180px;
+	margin: 10px 10px 10px 10px;
+	position: relative;
+	float: left;
+	width: 350px;
+}
+
+#indexmessagetitle {
+	color: #ffffff;
+	float: left;
+	font-weight: normal;
+	font-size: 28px;
+	margin: 10px 10px 10px 10px;
+	width: 100%;
+}
+
+#indexmessage {
+	color: #ffffff;
+	float: left;
+	font-weight: normal;
+	font-size: 14px;
+	margin: 10px 10px 10px 10px;
+	width: 100%;
+}
+
+#indexcustomization {
+	position: relative;
+	float: right;
+	height: 180px;
+	margin: 10px 10px 10px 10px;
+}
+
+#indexcustomizationmessage {
+	background-color: rgba(34, 160, 237, 0.9);
+	color: #ffffff;
+	font-size: 23px;
+	float: left;
+	height: 100px;
+	margin: 10px 10px 10px 10px;
+	padding: 10px;
+	position: relative;
+	text-align: center;
+	width: 120px;
+}
+
+#indexcustomizationcommands {
+	background-color: rgba(34, 160, 237, 0.9);
+	color: #ffffff;
+	float: right;
+	height: 120px;
+	padding: 10px;
+	position: relative;
+	margin: 10px 10px 10px 10px;
+	text-align: center;
+	width: 200px;
+}
+
+#newuserlink, #forgetpasswordlink {
+	color: #ffffff;
+}
+
+/* login */
+
+#loginForm {
+	float: right;
+	height: 120px;
+	position: relative;
+	text-align: left; 
+	width: 300px;
+}
+
+.loginformfields {
+	color: #ffffff;
+	height: 140px;
+	margin: 10px 10px 10px 10px;
+	padding: 20px 30px 10px;
+	text-align: left; 
+}
+
+#loginlinkformcell {
+	background-color: #6EB53D;
+	color: #ffffff;
+	margin: 10px 10px 10px 120px;
+	padding: 5px 5px 5px 5px; 
+	text-align: center; 
+	width: 100px;
+}
+
+/* home */
+.homeDashboard {
+	position: relative;
+	float: right;
+	height: 180px;
+	margin: 10px 10px 10px 10px;
+	font-size: 1.3em;
+	
+}
+
+.dashboardpanel {
+	background-color: #6EB53D !IMPORTANT;
+	color: #ffffff !IMPORTANT;
+	margin: 10px;
+}
+
+
+/* pages */
+.pagetitle {
+	font-size: 2.2em;
+	font-weight: normal;
+}
+
+.blocktitle {
+	font-size: 1.4em;
+	font-weight: normal;
+	margin-top: 20px;
+}
+
+.exporticons {
+	margin:2px 2px 2px 2px;
+}
+
+label {
+	display: block;
+	font-size: 1.2em;
+}
+
+.formcell {
+	display: inline-block;
+	vertical-align: text-top;
+	margin-right: 20px;
+}
+
+.formrow {
+}
+
+input:not([type="image"]), textarea, .ui-selectonemenu, .ui-chkbox-box {
+	background: white url(images/ui-bg_glass_0_ffffff_1x400.png) 50% 50% repeat-x !IMPORTANT;
+	font-weight: normal !IMPORTANT;
+	color: #525252 !IMPORTANT;
+	margin-right: 5px;
+}
+
+.formtextareamessage {
+	color: #525252;
+	font-size: 1.0em;
+	font-style: italic;
+}
+
+.ui-selectonemenu-label {
+	color: #525252 !IMPORTANT;
+	font-size: 1.0em !IMPORTANT;
+}
+
+.ui-growl {
+	right:40px;
+	top: 60px;
+}
+
+.gridstandardcolumn {
+	width: 20px;
+}
+
+.datagridcell {
+	margin-bottom: 10px;
+	padding: 15px;
+}
+
+.wizard {
+	margin-top: 10px;
+}
+
+.formbuttons {
+	margin-top: 10px;
+}

@@ -1,0 +1,33 @@
+<class>com.egen.tool.project.DeploymentProfile</class>
+<creationDate>11/03/2009 17:59:59</creationDate>
+<target>deploy</target>
+<lastModifyDate>16/03/2009 10:13:42</lastModifyDate>
+<deploymentProfileName>DefaultDeployment</deploymentProfileName>
+<buildFile>%TOOL_HOME%\configdata\templatesets\demoiselle\project\make\build.xml</buildFile>
+<buildType></buildType>
+<parameters>
+<parameters_item>
+<$key>transferType</$key>
+<$value>copy</$value>
+</parameters_item>
+<parameters_item>
+<$key>remoteDirectory</$key>
+<$value>%PROJECT_LOCATION%/dist/</$value>
+</parameters_item>
+<parameters_item>
+<$key>applicationPath</$key>
+<$value>%APP_PATH%/</$value>
+</parameters_item>
+<parameters_item>
+<$key>archiveName</$key>
+<$value>%APP_NAME%.war</$value>
+</parameters_item>
+<parameters_item>
+<$key>excludedResources</$key>
+<$value>**/*.java,**/META-INFO/,**/CVS/,**/.svn/,**/src/,**/src_egen/,**/temp/*.pdf,**/temp/*.rtf,**/temp/*.xls</$value>
+</parameters_item>
+<parameters_item>
+<$key>workingDirectory</$key>
+<$value>c:/temp/workingpath/</$value>
+</parameters_item>
+</parameters>

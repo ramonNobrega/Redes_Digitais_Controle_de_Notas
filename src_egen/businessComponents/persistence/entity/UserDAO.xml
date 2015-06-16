@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.egen.tool.business.BusinessComponent>
+<class>com.egen.tool.business.BusinessComponent</class>
+<businessComponentName>UserDAO</businessComponentName>
+<businessComponentAlias>UserDAO</businessComponentAlias>
+<businessComponentModule>persistence/entity</businessComponentModule>
+<businessComponentMasterTemplate>EntityCrudDAOTemplate</businessComponentMasterTemplate>
+<businessCodeUnits>
+<businessCodeUnits_item>
+<class>com.egen.tool.business.BusinessCodeUnit</class>
+<businessCodeUnitIdentification>DAO</businessCodeUnitIdentification>
+<businessCodeUnitTemplate>EntityDAOUnit</businessCodeUnitTemplate>
+<businessCodeUnitContent>package redes_digitais_controle_de_notas.persistence.entity;
+
+import java.util.*;
+import javax.inject.Inject;
+import javax.persistence.*;
+
+import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
+
+import redes_digitais_controle_de_notas.domain.entity.User;
+import br.gov.frameworkdemoiselle.template.JPACrud;
+import br.gov.frameworkdemoiselle.message.MessageContext;
+import br.gov.frameworkdemoiselle.message.DefaultMessage;
+import br.gov.frameworkdemoiselle.message.SeverityType;
+
+@PersistenceController
+public class UserDAO extends JPACrud<User, Long> {
+
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public List<User> findByExample(User example) {
+		return super.findByExample(example);
+	}
+
+	@Inject
+	private MessageContext messageContext;
+
+	@Override
+	@br.gov.frameworkdemoiselle.transaction.Transactional
+	public void insert(User entity) {
+		User userExample = new User();
+		userExample.setEmail(entity.getEmail());
+		List<User> userList = this.findByExample(userExample);
+		if (userList != null && userList.size()>0) {
+			messageContext.add("{system.maintainuser.validation.duplicatedemail}", SeverityType.ERROR);
+			return;
+		}
+		String password = entity.getPassword();
+		if (password != null && password.length() < 16) {
+			entity.setPassword(redes_digitais_controle_de_notas.security.SecurityHelper.cryptMD5(password));
+		}
+		super.insert(entity);
+	}
+	
+
+	@Override
+	@br.gov.frameworkdemoiselle.transaction.Transactional
+	public void update(User entity) {
+		User userExample = new User();
+		userExample.setEmail(entity.getEmail());
+		List<User> userList = this.findByExample(userExample);
+		if (userList != null && userList.size()>0 && !userList.get(0).getId().equals(entity.getId())) {
+			messageContext.add("{system.maintainuser.validation.duplicatedemail}", SeverityType.ERROR);
+			return;
+		}
+		String password = entity.getPassword();
+		if (password != null && password.length() < 16) {
+			entity.setPassword(redes_digitais_controle_de_notas.security.SecurityHelper.cryptMD5(password));
+		}
+		super.update(entity);
+	}
+	
+
+}
+
+</businessCodeUnitContent>
+<businessCodeBlocks>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>PackageBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>package redes_digitais_controle_de_notas.persistence.entity;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOImportBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>import java.util.*;
+import javax.inject.Inject;
+import javax.persistence.*;
+
+import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
+
+import redes_digitais_controle_de_notas.domain.entity.User;
+import br.gov.frameworkdemoiselle.template.JPACrud;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>import br.gov.frameworkdemoiselle.template.JPACrud;</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyValue>custom</setPropertyValue>
+<setPropertyEnumeration>
+</setPropertyEnumeration>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</intraCodeBlocks_item>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOClassDefinitionBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>@PersistenceController
+public class UserDAO extends JPACrud<User, Long> {
+
+	private static final long serialVersionUID = 1L;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>serialVersionUID</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>SerialVersionUIDBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	private static final long serialVersionUID = 1L;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</intraCodeBlocks_item>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>findByExample</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOFindByExampleBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Override
+	public List<User> findByExample(User example) {
+		return super.findByExample(example);
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>messageContext</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>br.com.egen.tsfd.templates.business.block.MessageContextBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Inject
+	private MessageContext messageContext;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+<intraCodeBlocks></intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>insert</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Override
+	@br.gov.frameworkdemoiselle.transaction.Transactional
+	public void insert(User entity) {
+		User userExample = new User();
+		userExample.setEmail(entity.getEmail());
+		List<User> userList = this.findByExample(userExample);
+		if (userList != null && userList.size()>0) {
+			messageContext.add("{system.maintainuser.validation.duplicatedemail}", SeverityType.ERROR);
+			return;
+		}
+		String password = entity.getPassword();
+		if (password != null && password.length() < 16) {
+			entity.setPassword(redes_digitais_controle_de_notas.security.SecurityHelper.cryptMD5(password));
+		}
+		super.insert(entity);
+	}
+	
+</businessCodeBlockContent>
+<intraCodeBlocks></intraCodeBlocks>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>annotation</setPropertyKey>
+<setPropertyValue>@br.gov.frameworkdemoiselle.transaction.Transactional</setPropertyValue>
+<setPropertyEnumeration></setPropertyEnumeration>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>update</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Override
+	@br.gov.frameworkdemoiselle.transaction.Transactional
+	public void update(User entity) {
+		User userExample = new User();
+		userExample.setEmail(entity.getEmail());
+		List<User> userList = this.findByExample(userExample);
+		if (userList != null && userList.size()>0 && !userList.get(0).getId().equals(entity.getId())) {
+			messageContext.add("{system.maintainuser.validation.duplicatedemail}", SeverityType.ERROR);
+			return;
+		}
+		String password = entity.getPassword();
+		if (password != null && password.length() < 16) {
+			entity.setPassword(redes_digitais_controle_de_notas.security.SecurityHelper.cryptMD5(password));
+		}
+		super.update(entity);
+	}
+	
+</businessCodeBlockContent>
+<intraCodeBlocks></intraCodeBlocks>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>annotation</setPropertyKey>
+<setPropertyValue>@br.gov.frameworkdemoiselle.transaction.Transactional</setPropertyValue>
+<setPropertyEnumeration></setPropertyEnumeration>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>ClosingCodeBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>}</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+</businessCodeBlocks>
+<businessCodeUnitSetProperty>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>extends</setPropertyKey>
+<setPropertyValue>br.gov.frameworkdemoiselle.template.JPACrud<[ENTITY], [ID_TYPE]></setPropertyValue>
+<setPropertyEnumeration>
+</setPropertyEnumeration>
+</businessCodeUnitSetProperty_item>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>file</setPropertyKey>
+<setPropertyValue></setPropertyValue>
+<setPropertyEnumeration>
+</setPropertyEnumeration>
+</businessCodeUnitSetProperty_item>
+</businessCodeUnitSetProperty>
+</businessCodeUnits_item>
+<businessCodeUnits_item>
+<class>com.egen.tool.business.BusinessCodeUnit</class>
+<businessCodeUnitIdentification>DAOTest</businessCodeUnitIdentification>
+<businessCodeUnitTemplate>EntityDAOTestUnit</businessCodeUnitTemplate>
+<businessCodeUnitContent>package redes_digitais_controle_de_notas.persistence.entity;
+
+import redes_digitais_controle_de_notas.domain.entity.User;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import java.util.*;
+import javax.inject.Inject;
+import org.junit.*;
+import org.junit.runner.RunWith;
+import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
+
+@RunWith(DemoiselleRunner.class)
+public class UserDAOTest {
+
+	@Inject
+	private UserDAO userDAO;
+
+	@Before
+	public void before() {
+		for (User user : userDAO.findAll()) {
+		  userDAO.delete(user.getId());
+		}
+	}
+
+	@After
+	public void after() {
+		before();
+	}
+
+	@Test
+	public void insert() {
+		User user = new User();
+		user.setName("XXXXXXXXXXXXXXXXXXXX");
+		userDAO.insert(user);
+		List<User> userList = userDAO.findAll();
+		assertNotNull(userList);
+		assertEquals(1, userList.size());
+	}
+
+	@Test
+	public void update() {
+		User user = new User();
+		user.setName("XXXXXXXXXXXXXXXXXXXX");
+		userDAO.insert(user);
+		List<User> userList = userDAO.findAll();
+		assertNotNull(userList);
+		assertTrue(userList.size()>0);
+		User beforeUpdate = userList.get(0);
+		assertEquals("XXXXXXXXXXXXXXXXXXXX", beforeUpdate.getName());
+		beforeUpdate.setName("YYYYYYYYYYYYYYYYYYYY");
+		userDAO.update(beforeUpdate);
+		userList = userDAO.findAll();
+		User afterUpdate = userList.get(0);
+		assertEquals("YYYYYYYYYYYYYYYYYYYY", afterUpdate.getName());
+	}
+
+	@Test
+	public void delete() {
+		User user = new User();
+		user.setName("XXXXXXXXXXXXXXXXXXXX");
+		userDAO.insert(user);
+		List<User> userList = userDAO.findAll();
+		assertNotNull(userList);
+		assertEquals(1, userList.size());
+		userDAO.delete(user.getId());
+		userList = userDAO.findAll();
+		assertEquals(0, userList.size());
+	}
+
+}
+
+</businessCodeUnitContent>
+<businessCodeBlocks>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>PackageBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>package redes_digitais_controle_de_notas.persistence.entity;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestImportBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>import redes_digitais_controle_de_notas.domain.entity.User;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import java.util.*;
+import javax.inject.Inject;
+import org.junit.*;
+import org.junit.runner.RunWith;
+import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestClassDefinitionBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>@RunWith(DemoiselleRunner.class)
+public class UserDAOTest {
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>attributes</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestAttributesBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Inject
+	private UserDAO userDAO;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>setup</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestSetupBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Before
+	public void before() {
+		for (User user : userDAO.findAll()) {
+		  userDAO.delete(user.getId());
+		}
+	}
+
+	@After
+	public void after() {
+		before();
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>insert</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestInsertBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Test
+	public void insert() {
+		User user = new User();
+		user.setName("XXXXXXXXXXXXXXXXXXXX");
+		userDAO.insert(user);
+		List<User> userList = userDAO.findAll();
+		assertNotNull(userList);
+		assertEquals(1, userList.size());
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>update</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestUpdateBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Test
+	public void update() {
+		User user = new User();
+		user.setName("XXXXXXXXXXXXXXXXXXXX");
+		userDAO.insert(user);
+		List<User> userList = userDAO.findAll();
+		assertNotNull(userList);
+		assertTrue(userList.size()>0);
+		User beforeUpdate = userList.get(0);
+		assertEquals("XXXXXXXXXXXXXXXXXXXX", beforeUpdate.getName());
+		beforeUpdate.setName("YYYYYYYYYYYYYYYYYYYY");
+		userDAO.update(beforeUpdate);
+		userList = userDAO.findAll();
+		User afterUpdate = userList.get(0);
+		assertEquals("YYYYYYYYYYYYYYYYYYYY", afterUpdate.getName());
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>delete</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestDeleteBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Test
+	public void delete() {
+		User user = new User();
+		user.setName("XXXXXXXXXXXXXXXXXXXX");
+		userDAO.insert(user);
+		List<User> userList = userDAO.findAll();
+		assertNotNull(userList);
+		assertEquals(1, userList.size());
+		userDAO.delete(user.getId());
+		userList = userDAO.findAll();
+		assertEquals(0, userList.size());
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>ClosingCodeBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>}</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+</businessCodeBlocks>
+<businessCodeUnitSetProperty>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>file</setPropertyKey>
+<setPropertyValue></setPropertyValue>
+<setPropertyEnumeration>
+</setPropertyEnumeration>
+</businessCodeUnitSetProperty_item>
+</businessCodeUnitSetProperty>
+</businessCodeUnits_item>
+</businessCodeUnits>
+<inputParameters>
+</inputParameters>
+<outputParameters>
+</outputParameters>
+<variables>
+<variables_item>
+<class>com.egen.tool.business.BusinessVariable</class>
+<businessVariableName>user</businessVariableName>
+<variableComponentType></variableComponentType>
+<businessVariableType>@entity(redes_digitais_controle_de_notas.domain.entity.User)</businessVariableType>
+<businessVariableDomainReference></businessVariableDomainReference>
+<businessVariableDescription></businessVariableDescription>
+<businessVariableInitialization></businessVariableInitialization>
+<businessVariableSetProperties>
+</businessVariableSetProperties>
+</variables_item>
+</variables>
+<businessComponentSetProperties>
+</businessComponentSetProperties>
+</com.egen.tool.business.BusinessComponent>

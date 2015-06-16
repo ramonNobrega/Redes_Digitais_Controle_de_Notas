@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<ScriptRepositoryEnvironment>
+<scripts>
+<scripts_item>
+<class>com.egen.tool.project.ScriptRepository</class>
+<name>Button Blank Target</name>
+<code>this.form.target='_blank';</code>
+</scripts_item>
+</scripts>
+</ScriptRepositoryEnvironment>

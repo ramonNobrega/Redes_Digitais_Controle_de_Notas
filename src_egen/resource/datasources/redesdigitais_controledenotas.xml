@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ToolsDataSource>
+<class>com.egen.tool.configuration.ToolsDataSource</class>
+<name>redesdigitais_controledenotas</name>
+<factory>org.apache.commons.dbcp.BasicDataSourceFactory</factory>
+<url>jdbc:mysql://localhost:3306/redesdigitais_controledenotas</url>
+<password>admin</password>
+<databaseProduct>MySQL</databaseProduct>
+<driver>com.mysql.jdbc.Driver</driver>
+<username>root</username>
+</ToolsDataSource>

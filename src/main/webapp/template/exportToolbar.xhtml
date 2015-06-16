@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+  <h:head />
+  <body>
+  <ui:composition>
+          <h:commandLink>  
+            <p:graphicImage value="/img/excel.png" styleClass="exporticons" title="#{messages['pages.app.excelexport']}"/>  
+            <p:dataExporter type="xls" target="#{target}" fileName="export"/>  
+          </h:commandLink>  
+          <h:commandLink>  
+            <p:graphicImage value="/img/pdf.png" styleClass="exporticons" title="#{messages['pages.app.pdfexport']}"/>  
+            <p:dataExporter type="pdf" target="#{target}" fileName="export"/>  
+          </h:commandLink>  
+          <h:commandLink>  
+            <p:graphicImage value="/img/csv.png" styleClass="exporticons" title="#{messages['pages.app.csvexport']}"/>  
+            <p:dataExporter type="csv" target="#{target}" fileName="export"/>  
+          </h:commandLink>  
+          <h:commandLink>  
+          	<p:graphicImage value="/img/xml.png" styleClass="exporticons" title="#{messages['pages.app.xmlexport']}"/>  
+            <p:dataExporter type="xml" target="#{target}" fileName="export"/>  
+          </h:commandLink>  
+  </ui:composition>
+  </body>
+</html>

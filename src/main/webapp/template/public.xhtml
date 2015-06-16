@@ -1,0 +1,44 @@
+<html xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view locale="#currentLocale" />
+<h:head>
+	<title>#{messages['main.app.title']}</title>
+  <link href="#{request.contextPath}/img/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+  <link href="#{request.contextPath}/img/favicon.ico" type="image/x-icon" rel="icon" />
+  <link href="#{request.contextPath}/css/themes/metro/default.css" type="text/css" rel="stylesheet"/>
+  <link href="#{request.contextPath}/css/themes/metro/theme.css" type="text/css" rel="stylesheet"/>
+</h:head>
+<h:body>
+<div id="maincontainer">
+	<header id="mainheader">
+		<div class="pagemargin">
+      <a id="mainheadertitle" href="#{request.contextPath}/">#{messages['main.app.title']}</a>
+		</div>  
+	</header>
+  <div id="maincontent" class="pagemargin">
+    <ui:insert name="body"/>
+  </div>
+  <footer id="mainfooter">
+	 <div id="mainfootercontainer" class="pagemargin">
+  	 <div id="mainfooterleft">
+       #{messages['main.app.mainfooterleft']}
+	   </div>  
+  	 <div id="mainfootercenter">
+       #{messages['main.app.mainfootercenter']}
+	   </div>  
+     <div id="mainfooterright">
+       <a href="http://www.egen.com.br/"><img src="#{request.contextPath}/img/logo.png" border="0" height="18px" width="75px"/></a>
+     </div>  
+	 </div>  
+  </footer>
+	<p:ajaxStatus style="width:16px;height:16px;">
+		<f:facet name="start">
+		</f:facet>
+		<f:facet name="complete">
+			<h:outputText value="" />
+		</f:facet>
+	</p:ajaxStatus>
+</div>
+<p:growl id="messages" showDetail="true" sticky="false" />  
+</h:body>
+</html>

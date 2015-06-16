@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.egen.tool.business.BusinessComponent>
+<class>com.egen.tool.business.BusinessComponent</class>
+<businessComponentName>RoleDAO</businessComponentName>
+<businessComponentAlias>RoleDAO</businessComponentAlias>
+<businessComponentModule>persistence/entity</businessComponentModule>
+<businessComponentMasterTemplate>EntityCrudDAOTemplate</businessComponentMasterTemplate>
+<businessComponentSetProperties></businessComponentSetProperties>
+<businessCodeUnits>
+<businessCodeUnits_item>
+<class>com.egen.tool.business.BusinessCodeUnit</class>
+<businessCodeUnitIdentification>DAO</businessCodeUnitIdentification>
+<businessCodeUnitTemplate>EntityDAOUnit</businessCodeUnitTemplate>
+<businessCodeUnitContent>package redes_digitais_controle_de_notas.persistence.entity;
+
+import java.util.*;
+import javax.inject.Inject;
+import javax.persistence.*;
+
+import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
+
+import redes_digitais_controle_de_notas.domain.entity.Role;
+import br.gov.frameworkdemoiselle.template.JPACrud;
+
+@PersistenceController
+public class RoleDAO extends JPACrud<Role, String> {
+
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public List<Role> findByExample(Role example) {
+		return super.findByExample(example);
+	}
+
+}
+
+</businessCodeUnitContent>
+<businessCodeBlocks>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>PackageBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>package redes_digitais_controle_de_notas.persistence.entity;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+<intraCodeBlocks></intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOImportBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>import java.util.*;
+import javax.inject.Inject;
+import javax.persistence.*;
+
+import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
+
+import redes_digitais_controle_de_notas.domain.entity.Role;
+import br.gov.frameworkdemoiselle.template.JPACrud;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+<intraCodeBlocks>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>import br.gov.frameworkdemoiselle.template.JPACrud;</businessCodeBlockContent>
+<intraCodeBlocks></intraCodeBlocks>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyValue>custom</setPropertyValue>
+<setPropertyEnumeration></setPropertyEnumeration>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+</intraCodeBlocks_item>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOClassDefinitionBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>@PersistenceController
+public class RoleDAO extends JPACrud<Role, String> {
+
+	private static final long serialVersionUID = 1L;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+<intraCodeBlocks>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>serialVersionUID</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>SerialVersionUIDBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	private static final long serialVersionUID = 1L;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+<intraCodeBlocks></intraCodeBlocks>
+</intraCodeBlocks_item>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>findByExample</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOFindByExampleBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Override
+	public List<Role> findByExample(Role example) {
+		return super.findByExample(example);
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+<intraCodeBlocks></intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>ClosingCodeBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>}</businessCodeBlockContent>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+<intraCodeBlocks></intraCodeBlocks>
+</businessCodeBlocks_item>
+</businessCodeBlocks>
+<businessCodeUnitSetProperty>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>extends</setPropertyKey>
+<setPropertyValue>br.gov.frameworkdemoiselle.template.JPACrud<[ENTITY], [ID_TYPE]></setPropertyValue>
+<setPropertyEnumeration></setPropertyEnumeration>
+</businessCodeUnitSetProperty_item>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>file</setPropertyKey>
+<setPropertyValue></setPropertyValue>
+<setPropertyEnumeration></setPropertyEnumeration>
+</businessCodeUnitSetProperty_item>
+</businessCodeUnitSetProperty>
+</businessCodeUnits_item>
+<businessCodeUnits_item>
+<class>com.egen.tool.business.BusinessCodeUnit</class>
+<businessCodeUnitIdentification>DAOTest</businessCodeUnitIdentification>
+<businessCodeUnitTemplate>EntityDAOTestUnit</businessCodeUnitTemplate>
+<businessCodeUnitContent>package redes_digitais_controle_de_notas.persistence.entity;
+
+import redes_digitais_controle_de_notas.domain.entity.Role;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import java.util.*;
+import javax.inject.Inject;
+import org.junit.*;
+import org.junit.runner.RunWith;
+import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
+
+@RunWith(DemoiselleRunner.class)
+public class RoleDAOTest {
+
+	@Inject
+	private RoleDAO roleDAO;
+
+	@Before
+	public void before() {
+		for (Role role : roleDAO.findAll()) {
+		  roleDAO.delete(role.getName());
+		}
+	}
+
+	@After
+	public void after() {
+		before();
+	}
+
+	@Test
+	public void insert() {
+		Role role = new Role();
+		role.setName("XXXXXXXXXXXXXXXXXXXX");
+		roleDAO.insert(role);
+		List<Role> roleList = roleDAO.findAll();
+		assertNotNull(roleList);
+		assertEquals(1, roleList.size());
+	}
+
+	@Test
+	public void update() {
+		Role role = new Role();
+		role.setName("XXXXXXXXXXXXXXXXXXXX");
+		role.setDescription("XXXXXXXXXXXXXXXXXXXX");
+		roleDAO.insert(role);
+		List<Role> roleList = roleDAO.findAll();
+		assertNotNull(roleList);
+		assertTrue(roleList.size()>0);
+		Role beforeUpdate = roleList.get(0);
+		assertEquals("XXXXXXXXXXXXXXXXXXXX", beforeUpdate.getDescription());
+		beforeUpdate.setDescription("YYYYYYYYYYYYYYYYYYYY");
+		roleDAO.update(beforeUpdate);
+		roleList = roleDAO.findAll();
+		Role afterUpdate = roleList.get(0);
+		assertEquals("YYYYYYYYYYYYYYYYYYYY", afterUpdate.getDescription());
+	}
+
+	@Test
+	public void delete() {
+		Role role = new Role();
+		role.setName("XXXXXXXXXXXXXXXXXXXX");
+		roleDAO.insert(role);
+		List<Role> roleList = roleDAO.findAll();
+		assertNotNull(roleList);
+		assertEquals(1, roleList.size());
+		roleDAO.delete(role.getName());
+		roleList = roleDAO.findAll();
+		assertEquals(0, roleList.size());
+	}
+
+}
+
+</businessCodeUnitContent>
+<businessCodeBlocks>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>PackageBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>package redes_digitais_controle_de_notas.persistence.entity;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+<intraCodeBlocks></intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestImportBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>import redes_digitais_controle_de_notas.domain.entity.Role;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import java.util.*;
+import javax.inject.Inject;
+import org.junit.*;
+import org.junit.runner.RunWith;
+import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+<intraCodeBlocks></intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestClassDefinitionBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>@RunWith(DemoiselleRunner.class)
+public class RoleDAOTest {
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+<intraCodeBlocks></intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>attributes</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestAttributesBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Inject
+	private RoleDAO roleDAO;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+<intraCodeBlocks></intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>setup</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestSetupBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Before
+	public void before() {
+		for (Role role : roleDAO.findAll()) {
+		  roleDAO.delete(role.getName());
+		}
+	}
+
+	@After
+	public void after() {
+		before();
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+<intraCodeBlocks></intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>insert</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestInsertBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Test
+	public void insert() {
+		Role role = new Role();
+		role.setName("XXXXXXXXXXXXXXXXXXXX");
+		roleDAO.insert(role);
+		List<Role> roleList = roleDAO.findAll();
+		assertNotNull(roleList);
+		assertEquals(1, roleList.size());
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+<intraCodeBlocks></intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>update</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestUpdateBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Test
+	public void update() {
+		Role role = new Role();
+		role.setName("XXXXXXXXXXXXXXXXXXXX");
+		role.setDescription("XXXXXXXXXXXXXXXXXXXX");
+		roleDAO.insert(role);
+		List<Role> roleList = roleDAO.findAll();
+		assertNotNull(roleList);
+		assertTrue(roleList.size()>0);
+		Role beforeUpdate = roleList.get(0);
+		assertEquals("XXXXXXXXXXXXXXXXXXXX", beforeUpdate.getDescription());
+		beforeUpdate.setDescription("YYYYYYYYYYYYYYYYYYYY");
+		roleDAO.update(beforeUpdate);
+		roleList = roleDAO.findAll();
+		Role afterUpdate = roleList.get(0);
+		assertEquals("YYYYYYYYYYYYYYYYYYYY", afterUpdate.getDescription());
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+<intraCodeBlocks></intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>delete</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestDeleteBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Test
+	public void delete() {
+		Role role = new Role();
+		role.setName("XXXXXXXXXXXXXXXXXXXX");
+		roleDAO.insert(role);
+		List<Role> roleList = roleDAO.findAll();
+		assertNotNull(roleList);
+		assertEquals(1, roleList.size());
+		roleDAO.delete(role.getName());
+		roleList = roleDAO.findAll();
+		assertEquals(0, roleList.size());
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+<intraCodeBlocks></intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>ClosingCodeBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>}</businessCodeBlockContent>
+<businessCodeBlockSetProperty></businessCodeBlockSetProperty>
+<intraCodeBlocks></intraCodeBlocks>
+</businessCodeBlocks_item>
+</businessCodeBlocks>
+<businessCodeUnitSetProperty>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>file</setPropertyKey>
+<setPropertyValue></setPropertyValue>
+<setPropertyEnumeration></setPropertyEnumeration>
+</businessCodeUnitSetProperty_item>
+</businessCodeUnitSetProperty>
+</businessCodeUnits_item>
+</businessCodeUnits>
+<inputParameters>
+</inputParameters>
+<outputParameters>
+</outputParameters>
+<variables>
+<variables_item>
+<class>com.egen.tool.business.BusinessVariable</class>
+<businessVariableName>role</businessVariableName>
+<variableComponentType></variableComponentType>
+<businessVariableType>@entity(redes_digitais_controle_de_notas.domain.entity.Role)</businessVariableType>
+<businessVariableDomainReference></businessVariableDomainReference>
+<businessVariableDescription></businessVariableDescription>
+<businessVariableInitialization></businessVariableInitialization>
+<businessVariableSetProperties></businessVariableSetProperties>
+</variables_item>
+</variables>
+</com.egen.tool.business.BusinessComponent>

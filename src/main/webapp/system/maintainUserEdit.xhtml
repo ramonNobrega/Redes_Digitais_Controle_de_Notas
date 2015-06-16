@@ -1,0 +1,82 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+	<ui:define name="body">
+		<div id="pagetitle" class="pagetitle">#{messages['system.maintainuser.app.title']}</div>
+		<h:form id="editForm">
+			<p:focus id="editFocus"/>
+			<div id="editTitle" class="blocktitle">#{messages['pages.app.edit']}</div>
+			<p:toolbar id="editToolbar">
+				<p:toolbarGroup id="editLeftToolbarGroup" align="left">
+					<p:commandButton id="back" value="#{messages['button.back']}" action="#{maintainUserEditMB.getPreviousView}" immediate="true" ajax="false" title="#{messages['button.back']}" icon="ui-icon-arrowthick-1-w"></p:commandButton>
+					<p:commandButton id="insert" rendered="#{!maintainUserEditMB.updateMode}" value="#{messages['button.save']}" action="#{maintainUserEditMB.insert}" ajax="false" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
+					<p:commandButton id="update" rendered="#{maintainUserEditMB.updateMode}" value="#{messages['button.save']}" action="#{maintainUserEditMB.update}" ajax="false" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
+					<p:commandButton id="delete" rendered="#{maintainUserEditMB.updateMode}" value="#{messages['button.delete']}" type="button" ajax="false" onclick="deleteConfirmation.show();" title="#{messages['button.delete']}" icon="ui-icon-trash"></p:commandButton>
+					<p:confirmDialog id="deleteConfirmDialog" widgetVar="deleteConfirmation" message="#{messages['label.confirm.delete']}" header="#{messages['label.dialog.delete']}" severity="alert">
+						<h:commandButton action="#{maintainUserEditMB.delete}" value="#{messages['button.dialog.yes']}"></h:commandButton>
+						<h:commandButton onclick="deleteConfirmation.hide()" type="button" value="#{messages['button.dialog.no']}"></h:commandButton>
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+			<div id="editFormMessages" class="formmessages">
+				<p:messages id="editMessages" autoUpdate="true" closable="true"/>
+			</div>
+			<p:tabView id="editTabView" dynamic="false">
+				<p:tab id="editTab1Tab" title="#{messages['pages.app.edit']}">
+					<div class="formrow">
+						<div id="idformcell" class="formcell">
+							<h:outputLabel id="idLabel" for="id" styleClass="text-input" value="#{messages['label.id']}"></h:outputLabel>
+							<h:outputText id="id" value="#{maintainUserEditMB.bean.id}">
+								<f:convertNumber pattern="##,###,##0"/>
+							</h:outputText>
+						</div>
+					</div>
+					<div class="formrow">
+						<div id="nameformcell" class="formcell">
+							<p:outputLabel id="nameLabel" value="#{messages['label.name']}" for="name" styleClass="text-input"></p:outputLabel>
+							<p:inputText id="name" value="#{maintainUserEditMB.bean.name}" required="true" maxlength="60" size="60">
+							</p:inputText>
+						</div>
+					</div>
+					<div class="formrow">
+						<div id="emailformcell" class="formcell">
+							<p:outputLabel id="emailLabel" value="#{messages['label.email']}" for="email" styleClass="text-input"></p:outputLabel>
+							<p:inputText id="email" value="#{maintainUserEditMB.bean.email}" validatorMessage="#{messages['validation.invalidemail']}" maxlength="100" size="100">
+								<f:validateRegex pattern="([a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]{2,3}+(.[a-zA-Z]{2,3})?)?"/>
+							</p:inputText>
+						</div>
+					</div>
+					<div class="formrow">
+						<div id="passwordformcell" class="formcell">
+							<p:outputLabel id="passwordLabel" value="#{messages['label.password']}" for="password" styleClass="text-input"></p:outputLabel>
+							<p:password id="password" value="#{maintainUserEditMB.bean.password}" required="true" maxlength="15" size="15"></p:password>
+						</div>
+					</div>
+					<div class="formrow">
+						<div id="activeformcell" class="formcell">
+							<p:outputLabel id="activeLabel" value="#{messages['label.active']}" for="active" styleClass="text-input"></p:outputLabel>
+							<p:selectBooleanCheckbox id="active" value="#{maintainUserEditMB.bean.active}"></p:selectBooleanCheckbox>
+						</div>
+					</div>
+					<div class="formrow">
+						<div id="lastUpdateformcell" class="formcell">
+							<p:outputLabel id="lastUpdateLabel" value="#{messages['label.lastchange']}" for="lastUpdate" styleClass="text-input"></p:outputLabel>
+							<p:inputText id="lastUpdate" value="#{maintainUserEditMB.bean.lastUpdate}" maxlength="19" readonly="true" size="19" style="text-align:center;">
+								<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
+							</p:inputText>
+						</div>
+					</div>
+				</p:tab>
+				<p:tab id="editTab2Tab" rendered="#{maintainUserEditMB.updateMode}" title="#{messages['system.maintainuser.tab2']}">
+					<div class="formrow">
+						<div id="rolesformcell" class="formcell">
+							<p:outputLabel id="rolesLabel" value="Roles" for="roles" styleClass="text-input"></p:outputLabel>
+							<p:pickList id="roles" value="#{maintainUserEditMB.rolesPickList}" converter="#{roleConverter}" valueChangeListener="#{maintainUserEditMB.rolesPickListValueChangeListener}" var="role" itemLabel="#{role.name}" itemValue="#{role}" style="width:98%" onTransfer="PrimeFaces.ab({formId:'editForm',source:'editForm:editTabView:roles_source',process:'@all'});return false;">
+								<f:facet name="sourceCaption">#{messages['pages.picklist.available']}</f:facet>
+								<f:facet name="targetCaption">#{messages['pages.picklist.selected']}</f:facet>
+							</p:pickList>
+						</div>
+					</div>
+				</p:tab>
+			</p:tabView>
+		</h:form>
+	</ui:define>
+</ui:composition>

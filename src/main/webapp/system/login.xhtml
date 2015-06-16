@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/public.xhtml">
+	<ui:define name="body">
+		<div id="indexcontent">
+			<div id="indexmessagebox">
+				<div id="indexmessagetitle">#{messages['login.app.title']}</div>
+				<div id="indexmessage">#{messages['login.app.message']}</div>
+			</div>
+			<div id="indexcustomization">
+				<div id="indexcustomizationmessage">#{messages['login.app.detail']}</div>
+		<h:form id="loginForm">
+			<p:focus id="loginFocus"/>
+			<p:outputPanel id="loginPanel" styleClass="loginformfields">
+				<div class="formrow">
+					<div id="usernameformcell" class="formcell">
+						<p:outputLabel id="usernameLabel" value="#{messages['login.label.field.username']}" for="username" styleClass="text-input"></p:outputLabel>
+						<p:inputText id="username" value="#{loginMB.credential.username}" required="true" maxlength="255" size="25">
+						</p:inputText>
+					</div>
+				</div>
+				<div class="formrow">
+					<div id="passwordformcell" class="formcell">
+						<p:outputLabel id="passwordLabel" value="#{messages['login.label.field.password']}" for="password" styleClass="text-input"></p:outputLabel>
+						<p:password id="password" value="#{loginMB.credential.password}" maxlength="255" size="25"></p:password>
+					</div>
+				</div>
+				<div class="formrow">
+					<div id="loginlinkformcell" class="formcell">
+						<p:commandLink id="loginlink" action="#{loginMB.login()}" ajax="false">
+							<h:outputText value="#{messages['login.label.button.entry']}"></h:outputText>
+						</p:commandLink>
+					</div>
+				</div>
+				<div class="formrow">
+					<div id="newuserlinkformcell" class="formcell">
+						<p:commandLink id="newuserlink" action="/system/registerUser.jsf" immediate="true" ajax="false" style="color:#ffffff;">
+							<h:outputText value="#{messages['index.label.newuser']}"></h:outputText>
+						</p:commandLink>
+					</div>
+				</div>
+				<div class="formrow">
+					<div id="forgetpasswordlinkformcell" class="formcell">
+						<p:commandLink id="forgetpasswordlink" action="/system/resetPassword.jsf" immediate="true" ajax="false" style="color:#ffffff;">
+							<h:outputText value="#{messages['index.label.forgetpassword']}"></h:outputText>
+						</p:commandLink>
+					</div>
+				</div>
+			</p:outputPanel>
+		</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
