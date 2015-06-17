@@ -30,14 +30,6 @@ CREATE TABLE IF NOT EXISTS redesdigitais_controledenotas.tb_professor (
 	CONSTRAINT pk_tb_professor PRIMARY KEY(id_professor)
 );
 
-CREATE TABLE IF NOT EXISTS redesdigitais_controledenotas.tb_role (
-	nm_role VARCHAR(30) NOT NULL,
-	ts_last_update DATETIME,
-	ds_role VARCHAR(255),
-	fl_active BIT(1) NOT NULL,
-	CONSTRAINT pk_tb_role PRIMARY KEY(nm_role)
-);
-
 CREATE TABLE IF NOT EXISTS redesdigitais_controledenotas.tb_turma (
 	id_turma INT(10) NOT NULL,
 	nm_turma VARCHAR(100) NOT NULL,
@@ -56,23 +48,6 @@ CREATE TABLE IF NOT EXISTS redesdigitais_controledenotas.tb_turma_tb_professor (
 	CONSTRAINT pk_tb_turma_tb_professor PRIMARY KEY(turma, professor)
 );
 
-CREATE TABLE IF NOT EXISTS redesdigitais_controledenotas.tb_user (
-	id_user BIGINT(19) NOT NULL,
-	nm_password VARCHAR(32),
-	ts_last_update DATETIME,
-	nm_user VARCHAR(255) NOT NULL,
-	fl_active BIT(1) NOT NULL,
-	nm_email VARCHAR(255),
-	CONSTRAINT pk_tb_user PRIMARY KEY(id_user)
-);
-
-CREATE TABLE IF NOT EXISTS redesdigitais_controledenotas.tb_user_role (
-	nm_role VARCHAR(30) NOT NULL,
-	id_user BIGINT(19) NOT NULL,
-	CONSTRAINT pk_tb_user_role PRIMARY KEY(id_user, nm_role)
-);
-
-
 ALTER TABLE redesdigitais_controledenotas.tb_aluno ADD CONSTRAINT fk_tb_user_tb_aluno FOREIGN KEY (id_aluno) REFERENCES tb_user (id_user);
 ALTER TABLE redesdigitais_controledenotas.tb_desempenho ADD CONSTRAINT fk_tb_aluno_tb_desempenho FOREIGN KEY (aluno) REFERENCES tb_aluno (id_aluno);
 ALTER TABLE redesdigitais_controledenotas.tb_desempenho_bimestral ADD CONSTRAINT fk_tb_aluno_tb_desempenho FOREIGN KEY (aluno) REFERENCES tb_aluno (id_aluno);
@@ -81,6 +56,3 @@ ALTER TABLE redesdigitais_controledenotas.tb_turma_tb_aluno ADD CONSTRAINT fk_tb
 ALTER TABLE redesdigitais_controledenotas.tb_turma_tb_aluno ADD CONSTRAINT fk_tb_turma_tb_turma_tb_aluno FOREIGN KEY (turma) REFERENCES tb_turma (id_turma);
 ALTER TABLE redesdigitais_controledenotas.tb_turma_tb_professor ADD CONSTRAINT fk_tb_user_tb_turma_tb_professor FOREIGN KEY (professor) REFERENCES tb_user (id_user);
 ALTER TABLE redesdigitais_controledenotas.tb_turma_tb_professor ADD CONSTRAINT fk_tb_turma_tb_turma_tb_professor FOREIGN KEY (turma) REFERENCES tb_turma (id_turma);
-ALTER TABLE redesdigitais_controledenotas.tb_user ADD CONSTRAINT uk_user_01 UNIQUE (nm_email);
-ALTER TABLE redesdigitais_controledenotas.tb_user_role ADD CONSTRAINT FK_tb_user_role_id_user FOREIGN KEY (id_user) REFERENCES tb_user (id_user);
-ALTER TABLE redesdigitais_controledenotas.tb_user_role ADD CONSTRAINT FK_tb_user_role_nm_role FOREIGN KEY (nm_role) REFERENCES tb_role (nm_role);
