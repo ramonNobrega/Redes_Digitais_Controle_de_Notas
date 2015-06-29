@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS redesdigitais_controledenotas.tb_turma_tb_professor (
 
 ALTER TABLE redesdigitais_controledenotas.tb_aluno ADD CONSTRAINT fk_tb_user_tb_aluno FOREIGN KEY (id_aluno) REFERENCES tb_user (id_user);
 ALTER TABLE redesdigitais_controledenotas.tb_desempenho ADD CONSTRAINT fk_tb_aluno_tb_desempenho FOREIGN KEY (aluno) REFERENCES tb_aluno (id_aluno);
-ALTER TABLE redesdigitais_controledenotas.tb_desempenho_bimestral ADD CONSTRAINT fk_tb_aluno_tb_desempenho FOREIGN KEY (aluno) REFERENCES tb_aluno (id_aluno);
+ALTER TABLE redesdigitais_controledenotas.tb_desempenho_bimestral ADD CONSTRAINT fk_tb_aluno_tb_desempenho_bimestral FOREIGN KEY (aluno) REFERENCES tb_aluno (id_aluno);
 ALTER TABLE redesdigitais_controledenotas.tb_professor ADD CONSTRAINT fk_tb_user_tb_professor FOREIGN KEY (id_professor) REFERENCES tb_user (id_user);
 ALTER TABLE redesdigitais_controledenotas.tb_turma_tb_aluno ADD CONSTRAINT fk_tb_aluno_tb_turma_tb_aluno FOREIGN KEY (aluno) REFERENCES tb_aluno (id_aluno);
 ALTER TABLE redesdigitais_controledenotas.tb_turma_tb_aluno ADD CONSTRAINT fk_tb_turma_tb_turma_tb_aluno FOREIGN KEY (turma) REFERENCES tb_turma (id_turma);
