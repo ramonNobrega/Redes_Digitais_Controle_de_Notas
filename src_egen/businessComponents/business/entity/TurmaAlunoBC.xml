@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.egen.tool.business.BusinessComponent>
+<class>com.egen.tool.business.BusinessComponent</class>
+<businessComponentAlias>TurmaAlunoBC</businessComponentAlias>
+<businessComponentModule>business/entity</businessComponentModule>
+<businessComponentMasterTemplate>EntityCrudBCTemplate</businessComponentMasterTemplate>
+<businessComponentName>TurmaAlunoBC</businessComponentName>
+<variables>
+<variables_item>
+<class>com.egen.tool.business.BusinessVariable</class>
+<businessVariableName>turmaAluno</businessVariableName>
+<businessVariableDomainReference></businessVariableDomainReference>
+<businessVariableInitialization></businessVariableInitialization>
+<businessVariableDescription></businessVariableDescription>
+<businessVariableType>@entity(redes_digitais_controle_de_notas.domain.entity.TurmaAluno)</businessVariableType>
+<variableComponentType></variableComponentType>
+<businessVariableSetProperties>
+</businessVariableSetProperties>
+</variables_item>
+</variables>
+<businessComponentSetProperties>
+</businessComponentSetProperties>
+<inputParameters>
+</inputParameters>
+<businessCodeUnits>
+<businessCodeUnits_item>
+<class>com.egen.tool.business.BusinessCodeUnit</class>
+<businessCodeUnitIdentification>BC</businessCodeUnitIdentification>
+<businessCodeUnitTemplate>EntityBCUnit</businessCodeUnitTemplate>
+<businessCodeUnitContent>package redes_digitais_controle_de_notas.business.entity;
+
+import redes_digitais_controle_de_notas.domain.entity.TurmaAluno;
+import redes_digitais_controle_de_notas.domain.entity.TurmaAlunoKey;
+import redes_digitais_controle_de_notas.persistence.entity.TurmaAlunoDAO;
+import java.util.*;
+import javax.inject.Inject;
+import br.gov.frameworkdemoiselle.stereotype.BusinessController;
+import br.gov.frameworkdemoiselle.transaction.Transactional;
+import br.gov.frameworkdemoiselle.template.DelegateCrud;
+
+@BusinessController
+public class TurmaAlunoBC extends DelegateCrud<TurmaAluno, TurmaAlunoKey, TurmaAlunoDAO> {
+
+	private static final long serialVersionUID = 1L;
+
+	public List<TurmaAluno> findByExample(TurmaAluno example) {
+		return getDelegate().findByExample(example);
+	}
+
+	public List<TurmaAluno> findByCriteria(java.util.Map<String, Object> parameters) {
+		return getDelegate().findByCriteria(parameters);
+	}
+
+}
+
+</businessCodeUnitContent>
+<businessCodeUnitSetProperty>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>extends</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>br.gov.frameworkdemoiselle.template.DelegateCrud<[ENTITY], [ID_TYPE], [DAO]></setPropertyValue>
+</businessCodeUnitSetProperty_item>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>file</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>src/main/java/redes_digitais_controle_de_notas/business/entity/TurmaAlunoBC.java</setPropertyValue>
+</businessCodeUnitSetProperty_item>
+</businessCodeUnitSetProperty>
+<businessCodeBlocks>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>PackageBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>package redes_digitais_controle_de_notas.business.entity;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityBCImportBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>import redes_digitais_controle_de_notas.domain.entity.TurmaAluno;
+import redes_digitais_controle_de_notas.domain.entity.TurmaAlunoKey;
+import redes_digitais_controle_de_notas.persistence.entity.TurmaAlunoDAO;
+import java.util.*;
+import javax.inject.Inject;
+import br.gov.frameworkdemoiselle.stereotype.BusinessController;
+import br.gov.frameworkdemoiselle.transaction.Transactional;
+import br.gov.frameworkdemoiselle.template.DelegateCrud;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>import br.gov.frameworkdemoiselle.template.DelegateCrud;
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>custom</setPropertyValue>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</intraCodeBlocks_item>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityBCClassDefinitionBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>@BusinessController
+public class TurmaAlunoBC extends DelegateCrud<TurmaAluno, TurmaAlunoKey, TurmaAlunoDAO> {
+
+	private static final long serialVersionUID = 1L;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>serialVersionUID</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>SerialVersionUIDBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	private static final long serialVersionUID = 1L;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</intraCodeBlocks_item>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>findByExample</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityBCFindByExampleBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	public List<TurmaAluno> findByExample(TurmaAluno example) {
+		return getDelegate().findByExample(example);
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>findByCriteria</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityBCFindByCriteriaBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	public List<TurmaAluno> findByCriteria(java.util.Map<String, Object> parameters) {
+		return getDelegate().findByCriteria(parameters);
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>ClosingCodeBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>}</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+</businessCodeBlocks>
+</businessCodeUnits_item>
+<businessCodeUnits_item>
+<class>com.egen.tool.business.BusinessCodeUnit</class>
+<businessCodeUnitIdentification>BCTest</businessCodeUnitIdentification>
+<businessCodeUnitTemplate>EntityBCTestUnit</businessCodeUnitTemplate>
+<businessCodeUnitContent>package redes_digitais_controle_de_notas.business.entity;
+
+import redes_digitais_controle_de_notas.domain.entity.TurmaAluno;
+import redes_digitais_controle_de_notas.domain.entity.TurmaAlunoKey;
+import redes_digitais_controle_de_notas.business.entity.TurmaAlunoBC;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import java.util.*;
+import javax.inject.Inject;
+import org.junit.*;
+import org.junit.runner.RunWith;
+import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
+import redes_digitais_controle_de_notas.domain.entity.Turma;
+
+@RunWith(DemoiselleRunner.class)
+public class TurmaAlunoBCTest {
+
+	@Inject
+	private TurmaAlunoBC turmaAlunoBC;
+
+	@Inject
+	private TurmaBC turmaBC;
+
+	@Before
+	public void before() {
+		for (TurmaAluno turmaAluno : turmaAlunoBC.findAll()) {
+		TurmaAlunoKey turmaAlunoKey = new TurmaAlunoKey(turmaAluno.getTurma().getIdTurma(), turmaAluno.getAluno().getUser().getId());
+		turmaAlunoBC.delete(turmaAlunoKey);
+		}
+	}
+
+	@After
+	public void after() {
+		before();
+	}
+
+	@Test
+	public void insert() {
+		TurmaAluno turmaAluno = new TurmaAluno();
+		turmaAlunoBC.insert(turmaAluno);
+		List<TurmaAluno> turmaAlunoList = turmaAlunoBC.findAll();
+		assertNotNull(turmaAlunoList);
+		assertEquals(1, turmaAlunoList.size());
+	}
+
+	@Test
+	public void update() {
+		TurmaAluno turmaAluno = new TurmaAluno();
+		Turma turma = new Turma();
+		turma.setNomeTurma("XXXXXXXXXXXXXXXXXXXX");
+		turmaBC.insert(turma);
+		turmaAluno.setTurma(turma);
+		turmaAlunoBC.insert(turmaAluno);
+		List<TurmaAluno> turmaAlunoList = turmaAlunoBC.findAll();
+		assertNotNull(turmaAlunoList);
+		assertTrue(turmaAlunoList.size()>0);
+	}
+
+	@Test
+	public void delete() {
+		TurmaAluno turmaAluno = new TurmaAluno();
+		turmaAlunoBC.insert(turmaAluno);
+		List<TurmaAluno> turmaAlunoList = turmaAlunoBC.findAll();
+		assertNotNull(turmaAlunoList);
+		assertEquals(1, turmaAlunoList.size());
+		TurmaAlunoKey turmaAlunoKey = new TurmaAlunoKey(turmaAluno.getTurma().getIdTurma(), turmaAluno.getAluno().getUser().getId());
+		turmaAlunoBC.delete(turmaAlunoKey);
+		turmaAlunoList = turmaAlunoBC.findAll();
+		assertEquals(0, turmaAlunoList.size());
+	}
+
+}
+
+</businessCodeUnitContent>
+<businessCodeUnitSetProperty>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>file</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>src/test/java/redes_digitais_controle_de_notas/business/entity/TurmaAlunoBCTest.java</setPropertyValue>
+</businessCodeUnitSetProperty_item>
+</businessCodeUnitSetProperty>
+<businessCodeBlocks>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>PackageBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>package redes_digitais_controle_de_notas.business.entity;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityBCTestImportBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>import redes_digitais_controle_de_notas.domain.entity.TurmaAluno;
+import redes_digitais_controle_de_notas.domain.entity.TurmaAlunoKey;
+import redes_digitais_controle_de_notas.business.entity.TurmaAlunoBC;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import java.util.*;
+import javax.inject.Inject;
+import org.junit.*;
+import org.junit.runner.RunWith;
+import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
+import redes_digitais_controle_de_notas.domain.entity.Turma;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>import redes_digitais_controle_de_notas.domain.entity.Turma;</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>custom</setPropertyValue>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</intraCodeBlocks_item>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityBCTestClassDefinitionBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>@RunWith(DemoiselleRunner.class)
+public class TurmaAlunoBCTest {
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>attributes</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityBCTestAttributesBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Inject
+	private TurmaAlunoBC turmaAlunoBC;
+
+	@Inject
+	private TurmaBC turmaBC;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraBC</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Inject
+	private TurmaBC turmaBC;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>custom</setPropertyValue>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</intraCodeBlocks_item>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>setup</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityBCTestSetupBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Before
+	public void before() {
+		for (TurmaAluno turmaAluno : turmaAlunoBC.findAll()) {
+		TurmaAlunoKey turmaAlunoKey = new TurmaAlunoKey(turmaAluno.getTurma().getIdTurma(), turmaAluno.getAluno().getUser().getId());
+		turmaAlunoBC.delete(turmaAlunoKey);
+		}
+	}
+
+	@After
+	public void after() {
+		before();
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>insert</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityBCTestInsertBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Test
+	public void insert() {
+		TurmaAluno turmaAluno = new TurmaAluno();
+		turmaAlunoBC.insert(turmaAluno);
+		List<TurmaAluno> turmaAlunoList = turmaAlunoBC.findAll();
+		assertNotNull(turmaAlunoList);
+		assertEquals(1, turmaAlunoList.size());
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>update</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityBCTestUpdateBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Test
+	public void update() {
+		TurmaAluno turmaAluno = new TurmaAluno();
+		Turma turma = new Turma();
+		turma.setNomeTurma("XXXXXXXXXXXXXXXXXXXX");
+		turmaBC.insert(turma);
+		turmaAluno.setTurma(turma);
+		turmaAlunoBC.insert(turmaAluno);
+		List<TurmaAluno> turmaAlunoList = turmaAlunoBC.findAll();
+		assertNotNull(turmaAlunoList);
+		assertTrue(turmaAlunoList.size()>0);
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>delete</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityBCTestDeleteBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Test
+	public void delete() {
+		TurmaAluno turmaAluno = new TurmaAluno();
+		turmaAlunoBC.insert(turmaAluno);
+		List<TurmaAluno> turmaAlunoList = turmaAlunoBC.findAll();
+		assertNotNull(turmaAlunoList);
+		assertEquals(1, turmaAlunoList.size());
+		TurmaAlunoKey turmaAlunoKey = new TurmaAlunoKey(turmaAluno.getTurma().getIdTurma(), turmaAluno.getAluno().getUser().getId());
+		turmaAlunoBC.delete(turmaAlunoKey);
+		turmaAlunoList = turmaAlunoBC.findAll();
+		assertEquals(0, turmaAlunoList.size());
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>ClosingCodeBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>}</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+</businessCodeBlocks>
+</businessCodeUnits_item>
+</businessCodeUnits>
+<outputParameters>
+</outputParameters>
+</com.egen.tool.business.BusinessComponent>

@@ -7,6 +7,13 @@
         <class>redes_digitais_controle_de_notas.domain.entity.Role</class>
         <class>redes_digitais_controle_de_notas.domain.entity.User</class>
         <class>redes_digitais_controle_de_notas.domain.entity.Parameter</class>
+        <class>redes_digitais_controle_de_notas.domain.entity.Aluno</class>
+        <class>redes_digitais_controle_de_notas.domain.entity.Turma</class>
+        <class>redes_digitais_controle_de_notas.domain.entity.TurmaAluno</class>
+        <class>redes_digitais_controle_de_notas.domain.entity.Professor</class>
+        <class>redes_digitais_controle_de_notas.domain.entity.TurmaProfessor</class>
+        <class>redes_digitais_controle_de_notas.domain.entity.Desempenho</class>
+        <class>redes_digitais_controle_de_notas.domain.entity.DesempenhoBimestral</class>
         <properties>
             <property value="MySQL" name="eclipselink.target-database"/>
             <property value="FINE" name="eclipselink.logging.level"/>

@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.egen.tool.business.BusinessComponent>
+<class>com.egen.tool.business.BusinessComponent</class>
+<businessComponentAlias>TurmaAlunoKeyConverter</businessComponentAlias>
+<businessComponentModule>converter</businessComponentModule>
+<businessComponentMasterTemplate>ConverterMasterTemplate</businessComponentMasterTemplate>
+<businessComponentName>TurmaAlunoKeyConverter</businessComponentName>
+<variables>
+<variables_item>
+<class>com.egen.tool.business.BusinessVariable</class>
+<businessVariableName>turmaAlunoKey</businessVariableName>
+<businessVariableDomainReference></businessVariableDomainReference>
+<businessVariableInitialization></businessVariableInitialization>
+<businessVariableDescription></businessVariableDescription>
+<businessVariableType>@entity(redes_digitais_controle_de_notas.domain.entity.TurmaAlunoKey)</businessVariableType>
+<variableComponentType></variableComponentType>
+<businessVariableSetProperties>
+</businessVariableSetProperties>
+</variables_item>
+</variables>
+<businessComponentSetProperties>
+</businessComponentSetProperties>
+<inputParameters>
+</inputParameters>
+<businessCodeUnits>
+<businessCodeUnits_item>
+<class>com.egen.tool.business.BusinessCodeUnit</class>
+<businessCodeUnitIdentification>Converter</businessCodeUnitIdentification>
+<businessCodeUnitTemplate>ConverterClassUnit</businessCodeUnitTemplate>
+<businessCodeUnitContent>package redes_digitais_controle_de_notas.converter;
+
+import javax.faces.convert.FacesConverter;
+import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
+import javax.faces.convert.Converter;
+import javax.inject.Inject;
+import br.gov.frameworkdemoiselle.annotation.Name;
+import java.util.ResourceBundle;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import redes_digitais_controle_de_notas.domain.entity.TurmaAlunoKey;
+
+@FacesConverter(forClass = TurmaAlunoKey.class)
+@ManagedBean(name = "turmaAlunoKeyConverter")
+@Named
+public class TurmaAlunoKeyConverter implements Converter {
+
+	@Inject
+	@Name("messages")
+	private ResourceBundle bundle;
+
+	@Override
+	public Object getAsObject(FacesContext context, UIComponent component, String value) {
+		Object result = null;
+		if (value != null && value.length()>0) {
+			String[] pk = value.split(",");
+			Integer turma = Integer.parseInt(pk[0]);
+			Long aluno = Long.parseLong(pk[1]);
+			TurmaAlunoKey turmaAlunoKey = new TurmaAlunoKey(turma, aluno);
+			result = turmaAlunoKey;
+		}
+		return result;
+	}
+
+	@Override
+	public String getAsString(FacesContext context, UIComponent component, Object value) {
+		String result = null;
+		if (value != null && value instanceof TurmaAlunoKey) {
+			TurmaAlunoKey turmaAlunoKey= (TurmaAlunoKey) value;
+			Integer turma = turmaAlunoKey.getTurma();
+			Long aluno = turmaAlunoKey.getAluno();
+			result = turma+","+aluno;
+		}
+		return result;
+	}
+
+}
+
+</businessCodeUnitContent>
+<businessCodeUnitSetProperty>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>implements</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>javax.faces.convert.Converter</setPropertyValue>
+</businessCodeUnitSetProperty_item>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>annotation</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>@javax.faces.convert.FacesConverter(forClass = TurmaAlunoKey.class)</setPropertyValue>
+</businessCodeUnitSetProperty_item>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>annotation</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>@javax.faces.bean.ManagedBean(name = "turmaAlunoKeyConverter")</setPropertyValue>
+</businessCodeUnitSetProperty_item>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>annotation</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>@javax.inject.Named</setPropertyValue>
+</businessCodeUnitSetProperty_item>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>file</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>src/main/java/redes_digitais_controle_de_notas/converter/TurmaAlunoKeyConverter.java</setPropertyValue>
+</businessCodeUnitSetProperty_item>
+</businessCodeUnitSetProperty>
+<businessCodeBlocks>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>PackageBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>package redes_digitais_controle_de_notas.converter;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>BlankBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>import javax.faces.convert.FacesConverter;
+import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
+import javax.faces.convert.Converter;
+import javax.inject.Inject;
+import br.gov.frameworkdemoiselle.annotation.Name;
+import java.util.ResourceBundle;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import redes_digitais_controle_de_notas.domain.entity.TurmaAlunoKey;
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>import javax.faces.convert.FacesConverter;</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>custom</setPropertyValue>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</intraCodeBlocks_item>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport_1</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>import javax.faces.bean.ManagedBean;</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>custom</setPropertyValue>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</intraCodeBlocks_item>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport_2</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>import javax.inject.Named;</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>custom</setPropertyValue>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</intraCodeBlocks_item>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport_3</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>import javax.faces.convert.Converter;</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>custom</setPropertyValue>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</intraCodeBlocks_item>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport_4</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>import javax.inject.Inject;
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>custom</setPropertyValue>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</intraCodeBlocks_item>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport_5</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>import br.gov.frameworkdemoiselle.annotation.Name;
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>custom</setPropertyValue>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</intraCodeBlocks_item>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport_6</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>import java.util.ResourceBundle;
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>custom</setPropertyValue>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</intraCodeBlocks_item>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport_7</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>import javax.faces.component.UIComponent;</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>custom</setPropertyValue>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</intraCodeBlocks_item>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport_8</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>import javax.faces.context.FacesContext;</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>custom</setPropertyValue>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</intraCodeBlocks_item>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport_9</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>import redes_digitais_controle_de_notas.domain.entity.TurmaAlunoKey;</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>custom</setPropertyValue>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</intraCodeBlocks_item>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>StandardClassDefinitionBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>@FacesConverter(forClass = TurmaAlunoKey.class)
+@ManagedBean(name = "turmaAlunoKeyConverter")
+@Named
+public class TurmaAlunoKeyConverter implements Converter {
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>bundle</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>ResourceBundleBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Inject
+	@Name("messages")
+	private ResourceBundle bundle;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>bundle</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue></setPropertyValue>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>getAsObject</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>ConverterGetAsObjectBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Override
+	public Object getAsObject(FacesContext context, UIComponent component, String value) {
+		Object result = null;
+		if (value != null && value.length()>0) {
+			String[] pk = value.split(",");
+			Integer turma = Integer.parseInt(pk[0]);
+			Long aluno = Long.parseLong(pk[1]);
+			TurmaAlunoKey turmaAlunoKey = new TurmaAlunoKey(turma, aluno);
+			result = turmaAlunoKey;
+		}
+		return result;
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>getAsString</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>ConverterGetAsStringBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Override
+	public String getAsString(FacesContext context, UIComponent component, Object value) {
+		String result = null;
+		if (value != null && value instanceof TurmaAlunoKey) {
+			TurmaAlunoKey turmaAlunoKey= (TurmaAlunoKey) value;
+			Integer turma = turmaAlunoKey.getTurma();
+			Long aluno = turmaAlunoKey.getAluno();
+			result = turma+","+aluno;
+		}
+		return result;
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>ClosingCodeBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>}</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+</businessCodeBlocks>
+</businessCodeUnits_item>
+</businessCodeUnits>
+<outputParameters>
+</outputParameters>
+</com.egen.tool.business.BusinessComponent>

@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.egen.tool.business.BusinessComponent>
+<class>com.egen.tool.business.BusinessComponent</class>
+<businessComponentAlias>ProfessorDAO</businessComponentAlias>
+<businessComponentModule>persistence/entity</businessComponentModule>
+<businessComponentMasterTemplate>EntityCrudDAOTemplate</businessComponentMasterTemplate>
+<businessComponentName>ProfessorDAO</businessComponentName>
+<variables>
+<variables_item>
+<class>com.egen.tool.business.BusinessVariable</class>
+<businessVariableName>professor</businessVariableName>
+<businessVariableDomainReference></businessVariableDomainReference>
+<businessVariableInitialization></businessVariableInitialization>
+<businessVariableDescription></businessVariableDescription>
+<businessVariableType>@entity(redes_digitais_controle_de_notas.domain.entity.Professor)</businessVariableType>
+<variableComponentType></variableComponentType>
+<businessVariableSetProperties>
+</businessVariableSetProperties>
+</variables_item>
+</variables>
+<businessComponentSetProperties>
+</businessComponentSetProperties>
+<inputParameters>
+</inputParameters>
+<businessCodeUnits>
+<businessCodeUnits_item>
+<class>com.egen.tool.business.BusinessCodeUnit</class>
+<businessCodeUnitIdentification>DAO</businessCodeUnitIdentification>
+<businessCodeUnitTemplate>EntityDAOUnit</businessCodeUnitTemplate>
+<businessCodeUnitContent>package redes_digitais_controle_de_notas.persistence.entity;
+
+import java.util.*;
+import javax.inject.Inject;
+import javax.persistence.*;
+
+import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
+
+import redes_digitais_controle_de_notas.domain.entity.Professor;
+import br.gov.frameworkdemoiselle.template.JPACrud;
+import javax.persistence.criteria.*;
+
+@PersistenceController
+public class ProfessorDAO extends JPACrud<Professor, Long> {
+
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public List<Professor> findByExample(Professor example) {
+		if (example == null) {
+			example = new Professor();
+		}
+		return super.findByExample(example);
+	}
+
+	public List<Professor> findByCriteria(java.util.Map<String, Object> parameters) {
+		if (parameters == null) {
+			parameters = new java.util.HashMap<String, Object>();
+		}
+		CriteriaBuilder cb = super.getCriteriaBuilder();
+		CriteriaQuery<Professor> q = cb.createQuery(Professor.class);
+		Root<Professor> r = q.from(Professor.class);
+		Predicate where = null;
+		Object parameter = null; 
+		parameter = parameters.get("user");
+		if (parameter != null) {
+			Predicate expression = null;
+			if (parameter instanceof java.util.List<?>) {
+				@SuppressWarnings("unchecked")
+				List<Long> collection = (List<Long>)parameter;
+				expression = r.get("user").get("id").in(collection);
+			} else if (parameter instanceof Long) {
+				expression = cb.equal(r.get("user").get("id"), parameter);
+			} else if (parameter instanceof redes_digitais_controle_de_notas.domain.entity.User) {
+				expression = cb.equal(r.get("user"), parameter);
+			}
+			if (expression != null) {
+				where = expression;
+			}
+		}
+		parameter = parameters.get("disciplina");
+		if (parameter != null) {
+			Predicate expression = null;
+			if (parameter instanceof java.util.List<?>) {
+				@SuppressWarnings("unchecked")
+				List<String> collection = (List<String>)parameter;
+				expression = r.get("disciplina").in(collection);
+			} else if (parameter instanceof String && ((String)parameter).length()>0) {
+				expression = cb.like(r.<String>get("disciplina"), "%" + parameter + "%");
+			}
+			if (expression != null) {
+				if (where == null) {
+					where = expression;
+				} else {
+					where = cb.and(where, expression);
+				}
+			}
+		}
+		List<Professor> results = new ArrayList<Professor>();
+		if (where != null) {
+			q.where(where);
+			results =  getEntityManager().createQuery(q).getResultList();
+		}
+		return results;
+	}
+
+}
+
+</businessCodeUnitContent>
+<businessCodeUnitSetProperty>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>extends</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>br.gov.frameworkdemoiselle.template.JPACrud<[ENTITY], [ID_TYPE]></setPropertyValue>
+</businessCodeUnitSetProperty_item>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>file</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>src/main/java/redes_digitais_controle_de_notas/persistence/entity/ProfessorDAO.java</setPropertyValue>
+</businessCodeUnitSetProperty_item>
+</businessCodeUnitSetProperty>
+<businessCodeBlocks>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>PackageBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>package redes_digitais_controle_de_notas.persistence.entity;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOImportBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>import java.util.*;
+import javax.inject.Inject;
+import javax.persistence.*;
+
+import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
+
+import redes_digitais_controle_de_notas.domain.entity.Professor;
+import br.gov.frameworkdemoiselle.template.JPACrud;
+import javax.persistence.criteria.*;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>import br.gov.frameworkdemoiselle.template.JPACrud;</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>custom</setPropertyValue>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</intraCodeBlocks_item>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport_1</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>import javax.persistence.criteria.*;
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>custom</setPropertyValue>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</intraCodeBlocks_item>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOClassDefinitionBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>@PersistenceController
+public class ProfessorDAO extends JPACrud<Professor, Long> {
+
+	private static final long serialVersionUID = 1L;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>serialVersionUID</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>SerialVersionUIDBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	private static final long serialVersionUID = 1L;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</intraCodeBlocks_item>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>findByExample</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOFindByExampleBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Override
+	public List<Professor> findByExample(Professor example) {
+		if (example == null) {
+			example = new Professor();
+		}
+		return super.findByExample(example);
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>findByCriteria</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOFindByCriteriaBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	public List<Professor> findByCriteria(java.util.Map<String, Object> parameters) {
+		if (parameters == null) {
+			parameters = new java.util.HashMap<String, Object>();
+		}
+		CriteriaBuilder cb = super.getCriteriaBuilder();
+		CriteriaQuery<Professor> q = cb.createQuery(Professor.class);
+		Root<Professor> r = q.from(Professor.class);
+		Predicate where = null;
+		Object parameter = null; 
+		parameter = parameters.get("user");
+		if (parameter != null) {
+			Predicate expression = null;
+			if (parameter instanceof java.util.List<?>) {
+				@SuppressWarnings("unchecked")
+				List<Long> collection = (List<Long>)parameter;
+				expression = r.get("user").get("id").in(collection);
+			} else if (parameter instanceof Long) {
+				expression = cb.equal(r.get("user").get("id"), parameter);
+			} else if (parameter instanceof redes_digitais_controle_de_notas.domain.entity.User) {
+				expression = cb.equal(r.get("user"), parameter);
+			}
+			if (expression != null) {
+				where = expression;
+			}
+		}
+		parameter = parameters.get("disciplina");
+		if (parameter != null) {
+			Predicate expression = null;
+			if (parameter instanceof java.util.List<?>) {
+				@SuppressWarnings("unchecked")
+				List<String> collection = (List<String>)parameter;
+				expression = r.get("disciplina").in(collection);
+			} else if (parameter instanceof String && ((String)parameter).length()>0) {
+				expression = cb.like(r.<String>get("disciplina"), "%" + parameter + "%");
+			}
+			if (expression != null) {
+				if (where == null) {
+					where = expression;
+				} else {
+					where = cb.and(where, expression);
+				}
+			}
+		}
+		List<Professor> results = new ArrayList<Professor>();
+		if (where != null) {
+			q.where(where);
+			results =  getEntityManager().createQuery(q).getResultList();
+		}
+		return results;
+	}
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>ClosingCodeBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>}</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+</businessCodeBlocks>
+</businessCodeUnits_item>
+<businessCodeUnits_item>
+<class>com.egen.tool.business.BusinessCodeUnit</class>
+<businessCodeUnitIdentification>DAOTest</businessCodeUnitIdentification>
+<businessCodeUnitTemplate>EntityDAOTestUnit</businessCodeUnitTemplate>
+<businessCodeUnitContent>package redes_digitais_controle_de_notas.persistence.entity;
+
+import redes_digitais_controle_de_notas.domain.entity.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import java.util.*;
+import javax.inject.Inject;
+import org.junit.*;
+import org.junit.runner.RunWith;
+import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
+
+@RunWith(DemoiselleRunner.class)
+public class ProfessorDAOTest {
+
+	@Inject
+	private ProfessorDAO professorDAO;
+
+	@Before
+	public void before() {
+		for (Professor professor : professorDAO.findAll()) {
+		professorDAO.delete(professor.getUser().getId());
+		}
+	}
+
+	@After
+	public void after() {
+		before();
+	}
+
+	@Test
+	public void insert() {
+		Professor professor = new Professor();
+		professor.setDisciplina("XXXXXXXXXXXXXXXXXXXX");
+		professorDAO.insert(professor);
+		List<Professor> professorList = professorDAO.findAll();
+		assertNotNull(professorList);
+		assertEquals(1, professorList.size());
+	}
+
+	@Test
+	public void update() {
+		Professor professor = new Professor();
+		professor.setDisciplina("XXXXXXXXXXXXXXXXXXXX");
+		professorDAO.insert(professor);
+		List<Professor> professorList = professorDAO.findAll();
+		assertNotNull(professorList);
+		assertTrue(professorList.size()>0);
+		Professor beforeUpdate = professorList.get(0);
+		assertEquals("XXXXXXXXXXXXXXXXXXXX", beforeUpdate.getDisciplina());
+		beforeUpdate.setDisciplina("YYYYYYYYYYYYYYYYYYYY");
+		professorDAO.update(beforeUpdate);
+		professorList = professorDAO.findAll();
+		Professor afterUpdate = professorList.get(0);
+		assertEquals("YYYYYYYYYYYYYYYYYYYY", afterUpdate.getDisciplina());
+	}
+
+	@Test
+	public void delete() {
+		Professor professor = new Professor();
+		professor.setDisciplina("XXXXXXXXXXXXXXXXXXXX");
+		professorDAO.insert(professor);
+		List<Professor> professorList = professorDAO.findAll();
+		assertNotNull(professorList);
+		assertEquals(1, professorList.size());
+		professorDAO.delete(professor.getUser().getId());
+		professorList = professorDAO.findAll();
+		assertEquals(0, professorList.size());
+	}
+
+}
+
+</businessCodeUnitContent>
+<businessCodeUnitSetProperty>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>file</setPropertyKey>
+<setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyValue>src/test/java/redes_digitais_controle_de_notas/persistence/entity/ProfessorDAOTest.java</setPropertyValue>
+</businessCodeUnitSetProperty_item>
+</businessCodeUnitSetProperty>
+<businessCodeBlocks>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>PackageBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>package redes_digitais_controle_de_notas.persistence.entity;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestImportBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>import redes_digitais_controle_de_notas.domain.entity.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import java.util.*;
+import javax.inject.Inject;
+import org.junit.*;
+import org.junit.runner.RunWith;
+import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestClassDefinitionBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>@RunWith(DemoiselleRunner.class)
+public class ProfessorDAOTest {
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>attributes</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestAttributesBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Inject
+	private ProfessorDAO professorDAO;
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>setup</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestSetupBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Before
+	public void before() {
+		for (Professor professor : professorDAO.findAll()) {
+		professorDAO.delete(professor.getUser().getId());
+		}
+	}
+
+	@After
+	public void after() {
+		before();
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>insert</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestInsertBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Test
+	public void insert() {
+		Professor professor = new Professor();
+		professor.setDisciplina("XXXXXXXXXXXXXXXXXXXX");
+		professorDAO.insert(professor);
+		List<Professor> professorList = professorDAO.findAll();
+		assertNotNull(professorList);
+		assertEquals(1, professorList.size());
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>update</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestUpdateBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Test
+	public void update() {
+		Professor professor = new Professor();
+		professor.setDisciplina("XXXXXXXXXXXXXXXXXXXX");
+		professorDAO.insert(professor);
+		List<Professor> professorList = professorDAO.findAll();
+		assertNotNull(professorList);
+		assertTrue(professorList.size()>0);
+		Professor beforeUpdate = professorList.get(0);
+		assertEquals("XXXXXXXXXXXXXXXXXXXX", beforeUpdate.getDisciplina());
+		beforeUpdate.setDisciplina("YYYYYYYYYYYYYYYYYYYY");
+		professorDAO.update(beforeUpdate);
+		professorList = professorDAO.findAll();
+		Professor afterUpdate = professorList.get(0);
+		assertEquals("YYYYYYYYYYYYYYYYYYYY", afterUpdate.getDisciplina());
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>delete</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>EntityDAOTestDeleteBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Test
+	public void delete() {
+		Professor professor = new Professor();
+		professor.setDisciplina("XXXXXXXXXXXXXXXXXXXX");
+		professorDAO.insert(professor);
+		List<Professor> professorList = professorDAO.findAll();
+		assertNotNull(professorList);
+		assertEquals(1, professorList.size());
+		professorDAO.delete(professor.getUser().getId());
+		professorList = professorDAO.findAll();
+		assertEquals(0, professorList.size());
+	}
+
+</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+<businessCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
+<businessCodeBlockTemplate>ClosingCodeBlockTemplate</businessCodeBlockTemplate>
+<businessCodeBlockContent>}</businessCodeBlockContent>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+</intraCodeBlocks>
+</businessCodeBlocks_item>
+</businessCodeBlocks>
+</businessCodeUnits_item>
+</businessCodeUnits>
+<outputParameters>
+</outputParameters>
+</com.egen.tool.business.BusinessComponent>
