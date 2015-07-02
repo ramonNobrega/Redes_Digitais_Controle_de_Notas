@@ -29,9 +29,6 @@
 <addImportAction></addImportAction>
 <addImportActionForm></addImportActionForm>
 <add_actionForm></add_actionForm>
-<creationDate>15/05/2013 08:27:33</creationDate>
-<lastModifyDate>15/05/2013 08:27:33</lastModifyDate>
-<userGenerate></userGenerate>
 <scope_storage>request</scope_storage>
 <generatorMasterTemplate>StandardPresentationMasterTemplate</generatorMasterTemplate>
 <blocks>
@@ -115,7 +112,6 @@
 <pluggableValidators></pluggableValidators>
 <hasModelAjax>false</hasModelAjax>
 <hasActionAjax>false</hasActionAjax>
-<workingTime>null</workingTime>
 <id_task></id_task>
 <generatorSetProperty>
 </generatorSetProperty>

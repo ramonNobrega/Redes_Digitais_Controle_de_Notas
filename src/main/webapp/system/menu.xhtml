@@ -1,11 +1,12 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
-	<h:form id="mainmenuForm">
 		<p:menubar id="mainmenuMenubar" styleClass="mainmenubar">
-			<p:submenu id="mainmenu_2" label="#{messages['mainmenu.maintainsystem']}">
-				<p:menuitem id="mainmenu_3" value="Manter Configura&#231;&#227;o do Sistema" url="/system/maintainParameter.jsf" ajax="false"></p:menuitem>
-				<p:menuitem id="mainmenu_4" value="#{messages['system.maintainrole.app.title']}" url="/system/maintainRole.jsf" ajax="false"></p:menuitem>
-				<p:menuitem id="mainmenu_5" value="#{messages['system.maintainuser.app.title']}" url="/system/maintainUser.jsf" ajax="false"></p:menuitem>
-			</p:submenu>
+			<p:menuitem id="mainmenu_2" rendered="#{securityContext.hasRole('aluno')}" value="Dados Pessoais do Aluno" ajax="false"></p:menuitem>
+			<p:menuitem id="mainmenu_3" rendered="#{securityContext.hasRole('aluno')}" value="Desempenho por Bimestre" ajax="false"></p:menuitem>
+			<p:menuitem id="mainmenu_4" rendered="#{securityContext.hasRole('aluno')}" value="Desempenho Geral" ajax="false"></p:menuitem>
+			<p:menuitem id="mainmenu_5" rendered="#{securityContext.hasRole('professor')}" value="Dados Pessoais do Professor" ajax="false"></p:menuitem>
+			<p:menuitem id="mainmenu_6" rendered="#{securityContext.hasRole('professor')}" value="Cadastro de Turmas" ajax="false"></p:menuitem>
+			<p:menuitem id="mainmenu_7" rendered="#{securityContext.hasRole('professor')}" value="Edi&#231;&#227;o de Notas" ajax="false"></p:menuitem>
+			<p:menuitem id="mainmenu_8" rendered="#{securityContext.hasRole('professor')}" value="Edi&#231;&#227;o de Turmas" ajax="false"></p:menuitem>
+			<p:menuitem id="mainmenu_9" rendered="#{securityContext.hasRole('professor')}" value="Situa&#231;&#227;o dos Alunos" ajax="false"></p:menuitem>
 		</p:menubar>
-	</h:form>
 </ui:composition>
