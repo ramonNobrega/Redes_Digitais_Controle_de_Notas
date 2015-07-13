@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+		<h:form id="blocoAlunoForm">
+			<p:focus id="blocoAlunoFocus"/>
+			<div id="blocoAlunoTitle" class="blocktitle">Cadastrar Novo Aluno</div>
+			<p:toolbar id="blocoAlunoToolbar">
+				<p:toolbarGroup id="blocoAlunoLeftToolbarGroup" align="left">
+					<p:commandButton id="back" value="#{messages['button.back']}" action="#{tabAlunoMB.getPreviousView}" immediate="true" ajax="false" title="#{messages['button.back']}" icon="ui-icon-arrowthick-1-w"></p:commandButton>
+					<p:commandButton id="save" value="#{messages['button.save']}" action="#{tabAlunoMB.save}" ajax="false" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
+				</p:toolbarGroup>
+				<p:toolbarGroup id="blocoAlunoRightToolbarGroup" align="right">
+					<ui:include src="/template/exportToolbar.xhtml">
+						<ui:param name="target" value="blocoAlunoDataTable" />
+					</ui:include>
+				</p:toolbarGroup>
+			</p:toolbar>
+			<p:outputPanel id="blocoAlunoPanel">
+				<div class="formrow">
+					<div id="userNameformcell" class="formcell">
+						<p:outputLabel id="userNameLabel" value="Nome do Aluno" for="userName" styleClass="text-input"></p:outputLabel>
+						<p:inputText id="userName" value="#{tabAlunoMB.aluno.user.name}" required="true" maxlength="60" size="60">
+						</p:inputText>
+					</div>
+				</div>
+				<div class="formrow">
+					<div id="userPasswordformcell" class="formcell">
+						<p:outputLabel id="userPasswordLabel" value="Senha do Aluno" for="userPassword" styleClass="text-input"></p:outputLabel>
+						<p:password id="userPassword" value="#{tabAlunoMB.aluno.user.password}" required="true" size="60"></p:password>
+					</div>
+				</div>
+				<div class="formrow">
+					<div id="userEmailformcell" class="formcell">
+						<p:outputLabel id="userEmailLabel" value="E-mail do Aluno" for="userEmail" styleClass="text-input"></p:outputLabel>
+						<p:inputText id="userEmail" value="#{tabAlunoMB.aluno.user.email}" required="true" maxlength="60" size="60">
+						</p:inputText>
+					</div>
+				</div>
+			</p:outputPanel>
+		</h:form>
+</ui:composition>
