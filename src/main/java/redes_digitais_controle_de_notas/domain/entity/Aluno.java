@@ -13,21 +13,30 @@ public class Aluno implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="tb_user",
-		joinColumns=
-			@JoinColumn(name="id_aluno", referencedColumnName="id_user")
-	)
+	@ManyToOne(optional=false)
+	@JoinColumn(name="id_aluno", referencedColumnName="id_user")
 	private User user;
+
+	@OneToMany(mappedBy="aluno", cascade=CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval=true)
+	private List<Desempenho> desempenhos;
+
+	@OneToMany(mappedBy="aluno", cascade=CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval=true)
+	private List<DesempenhoBimestral> desempenhoBimestrais;
+
+	@OneToMany(mappedBy="aluno", cascade=CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval=true)
+	private List<TurmaAluno> turmaAlunos;
 
 	public Aluno() {
 		super();
 		user = new User();
 	}
 
-	public Aluno(User user) {
+	public Aluno(User user, List<Desempenho> desempenhos, List<DesempenhoBimestral> desempenhoBimestrais, List<TurmaAluno> turmaAlunos) {
 		this();
 		this.user = user;
+		this.desempenhos = desempenhos;
+		this.desempenhoBimestrais = desempenhoBimestrais;
+		this.turmaAlunos = turmaAlunos;
 	}
 
 	public User getUser() {
@@ -39,6 +48,39 @@ public class Aluno implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<Desempenho> getDesempenhos() {
+		if (desempenhos == null) {
+			desempenhos = new ArrayList<Desempenho>();
+		}
+		return desempenhos;
+	}
+
+	public void setDesempenhos(List<Desempenho> desempenhos) {
+		this.desempenhos = desempenhos;
+	}
+
+	public List<DesempenhoBimestral> getDesempenhoBimestrais() {
+		if (desempenhoBimestrais == null) {
+			desempenhoBimestrais = new ArrayList<DesempenhoBimestral>();
+		}
+		return desempenhoBimestrais;
+	}
+
+	public void setDesempenhoBimestrais(List<DesempenhoBimestral> desempenhoBimestrais) {
+		this.desempenhoBimestrais = desempenhoBimestrais;
+	}
+
+	public List<TurmaAluno> getTurmaAlunos() {
+		if (turmaAlunos == null) {
+			turmaAlunos = new ArrayList<TurmaAluno>();
+		}
+		return turmaAlunos;
+	}
+
+	public void setTurmaAlunos(List<TurmaAluno> turmaAlunos) {
+		this.turmaAlunos = turmaAlunos;
 	}
 
 	@Override

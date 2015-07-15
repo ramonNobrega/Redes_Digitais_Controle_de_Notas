@@ -20,26 +20,19 @@ public class Professor implements Serializable {
 	@Column(name="disciplina", length=100, nullable=false)
 	private String disciplina;
 
-	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinTable(name="tb_turma_tb_professor",
-		joinColumns=
-			@JoinColumn(name="professor", referencedColumnName="id_professor")
-		,
-		inverseJoinColumns=
-			@JoinColumn(name="turma", referencedColumnName="id_turma")
-	)
-	private List<Turma> turmas;
+	@OneToMany(mappedBy="professor", cascade=CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval=true)
+	private List<TurmaProfessor> turmaProfessores;
 
 	public Professor() {
 		super();
 		user = new User();
 	}
 
-	public Professor(User user, String disciplina, List<Turma> turmas) {
+	public Professor(User user, String disciplina, List<TurmaProfessor> turmaProfessores) {
 		this();
 		this.user = user;
 		this.disciplina = disciplina;
-		this.turmas = turmas;
+		this.turmaProfessores = turmaProfessores;
 	}
 
 	public User getUser() {
@@ -61,12 +54,15 @@ public class Professor implements Serializable {
 		this.disciplina = disciplina;
 	}
 
-	public List<Turma> getTurmas() {
-		return turmas;
+	public List<TurmaProfessor> getTurmaProfessores() {
+		if (turmaProfessores == null) {
+			turmaProfessores = new ArrayList<TurmaProfessor>();
+		}
+		return turmaProfessores;
 	}
 
-	public void setTurmas(List<Turma> turmas) {
-		this.turmas = turmas;
+	public void setTurmaProfessores(List<TurmaProfessor> turmaProfessores) {
+		this.turmaProfessores = turmaProfessores;
 	}
 
 	@Override

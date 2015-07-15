@@ -18,25 +18,22 @@ public class Turma implements Serializable {
 	@Column(name="nm_turma", length=100, nullable=false)
 	private String nomeTurma;
 
-	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinTable(name="tb_turma_tb_aluno",
-		joinColumns=
-			@JoinColumn(name="turma", referencedColumnName="id_turma")
-		,
-		inverseJoinColumns=
-			@JoinColumn(name="aluno", referencedColumnName="id_aluno")
-	)
-	private List<Aluno> alunos;
+	@OneToMany(mappedBy="turma", cascade=CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval=true)
+	private List<TurmaAluno> turmaAlunos;
+
+	@OneToMany(mappedBy="turma", cascade=CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval=true)
+	private List<TurmaProfessor> turmaProfessores;
 
 	public Turma() {
 		super();
 	}
 
-	public Turma(Integer idTurma, String nomeTurma, List<Aluno> alunos) {
+	public Turma(Integer idTurma, String nomeTurma, List<TurmaAluno> turmaAlunos, List<TurmaProfessor> turmaProfessores) {
 		this();
 		this.idTurma = idTurma;
 		this.nomeTurma = nomeTurma;
-		this.alunos = alunos;
+		this.turmaAlunos = turmaAlunos;
+		this.turmaProfessores = turmaProfessores;
 	}
 
 	public Integer getIdTurma() {
@@ -55,12 +52,26 @@ public class Turma implements Serializable {
 		this.nomeTurma = nomeTurma;
 	}
 
-	public List<Aluno> getAlunos() {
-		return alunos;
+	public List<TurmaAluno> getTurmaAlunos() {
+		if (turmaAlunos == null) {
+			turmaAlunos = new ArrayList<TurmaAluno>();
+		}
+		return turmaAlunos;
 	}
 
-	public void setAlunos(List<Aluno> alunos) {
-		this.alunos = alunos;
+	public void setTurmaAlunos(List<TurmaAluno> turmaAlunos) {
+		this.turmaAlunos = turmaAlunos;
+	}
+
+	public List<TurmaProfessor> getTurmaProfessores() {
+		if (turmaProfessores == null) {
+			turmaProfessores = new ArrayList<TurmaProfessor>();
+		}
+		return turmaProfessores;
+	}
+
+	public void setTurmaProfessores(List<TurmaProfessor> turmaProfessores) {
+		this.turmaProfessores = turmaProfessores;
 	}
 
 	@Override

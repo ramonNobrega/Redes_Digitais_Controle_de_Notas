@@ -41,6 +41,7 @@ public class AlunoBCTest {
 	@Test
 	public void update() {
 		Aluno aluno = new Aluno();
+		aluno.setDesempenhos(desempenhos);
 		alunoBC.insert(aluno);
 		List<Aluno> alunoList = alunoBC.findAll();
 		assertNotNull(alunoList);

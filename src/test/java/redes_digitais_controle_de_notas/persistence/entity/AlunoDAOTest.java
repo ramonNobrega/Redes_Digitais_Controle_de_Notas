@@ -40,6 +40,7 @@ public class AlunoDAOTest {
 	@Test
 	public void update() {
 		Aluno aluno = new Aluno();
+		aluno.setDesempenhos(desempenhos);
 		alunoDAO.insert(aluno);
 		List<Aluno> alunoList = alunoDAO.findAll();
 		assertNotNull(alunoList);

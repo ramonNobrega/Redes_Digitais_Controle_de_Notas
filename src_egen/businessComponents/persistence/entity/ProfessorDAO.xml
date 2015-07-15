@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <com.egen.tool.business.BusinessComponent>
 <class>com.egen.tool.business.BusinessComponent</class>
-<businessComponentAlias>ProfessorDAO</businessComponentAlias>
-<businessComponentModule>persistence/entity</businessComponentModule>
 <businessComponentMasterTemplate>EntityCrudDAOTemplate</businessComponentMasterTemplate>
 <businessComponentName>ProfessorDAO</businessComponentName>
+<businessComponentAlias>ProfessorDAO</businessComponentAlias>
+<businessComponentModule>persistence/entity</businessComponentModule>
+<businessComponentSetProperties>
+</businessComponentSetProperties>
 <variables>
 <variables_item>
 <class>com.egen.tool.business.BusinessVariable</class>
-<businessVariableName>professor</businessVariableName>
-<businessVariableDomainReference></businessVariableDomainReference>
-<businessVariableInitialization></businessVariableInitialization>
 <businessVariableDescription></businessVariableDescription>
-<businessVariableType>@entity(redes_digitais_controle_de_notas.domain.entity.Professor)</businessVariableType>
+<businessVariableInitialization></businessVariableInitialization>
+<businessVariableDomainReference></businessVariableDomainReference>
+<businessVariableName>professor</businessVariableName>
 <variableComponentType></variableComponentType>
+<businessVariableType>@entity(redes_digitais_controle_de_notas.domain.entity.Professor)</businessVariableType>
 <businessVariableSetProperties>
 </businessVariableSetProperties>
 </variables_item>
 </variables>
-<businessComponentSetProperties>
-</businessComponentSetProperties>
 <inputParameters>
 </inputParameters>
+<outputParameters>
+</outputParameters>
 <businessCodeUnits>
 <businessCodeUnits_item>
 <class>com.egen.tool.business.BusinessCodeUnit</class>
@@ -109,25 +111,25 @@ public class ProfessorDAO extends JPACrud<Professor, Long> {
 <businessCodeUnitSetProperty>
 <businessCodeUnitSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>extends</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
 <setPropertyValue>br.gov.frameworkdemoiselle.template.JPACrud<[ENTITY], [ID_TYPE]></setPropertyValue>
+<setPropertyKey>extends</setPropertyKey>
 </businessCodeUnitSetProperty_item>
 <businessCodeUnitSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>file</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
 <setPropertyValue>src/main/java/redes_digitais_controle_de_notas/persistence/entity/ProfessorDAO.java</setPropertyValue>
+<setPropertyKey>file</setPropertyKey>
 </businessCodeUnitSetProperty_item>
 </businessCodeUnitSetProperty>
 <businessCodeBlocks>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>PackageBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>package redes_digitais_controle_de_notas.persistence.entity;
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -135,7 +137,6 @@ public class ProfessorDAO extends JPACrud<Professor, Long> {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOImportBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>import java.util.*;
 import javax.inject.Inject;
@@ -148,20 +149,21 @@ import br.gov.frameworkdemoiselle.template.JPACrud;
 import javax.persistence.criteria.*;
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
 <intraCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>extraImport</businessCodeBlockIdentification>
 <businessCodeBlockTemplate></businessCodeBlockTemplate>
 <businessCodeBlockContent>import br.gov.frameworkdemoiselle.template.JPACrud;</businessCodeBlockContent>
+<businessCodeBlockIdentification>extraImport</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 <businessCodeBlockSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>position</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
 <setPropertyValue>custom</setPropertyValue>
+<setPropertyKey>position</setPropertyKey>
 </businessCodeBlockSetProperty_item>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -169,16 +171,16 @@ import javax.persistence.criteria.*;
 </intraCodeBlocks_item>
 <intraCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>extraImport_1</businessCodeBlockIdentification>
 <businessCodeBlockTemplate></businessCodeBlockTemplate>
 <businessCodeBlockContent>import javax.persistence.criteria.*;
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>extraImport_1</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 <businessCodeBlockSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>position</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
 <setPropertyValue>custom</setPropertyValue>
+<setPropertyKey>position</setPropertyKey>
 </businessCodeBlockSetProperty_item>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -188,7 +190,6 @@ import javax.persistence.criteria.*;
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOClassDefinitionBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>@PersistenceController
 public class ProfessorDAO extends JPACrud<Professor, Long> {
@@ -196,16 +197,17 @@ public class ProfessorDAO extends JPACrud<Professor, Long> {
 	private static final long serialVersionUID = 1L;
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
 <intraCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>serialVersionUID</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>SerialVersionUIDBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	private static final long serialVersionUID = 1L;
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>serialVersionUID</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -215,7 +217,6 @@ public class ProfessorDAO extends JPACrud<Professor, Long> {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>findByExample</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOFindByExampleBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	@Override
 	public List<Professor> findByExample(Professor example) {
@@ -226,6 +227,7 @@ public class ProfessorDAO extends JPACrud<Professor, Long> {
 	}
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>findByExample</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -233,7 +235,6 @@ public class ProfessorDAO extends JPACrud<Professor, Long> {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>findByCriteria</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOFindByCriteriaBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	public List<Professor> findByCriteria(java.util.Map<String, Object> parameters) {
 		if (parameters == null) {
@@ -286,6 +287,7 @@ public class ProfessorDAO extends JPACrud<Professor, Long> {
 		return results;
 	}
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>findByCriteria</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -293,9 +295,9 @@ public class ProfessorDAO extends JPACrud<Professor, Long> {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>ClosingCodeBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>}</businessCodeBlockContent>
+<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -383,19 +385,19 @@ public class ProfessorDAOTest {
 <businessCodeUnitSetProperty>
 <businessCodeUnitSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>file</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
 <setPropertyValue>src/test/java/redes_digitais_controle_de_notas/persistence/entity/ProfessorDAOTest.java</setPropertyValue>
+<setPropertyKey>file</setPropertyKey>
 </businessCodeUnitSetProperty_item>
 </businessCodeUnitSetProperty>
 <businessCodeBlocks>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>PackageBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>package redes_digitais_controle_de_notas.persistence.entity;
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -403,7 +405,6 @@ public class ProfessorDAOTest {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestImportBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>import redes_digitais_controle_de_notas.domain.entity.*;
 import static org.junit.Assert.assertEquals;
@@ -416,6 +417,7 @@ import org.junit.runner.RunWith;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -423,12 +425,12 @@ import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestClassDefinitionBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>@RunWith(DemoiselleRunner.class)
 public class ProfessorDAOTest {
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -436,12 +438,12 @@ public class ProfessorDAOTest {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>attributes</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestAttributesBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	@Inject
 	private ProfessorDAO professorDAO;
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>attributes</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -449,7 +451,6 @@ public class ProfessorDAOTest {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>setup</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestSetupBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	@Before
 	public void before() {
@@ -464,6 +465,7 @@ public class ProfessorDAOTest {
 	}
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>setup</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -471,7 +473,6 @@ public class ProfessorDAOTest {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>insert</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestInsertBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	@Test
 	public void insert() {
@@ -484,6 +485,7 @@ public class ProfessorDAOTest {
 	}
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>insert</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -491,7 +493,6 @@ public class ProfessorDAOTest {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>update</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestUpdateBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	@Test
 	public void update() {
@@ -511,6 +512,7 @@ public class ProfessorDAOTest {
 	}
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>update</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -518,7 +520,6 @@ public class ProfessorDAOTest {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>delete</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestDeleteBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	@Test
 	public void delete() {
@@ -534,6 +535,7 @@ public class ProfessorDAOTest {
 	}
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>delete</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -541,9 +543,9 @@ public class ProfessorDAOTest {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>ClosingCodeBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>}</businessCodeBlockContent>
+<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -552,6 +554,4 @@ public class ProfessorDAOTest {
 </businessCodeBlocks>
 </businessCodeUnits_item>
 </businessCodeUnits>
-<outputParameters>
-</outputParameters>
 </com.egen.tool.business.BusinessComponent>
