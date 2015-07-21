@@ -4,8 +4,8 @@
 <name>redesdigitais_controledenotas</name>
 <factory>org.apache.commons.dbcp.BasicDataSourceFactory</factory>
 <url>jdbc:mysql://localhost:3306/redesdigitais_controledenotas</url>
-<password>admin</password>
+<password>malthus</password>
 <username>root</username>
-<driver>com.mysql.jdbc.Driver</driver>
 <databaseProduct>MySQL</databaseProduct>
+<driver>com.mysql.jdbc.Driver</driver>
 </ToolsDataSource>
