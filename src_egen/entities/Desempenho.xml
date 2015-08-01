@@ -154,7 +154,7 @@
 <columnProperties_item>
 <class>java.lang.String</class>
 <$key>not_null</$key>
-<$value>true</$value>
+<$value>false</$value>
 </columnProperties_item>
 <columnProperties_item>
 <class>java.lang.String</class>
@@ -572,7 +572,7 @@
 <$value>id_user</$value>
 </columnProperties_item>
 <columnProperties_item>
-<class>java.lang.Boolean</class>
+<class>java.lang.String</class>
 <$key>insertable</$key>
 <$value>true</$value>
 </columnProperties_item>
@@ -592,7 +592,7 @@
 <$value>true</$value>
 </columnProperties_item>
 <columnProperties_item>
-<class>java.lang.Boolean</class>
+<class>java.lang.String</class>
 <$key>updatable</$key>
 <$value>true</$value>
 </columnProperties_item>
@@ -655,7 +655,7 @@
 <$value>nm_user</$value>
 </columnProperties_item>
 <columnProperties_item>
-<class>java.lang.Boolean</class>
+<class>java.lang.String</class>
 <$key>insertable</$key>
 <$value>true</$value>
 </columnProperties_item>
@@ -675,7 +675,7 @@
 <$value></$value>
 </columnProperties_item>
 <columnProperties_item>
-<class>java.lang.Boolean</class>
+<class>java.lang.String</class>
 <$key>updatable</$key>
 <$value>true</$value>
 </columnProperties_item>

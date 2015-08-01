@@ -33,7 +33,6 @@ public class DesempenhoBCTest {
 	public void insert() {
 		Desempenho desempenho = new Desempenho();
 		desempenho.setMediaParcial(new Double("1.1"));
-		desempenho.setProvaFinal(new Double("1.1"));
 		desempenho.setMediaFinal(new Double("1.1"));
 		desempenho.setSituacao("XXXXXXXXXX");
 		desempenhoBC.insert(desempenho);
@@ -46,7 +45,6 @@ public class DesempenhoBCTest {
 	public void update() {
 		Desempenho desempenho = new Desempenho();
 		desempenho.setMediaParcial(new Double("1.1"));
-		desempenho.setProvaFinal(new Double("1.1"));
 		desempenho.setMediaFinal(new Double("1.1"));
 		desempenho.setSituacao("XXXXXXXXXX");
 		desempenhoBC.insert(desempenho);
@@ -66,7 +64,6 @@ public class DesempenhoBCTest {
 	public void delete() {
 		Desempenho desempenho = new Desempenho();
 		desempenho.setMediaParcial(new Double("1.1"));
-		desempenho.setProvaFinal(new Double("1.1"));
 		desempenho.setMediaFinal(new Double("1.1"));
 		desempenho.setSituacao("XXXXXXXXXX");
 		desempenhoBC.insert(desempenho);

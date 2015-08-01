@@ -32,7 +32,6 @@ public class DesempenhoDAOTest {
 	public void insert() {
 		Desempenho desempenho = new Desempenho();
 		desempenho.setMediaParcial(desempenho.getId().setMediaParcial(new Double("1.1"));
-		desempenho.setProvaFinal(desempenho.getId().setProvaFinal(new Double("1.1"));
 		desempenho.setMediaFinal(desempenho.getId().setMediaFinal(new Double("1.1"));
 		desempenho.setSituacao("XXXXXXXXXX");
 		desempenhoDAO.insert(desempenho);
@@ -45,7 +44,6 @@ public class DesempenhoDAOTest {
 	public void update() {
 		Desempenho desempenho = new Desempenho();
 		desempenho.setMediaParcial(new Double("1.1"));
-		desempenho.setProvaFinal(new Double("1.1"));
 		desempenho.setMediaFinal(new Double("1.1"));
 		desempenho.setSituacao("XXXXXXXXXX");
 		desempenhoDAO.insert(desempenho);
@@ -65,7 +63,6 @@ public class DesempenhoDAOTest {
 	public void delete() {
 		Desempenho desempenho = new Desempenho();
 		desempenho.setMediaParcial(new Double("1.1"));
-		desempenho.setProvaFinal(new Double("1.1"));
 		desempenho.setMediaFinal(new Double("1.1"));
 		desempenho.setSituacao("XXXXXXXXXX");
 		desempenhoDAO.insert(desempenho);

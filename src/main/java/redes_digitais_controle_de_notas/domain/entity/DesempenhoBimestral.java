@@ -28,7 +28,7 @@ public class DesempenhoBimestral implements Serializable {
 	@Column(name="nota3", nullable=false, columnDefinition="DECIMAL()(2) default 0.0")
 	private Double nota3;
 
-	@Column(name="media_bimestre", nullable=false, columnDefinition="DECIMAL()(2) default 0.0")
+	@Column(name="media_bimestre", columnDefinition="DECIMAL()(2) default 0.0")
 	private Double mediaBimestre;
 
 	@ManyToOne

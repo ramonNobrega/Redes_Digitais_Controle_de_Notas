@@ -35,7 +35,6 @@ public class DesempenhoBimestralDAOTest {
 		desempenhoBimestral.setNota1(desempenhoBimestral.getId().setNota1(new Double("1.1"));
 		desempenhoBimestral.setNota2(desempenhoBimestral.getId().setNota2(new Double("1.1"));
 		desempenhoBimestral.setNota3(desempenhoBimestral.getId().setNota3(new Double("1.1"));
-		desempenhoBimestral.setMediaBimestre(desempenhoBimestral.getId().setMediaBimestre(new Double("1.1"));
 		desempenhoBimestralDAO.insert(desempenhoBimestral);
 		List<DesempenhoBimestral> desempenhoBimestralList = desempenhoBimestralDAO.findAll();
 		assertNotNull(desempenhoBimestralList);
@@ -49,18 +48,17 @@ public class DesempenhoBimestralDAOTest {
 		desempenhoBimestral.setNota1(new Double("1.1"));
 		desempenhoBimestral.setNota2(new Double("1.1"));
 		desempenhoBimestral.setNota3(new Double("1.1"));
-		desempenhoBimestral.setMediaBimestre(new Double("1.1"));
 		desempenhoBimestralDAO.insert(desempenhoBimestral);
 		List<DesempenhoBimestral> desempenhoBimestralList = desempenhoBimestralDAO.findAll();
 		assertNotNull(desempenhoBimestralList);
 		assertTrue(desempenhoBimestralList.size()>0);
 		DesempenhoBimestral beforeUpdate = desempenhoBimestralList.get(0);
-		assertEquals(new Double("1.1"), beforeUpdate.getMediaBimestre());
-		beforeUpdate.setMediaBimestre(new Double("2.2"));
+		assertEquals(new Double("1.1"), beforeUpdate.getNota3());
+		beforeUpdate.setNota3(new Double("2.2"));
 		desempenhoBimestralDAO.update(beforeUpdate);
 		desempenhoBimestralList = desempenhoBimestralDAO.findAll();
 		DesempenhoBimestral afterUpdate = desempenhoBimestralList.get(0);
-		assertEquals(new Double("2.2"), afterUpdate.getMediaBimestre());
+		assertEquals(new Double("2.2"), afterUpdate.getNota3());
 	}
 
 	@Test
@@ -70,7 +68,6 @@ public class DesempenhoBimestralDAOTest {
 		desempenhoBimestral.setNota1(new Double("1.1"));
 		desempenhoBimestral.setNota2(new Double("1.1"));
 		desempenhoBimestral.setNota3(new Double("1.1"));
-		desempenhoBimestral.setMediaBimestre(new Double("1.1"));
 		desempenhoBimestralDAO.insert(desempenhoBimestral);
 		List<DesempenhoBimestral> desempenhoBimestralList = desempenhoBimestralDAO.findAll();
 		assertNotNull(desempenhoBimestralList);

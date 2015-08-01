@@ -36,7 +36,6 @@ public class DesempenhoBimestralBCTest {
 		desempenhoBimestral.setNota1(new Double("1.1"));
 		desempenhoBimestral.setNota2(new Double("1.1"));
 		desempenhoBimestral.setNota3(new Double("1.1"));
-		desempenhoBimestral.setMediaBimestre(new Double("1.1"));
 		desempenhoBimestralBC.insert(desempenhoBimestral);
 		List<DesempenhoBimestral> desempenhoBimestralList = desempenhoBimestralBC.findAll();
 		assertNotNull(desempenhoBimestralList);
@@ -50,18 +49,17 @@ public class DesempenhoBimestralBCTest {
 		desempenhoBimestral.setNota1(new Double("1.1"));
 		desempenhoBimestral.setNota2(new Double("1.1"));
 		desempenhoBimestral.setNota3(new Double("1.1"));
-		desempenhoBimestral.setMediaBimestre(new Double("1.1"));
 		desempenhoBimestralBC.insert(desempenhoBimestral);
 		List<DesempenhoBimestral> desempenhoBimestralList = desempenhoBimestralBC.findAll();
 		assertNotNull(desempenhoBimestralList);
 		assertTrue(desempenhoBimestralList.size()>0);
 		DesempenhoBimestral beforeUpdate = desempenhoBimestralList.get(0);
-		assertEquals(new Double("1.1"), beforeUpdate.getMediaBimestre());
-		beforeUpdate.setMediaBimestre(new Double("2.2"));
+		assertEquals(new Double("1.1"), beforeUpdate.getNota3());
+		beforeUpdate.setNota3(new Double("2.2"));
 		desempenhoBimestralBC.update(beforeUpdate);
 		desempenhoBimestralList = desempenhoBimestralBC.findAll();
 		DesempenhoBimestral afterUpdate = desempenhoBimestralList.get(0);
-		assertEquals(new Double("2.2"), afterUpdate.getMediaBimestre());
+		assertEquals(new Double("2.2"), afterUpdate.getNota3());
 	}
 
 	@Test
@@ -71,7 +69,6 @@ public class DesempenhoBimestralBCTest {
 		desempenhoBimestral.setNota1(new Double("1.1"));
 		desempenhoBimestral.setNota2(new Double("1.1"));
 		desempenhoBimestral.setNota3(new Double("1.1"));
-		desempenhoBimestral.setMediaBimestre(new Double("1.1"));
 		desempenhoBimestralBC.insert(desempenhoBimestral);
 		List<DesempenhoBimestral> desempenhoBimestralList = desempenhoBimestralBC.findAll();
 		assertNotNull(desempenhoBimestralList);

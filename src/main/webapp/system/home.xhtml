@@ -5,20 +5,9 @@
 				<div id="indexmessagetitle">#{messages['home.app.title']}</div>
 				<div id="indexmessage">#{messages['home.app.message']}</div>
 			</div>
-		<h:form id="homeForm">
-			<p:dashboard id="homeDashboard" model="#{homeBean.homeModel}" styleClass="homeDashboard">
-				<p:panel id="home2Panel" styleClass="dashboardpanel">
-					<p:commandLink id="home2Link" action="/system/maintainRole.jsf" ajax="false">
-						<h:outputText value="#{messages['system.maintainrole.app.title']}"></h:outputText>
-					</p:commandLink>
-				</p:panel>
-				<p:panel id="home3Panel" styleClass="dashboardpanel">
-					<p:commandLink id="home3Link" action="/system/maintainUser.jsf" ajax="false">
-						<h:outputText value="#{messages['system.maintainuser.app.title']}"></h:outputText>
-					</p:commandLink>
-				</p:panel>
-			</p:dashboard>
-		</h:form>
+<!-- Block[home] -->
+			
+<!-- Block[home] -->
 		</div>
 	</ui:define>
 </ui:composition>

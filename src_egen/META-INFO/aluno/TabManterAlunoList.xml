@@ -13,7 +13,7 @@
 <actionFormCode></actionFormCode>
 <actionTemplate>StandardControllerTemplate</actionTemplate>
 <actionCode></actionCode>
-<jspTemplate>TabViewTemplate</jspTemplate>
+<jspTemplate>StandardViewTemplate</jspTemplate>
 <jspCode></jspCode>
 <help></help>
 <i18nHelp></i18nHelp>
@@ -37,8 +37,8 @@ import redes_digitais_controle_de_notas.domain.entity.Aluno;
 <blocks_item>
 <class>com.egen.develop.generator.form.BlockForm</class>
 <name>list</name>
-<title>pages.app.list</title>
-<i18n>messages</i18n>
+<title>Dados Pessoais do Aluno</title>
+<i18n></i18n>
 <database>pool</database>
 <db_object>Aluno</db_object>
 <blockTemplate>GridFormTemplate</blockTemplate>
@@ -305,7 +305,7 @@ import redes_digitais_controle_de_notas.domain.entity.Aluno;
 </fields_item>
 <fields_item>
 <class>com.egen.develop.generator.form.Text</class>
-<name>user.name</name>
+<name>userName</name>
 <help></help>
 <i18nHelp></i18nHelp>
 <develHelp></develHelp>
@@ -315,7 +315,7 @@ import redes_digitais_controle_de_notas.domain.entity.Aluno;
 <roleinclude>false</roleinclude>
 <open_form>false</open_form>
 <close_form>false</close_form>
-<i18n>messages</i18n>
+<i18n></i18n>
 <show_help>false</show_help>
 <show_help_label>false</show_help_label>
 <tabs></tabs>
@@ -377,7 +377,7 @@ import redes_digitais_controle_de_notas.domain.entity.Aluno;
 <write>false</write>
 <style></style>
 <styleClass></styleClass>
-<styleId></styleId>
+<styleId>userName</styleId>
 <errorStyle></errorStyle>
 <errorStyleClass></errorStyleClass>
 <errorStyleId></errorStyleId>
@@ -424,7 +424,7 @@ import redes_digitais_controle_de_notas.domain.entity.Aluno;
 </fields_item>
 <fields_item>
 <class>com.egen.develop.generator.form.Text</class>
-<name>user.email</name>
+<name>userEmail</name>
 <help></help>
 <i18nHelp></i18nHelp>
 <develHelp></develHelp>
@@ -434,7 +434,7 @@ import redes_digitais_controle_de_notas.domain.entity.Aluno;
 <roleinclude>false</roleinclude>
 <open_form>false</open_form>
 <close_form>false</close_form>
-<i18n>messages</i18n>
+<i18n></i18n>
 <show_help>false</show_help>
 <show_help_label>false</show_help_label>
 <tabs></tabs>
@@ -496,7 +496,7 @@ import redes_digitais_controle_de_notas.domain.entity.Aluno;
 <write>false</write>
 <style></style>
 <styleClass></styleClass>
-<styleId></styleId>
+<styleId>userEmail</styleId>
 <errorStyle></errorStyle>
 <errorStyleClass></errorStyleClass>
 <errorStyleId></errorStyleId>
@@ -570,7 +570,7 @@ import redes_digitais_controle_de_notas.domain.entity.Aluno;
 <property></property>
 <value>#{bean.turmaAlunos}</value>
 <size></size>
-<label>turmaAlunos</label>
+<label>Turmas</label>
 <label_pos></label_pos>
 <label_bg_color></label_bg_color>
 <label_fg_color></label_fg_color>
@@ -909,6 +909,10 @@ import redes_digitais_controle_de_notas.domain.entity.Aluno;
 <$value>AbstractListPageBean<[ENTITY], [ID_TYPE]></$value>
 </generatorSetProperty_item>
 <generatorSetProperty_item>
+<$key>tab_widgetVar</$key>
+<$value></$value>
+</generatorSetProperty_item>
+<generatorSetProperty_item>
 <$key>NEXT_VIEW</$key>
 <$value>/aluno/tabManterAlunoDetail.xhtml</$value>
 </generatorSetProperty_item>
@@ -921,6 +925,14 @@ import redes_digitais_controle_de_notas.domain.entity.Aluno;
 <$value>/template/main.xhtml</$value>
 </generatorSetProperty_item>
 <generatorSetProperty_item>
+<$key>tab_style</$key>
+<$value></$value>
+</generatorSetProperty_item>
+<generatorSetProperty_item>
+<$key>tabType</$key>
+<$value>tab</$value>
+</generatorSetProperty_item>
+<generatorSetProperty_item>
 <$key>XHTML_REFERENCE</$key>
 <$value>/aluno/tabManterAluno.xhtml</$value>
 </generatorSetProperty_item>
@@ -931,6 +943,10 @@ import redes_digitais_controle_de_notas.domain.entity.Aluno;
 <generatorSetProperty_item>
 <$key>entity</$key>
 <$value>Aluno</$value>
+</generatorSetProperty_item>
+<generatorSetProperty_item>
+<$key>tab_styleClass</$key>
+<$value>wizard</$value>
 </generatorSetProperty_item>
 </generatorSetProperty>
 </generator>

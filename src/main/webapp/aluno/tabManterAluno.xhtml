@@ -2,7 +2,7 @@
 	<ui:define name="body">
 		<h:form id="listForm">
 			<p:focus id="listFocus"/>
-			<div id="listTitle" class="blocktitle">#{messages['pages.app.list']}</div>
+			<div id="listTitle" class="blocktitle">Dados Pessoais do Aluno</div>
 			<p:toolbar id="listToolbar">
 				<p:toolbarGroup id="listLeftToolbarGroup" align="left">
 				</p:toolbarGroup>
@@ -22,21 +22,21 @@
 					</p:column>
 					<p:column id="userNameDTColumn" sortBy="#{bean.user.name}" filterBy="#{bean.user.name}" filterMatchMode="contains">
 						<f:facet name="header">
-							<h:outputText value="#{messages['Nome do Aluno']}"></h:outputText>
+							<h:outputText value="Nome do Aluno"></h:outputText>
 						</f:facet>
 						<p:inputText id="userName" value="#{bean.user.name}" required="true" maxlength="60" size="60">
 						</p:inputText>
 					</p:column>
 					<p:column id="userEmailDTColumn" sortBy="#{bean.user.email}" filterBy="#{bean.user.email}" filterMatchMode="contains">
 						<f:facet name="header">
-							<h:outputText value="#{messages['E-mail do Aluno']}"></h:outputText>
+							<h:outputText value="E-mail do Aluno"></h:outputText>
 						</f:facet>
 						<p:inputText id="userEmail" value="#{bean.user.email}" maxlength="100" size="100">
 						</p:inputText>
 					</p:column>
 					<p:column id="turmaAlunosDTColumn" sortBy="#{bean.turmaAlunos}" filterBy="#{bean.turmaAlunos}" filterMatchMode="contains">
 						<f:facet name="header">
-							<h:outputText value="turmaAlunos"></h:outputText>
+							<h:outputText value="Turmas"></h:outputText>
 						</f:facet>
 						<p:inputText id="turmaAlunos" value="#{bean.turmaAlunos}">
 						</p:inputText>

@@ -26,11 +26,11 @@
 <version></version>
 <since></since>
 <template_file>standard.xhtml</template_file>
-<addImportAction>import controledenotas.domain.entity.User;
-import controledenotas.business.entity.UserBC;
-import controledenotas.domain.entity.Aluno;
-import controledenotas.business.entity.AlunoBC;
-import controledenotas.persistence.entity.RoleDAO;</addImportAction>
+<addImportAction>import redes_digitais_controle_de_notas.domain.entity.User;
+import redes_digitais_controle_de_notas.business.entity.UserBC;
+import redes_digitais_controle_de_notas.domain.entity.Aluno;
+import redes_digitais_controle_de_notas.business.entity.AlunoBC;
+import redes_digitais_controle_de_notas.persistence.entity.RoleDAO;</addImportAction>
 <addImportActionForm></addImportActionForm>
 <add_actionForm></add_actionForm>
 <scope_storage>request</scope_storage>
@@ -141,6 +141,74 @@ import controledenotas.persistence.entity.RoleDAO;</addImportAction>
 <navigatorProperties></navigatorProperties>
 <number_column></number_column>
 </blocks_item>
+<blocks_item>
+<class>com.egen.develop.generator.form.BlockForm</class>
+<name>alunoTabForm</name>
+<title></title>
+<i18n></i18n>
+<database></database>
+<db_object></db_object>
+<blockTemplate>StandardFormTemplate</blockTemplate>
+<isModelCodeCustomized>false</isModelCodeCustomized>
+<modelCode></modelCode>
+<isViewCodeCustomized>false</isViewCodeCustomized>
+<viewCode></viewCode>
+<isControllerCodeCustomized>false</isControllerCodeCustomized>
+<controllerCode></controllerCode>
+<script_block></script_block>
+<script_template></script_template>
+<obs></obs>
+<maxRows>0</maxRows>
+<resultSetName></resultSetName>
+<select_clause></select_clause>
+<where_clause></where_clause>
+<order_by></order_by>
+<group_by></group_by>
+<having></having>
+<styleClass></styleClass>
+<style></style>
+<relations></relations>
+<tabs></tabs>
+<receive_parameter>false</receive_parameter>
+<showparameter>false</showparameter>
+<message_type>no</message_type>
+<message_text></message_text>
+<banner_type></banner_type>
+<role_item></role_item>
+<roleinclude>false</roleinclude>
+<i18n_obs></i18n_obs>
+<tab_pos>aluno</tab_pos>
+<block_size></block_size>
+<block_position></block_position>
+<displayError></displayError>
+<form>
+<class>com.egen.develop.generator.form.Form</class>
+<action></action>
+<enctype></enctype>
+<focus></focus>
+<method>POST</method>
+<onreset></onreset>
+<onsubmit></onsubmit>
+<scope></scope>
+<style></style>
+<styleClass></styleClass>
+<styleId></styleId>
+<target></target>
+<type></type>
+<disabled>false</disabled>
+<readonly>false</readonly>
+<open_form>false</open_form>
+<close_form>false</close_form>
+<formDisplayCondition></formDisplayCondition>
+<formSetProperty>
+</formSetProperty>
+</form>
+<blockSetProperty>
+</blockSetProperty>
+<gridProperties></gridProperties>
+<navigatorProperties></navigatorProperties>
+<number_column></number_column>
+</blocks_item>
 </blocks>
 <strutsConfig></strutsConfig>
 <page></page>
@@ -203,6 +271,10 @@ import controledenotas.persistence.entity.RoleDAO;</addImportAction>
 <$value>java.io.Serializable</$value>
 </generatorSetProperty_item>
 <generatorSetProperty_item>
+<$key>tab_widgetVar</$key>
+<$value></$value>
+</generatorSetProperty_item>
+<generatorSetProperty_item>
 <$key>XHTML_TEMPLATE</$key>
 <$value>/template/public.xhtml</$value>
 </generatorSetProperty_item>
@@ -215,6 +287,14 @@ import controledenotas.persistence.entity.RoleDAO;</addImportAction>
 <$value>RegisterUserMB</$value>
 </generatorSetProperty_item>
 <generatorSetProperty_item>
+<$key>tab_style</$key>
+<$value></$value>
+</generatorSetProperty_item>
+<generatorSetProperty_item>
+<$key>tabType</$key>
+<$value>tab</$value>
+</generatorSetProperty_item>
+<generatorSetProperty_item>
 <$key>XHTML_REFERENCE</$key>
 <$value>/system/registerUser.xhtml</$value>
 </generatorSetProperty_item>
@@ -225,6 +305,10 @@ import controledenotas.persistence.entity.RoleDAO;</addImportAction>
 <generatorSetProperty_item>
 <$key>entity</$key>
 <$value>User</$value>
+</generatorSetProperty_item>
+<generatorSetProperty_item>
+<$key>tab_styleClass</$key>
+<$value>wizard</$value>
 </generatorSetProperty_item>
 </generatorSetProperty>
 </generator>

@@ -19,7 +19,7 @@ public class Desempenho implements Serializable {
 	@Column(name="media_parcial", nullable=false, columnDefinition="DECIMAL()(2) default 0.0")
 	private Double mediaParcial;
 
-	@Column(name="prova_final", nullable=false, columnDefinition="DECIMAL()(2) default 0.0")
+	@Column(name="prova_final", columnDefinition="DECIMAL()(2) default 0.0")
 	private Double provaFinal;
 
 	@Column(name="media_final", nullable=false, columnDefinition="DECIMAL()(2) default 0.0")

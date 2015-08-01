@@ -27,9 +27,13 @@
 <since></since>
 <template_file>standard.xhtml</template_file>
 <addImportAction></addImportAction>
-<addImportActionForm></addImportActionForm>
+<addImportActionForm>import org.primefaces.model.DashboardColumn;
+import org.primefaces.model.DefaultDashboardColumn;
+import org.primefaces.model.DefaultDashboardModel;
+import org.primefaces.model.DashboardModel;
+import javax.enterprise.context.SessionScoped;
+</addImportActionForm>
 <add_actionForm></add_actionForm>
-<userGenerate></userGenerate>
 <scope_storage>session</scope_storage>
 <generatorMasterTemplate>StandardPresentationMasterTemplate</generatorMasterTemplate>
 <blocks>
@@ -43,8 +47,9 @@
 <blockTemplate>StandardMenuBlockTemplate</blockTemplate>
 <isModelCodeCustomized>false</isModelCodeCustomized>
 <modelCode></modelCode>
-<isViewCodeCustomized>false</isViewCodeCustomized>
-<viewCode></viewCode>
+<isViewCodeCustomized>true</isViewCodeCustomized>
+<viewCode>	
+</viewCode>
 <isControllerCodeCustomized>false</isControllerCodeCustomized>
 <controllerCode></controllerCode>
 <script_block></script_block>
@@ -89,13 +94,48 @@
 <type></type>
 <disabled>false</disabled>
 <readonly>false</readonly>
-<open_form>true</open_form>
-<close_form>true</close_form>
+<open_form>false</open_form>
+<close_form>false</close_form>
 <formDisplayCondition></formDisplayCondition>
 <formSetProperty>
 </formSetProperty>
 </form>
 <blockSetProperty>
+<blockSetProperty_item>
+<$key>modelConstructor</$key>
+<$value>homeModel = new DefaultDashboardModel();
+DashboardColumn homeColumn = new DefaultDashboardColumn();
+homeColumn.addWidget("home2Panel");
+homeColumn.addWidget("home3Panel");
+homeModel.addColumn(homeColumn);
+</$value>
+</blockSetProperty_item>
+<blockSetProperty_item>
+<$key>modelCodeIsCustomized</$key>
+<$value>false</$value>
+</blockSetProperty_item>
+<blockSetProperty_item>
+<$key>viewCodeLanguage</$key>
+<$value>xhtml</$value>
+</blockSetProperty_item>
+<blockSetProperty_item>
+<$key>modelCode</$key>
+<$value>private DashboardModel homeModel;
+
+public DashboardModel getHomeModel() {
+	return this.homeModel;
+}
+
+</$value>
+</blockSetProperty_item>
+<blockSetProperty_item>
+<$key>modelConstructorIsCustomized</$key>
+<$value>false</$value>
+</blockSetProperty_item>
+<blockSetProperty_item>
+<$key>toolbargroup_align</$key>
+<$value>left</$value>
+</blockSetProperty_item>
 </blockSetProperty>
 <file_menu>Dashboard.xml</file_menu>
 <menuRelativePath>true</menuRelativePath>
@@ -174,5 +214,33 @@
 <hasActionAjax>false</hasActionAjax>
 <id_task></id_task>
 <generatorSetProperty>
+<generatorSetProperty_item>
+<$key>implements</$key>
+<$value>java.io.Serializable</$value>
+</generatorSetProperty_item>
+<generatorSetProperty_item>
+<$key>MB_REFERENCE</$key>
+<$value>HomeMB</$value>
+</generatorSetProperty_item>
+<generatorSetProperty_item>
+<$key>NEXT_VIEW</$key>
+<$value>/system/home.xhtml</$value>
+</generatorSetProperty_item>
+<generatorSetProperty_item>
+<$key>XHTML_TEMPLATE</$key>
+<$value>/template/main.xhtml</$value>
+</generatorSetProperty_item>
+<generatorSetProperty_item>
+<$key>XHTML_REFERENCE</$key>
+<$value>/system/home.xhtml</$value>
+</generatorSetProperty_item>
+<generatorSetProperty_item>
+<$key>PREVIOUS_VIEW</$key>
+<$value>/system/home.xhtml</$value>
+</generatorSetProperty_item>
+<generatorSetProperty_item>
+<$key>entity</$key>
+<$value></$value>
+</generatorSetProperty_item>
 </generatorSetProperty>
 </generator>

@@ -121,8 +121,8 @@ import redes_digitais_controle_de_notas.business.entity.AlunoBC;
 <$key>toolbarCode</$key>
 <$value><p:toolbar id="blocoAlunoToolbar">
 	<p:toolbarGroup id="blocoAlunoLeftToolbarGroup" align="left">
-		<p:commandButton id="back" value="#{messages['button.back']}" action="#{tabAlunoMB.getPreviousView}" immediate="true" ajax="false" title="#{messages['button.back']}" icon="ui-icon-arrowthick-1-w"></p:commandButton>
-		<p:commandButton id="save" value="#{messages['button.save']}" action="#{tabAlunoMB.save}" ajax="false" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
+		<p:commandButton id="back" value="#{messages['button.back']}" action="#{tabAlunoMB.getPreviousView}" immediate="true" ajax="true" process="@this,blocoAlunoPanel" update="blocoAlunoForm" title="#{messages['button.back']}" icon="ui-icon-arrowthick-1-w"></p:commandButton>
+		<p:commandButton id="save" value="#{messages['button.save']}" action="#{tabAlunoMB.save}" ajax="true" process="@this,blocoAlunoPanel" update="blocoAlunoForm" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
 	</p:toolbarGroup>
 	<p:toolbarGroup id="blocoAlunoRightToolbarGroup" align="right">
 		<ui:include src="/template/exportToolbar.xhtml">
@@ -142,7 +142,7 @@ import redes_digitais_controle_de_notas.business.entity.AlunoBC;
 <fields>
 <fields_item>
 <class>com.egen.develop.generator.form.Text</class>
-<name>user.name</name>
+<name>userName</name>
 <help></help>
 <i18nHelp></i18nHelp>
 <develHelp></develHelp>
@@ -214,7 +214,7 @@ import redes_digitais_controle_de_notas.business.entity.AlunoBC;
 <write>false</write>
 <style></style>
 <styleClass></styleClass>
-<styleId></styleId>
+<styleId>userName</styleId>
 <errorStyle></errorStyle>
 <errorStyleClass></errorStyleClass>
 <errorStyleId></errorStyleId>
@@ -253,7 +253,7 @@ import redes_digitais_controle_de_notas.business.entity.AlunoBC;
 </fields_item>
 <fields_item>
 <class>com.egen.develop.generator.form.Password</class>
-<name>user.password</name>
+<name>userPassword</name>
 <help></help>
 <i18nHelp></i18nHelp>
 <develHelp></develHelp>
@@ -325,7 +325,7 @@ import redes_digitais_controle_de_notas.business.entity.AlunoBC;
 <write>false</write>
 <style></style>
 <styleClass></styleClass>
-<styleId></styleId>
+<styleId>userPassword</styleId>
 <errorStyle></errorStyle>
 <errorStyleClass></errorStyleClass>
 <errorStyleId></errorStyleId>
@@ -365,7 +365,7 @@ import redes_digitais_controle_de_notas.business.entity.AlunoBC;
 </fields_item>
 <fields_item>
 <class>com.egen.develop.generator.form.Text</class>
-<name>user.email</name>
+<name>userEmail</name>
 <help></help>
 <i18nHelp></i18nHelp>
 <develHelp></develHelp>
@@ -437,7 +437,7 @@ import redes_digitais_controle_de_notas.business.entity.AlunoBC;
 <write>false</write>
 <style></style>
 <styleClass></styleClass>
-<styleId></styleId>
+<styleId>userEmail</styleId>
 <errorStyle></errorStyle>
 <errorStyleClass></errorStyleClass>
 <errorStyleId></errorStyleId>
@@ -546,12 +546,16 @@ import redes_digitais_controle_de_notas.business.entity.AlunoBC;
 <$value></$value>
 </baseButtonSetProperty_item>
 <baseButtonSetProperty_item>
+<$key>process</$key>
+<$value>@this,blocoAlunoPanel</$value>
+</baseButtonSetProperty_item>
+<baseButtonSetProperty_item>
 <$key>action</$key>
 <$value>#{tabAlunoMB.getPreviousView}</$value>
 </baseButtonSetProperty_item>
 <baseButtonSetProperty_item>
 <$key>update</$key>
-<$value></$value>
+<$value>blocoAlunoForm</$value>
 </baseButtonSetProperty_item>
 <baseButtonSetProperty_item>
 <$key>type</$key>
@@ -559,7 +563,7 @@ import redes_digitais_controle_de_notas.business.entity.AlunoBC;
 </baseButtonSetProperty_item>
 <baseButtonSetProperty_item>
 <$key>ajax</$key>
-<$value>false</$value>
+<$value>true</$value>
 </baseButtonSetProperty_item>
 </baseButtonSetProperty>
 </buttons_item>
@@ -630,12 +634,12 @@ import redes_digitais_controle_de_notas.business.entity.AlunoBC;
 for (int i = 1; i <= 4; i++) {
 			// Botao de insert
 			DesempenhoBimestral bimestral = new DesempenhoBimestral();
-			bimestral.setNumero(i);
+			bimestral.setNumBimestre(i);
 			bimestral.setAluno(getAluno());
 			bimestral.setNota1(0.0);
 			bimestral.setNota2(0.0);
 			bimestral.setNota3(0.0);
-			getAluno().getDesempenhosBimestrais().add(bimestral);
+			getAluno().getDesempenhoBimestrais().add(bimestral);
 		}
 		
 		Desempenho desempenho = new Desempenho();
@@ -644,8 +648,10 @@ for (int i = 1; i <= 4; i++) {
 		desempenho.setSituacao("REPROVADO");
 		desempenho.setAluno(getAluno());
 		aluno.getDesempenhos().add(desempenho);
-}</triggerCode>
-<triggerCallCode>cadastraDesempenho();</triggerCallCode>
+}
+</triggerCode>
+<triggerCallCode>cadastraDesempenho();
+</triggerCallCode>
 <develHelp></develHelp>
 <triggerSetProperty>
 </triggerSetProperty>
@@ -660,15 +666,17 @@ for (int i = 1; i <= 4; i++) {
 <triggerTemplate></triggerTemplate>
 <triggerCode>private void cadastraPapel(){
 	RoleDAO roleDAO = new RoleDAO();
-	//Caso o papel n\u00e3o exista, crie
+	//Caso o papel n\\\\\\\\\\\\\\\\u00e3o exista, crie
 	Role papel = roleDAO.load("aluno");
 	if(papel == null){
 		papel = new Role();
 		papel.setName("aluno");
 	}
 	getAluno().getUser().getRoles().add(papel);
-}</triggerCode>
-<triggerCallCode>cadastraPapel();</triggerCallCode>
+}
+</triggerCode>
+<triggerCallCode>cadastraPapel();
+</triggerCallCode>
 <develHelp></develHelp>
 <triggerSetProperty>
 </triggerSetProperty>
@@ -689,6 +697,10 @@ for (int i = 1; i <= 4; i++) {
 <$value></$value>
 </baseButtonSetProperty_item>
 <baseButtonSetProperty_item>
+<$key>process</$key>
+<$value>@this,blocoAlunoPanel</$value>
+</baseButtonSetProperty_item>
+<baseButtonSetProperty_item>
 <$key>annotations</$key>
 <$value>@Transactional</$value>
 </baseButtonSetProperty_item>
@@ -698,7 +710,7 @@ for (int i = 1; i <= 4; i++) {
 </baseButtonSetProperty_item>
 <baseButtonSetProperty_item>
 <$key>update</$key>
-<$value></$value>
+<$value>blocoAlunoForm</$value>
 </baseButtonSetProperty_item>
 <baseButtonSetProperty_item>
 <$key>type</$key>
@@ -710,7 +722,7 @@ for (int i = 1; i <= 4; i++) {
 </baseButtonSetProperty_item>
 <baseButtonSetProperty_item>
 <$key>ajax</$key>
-<$value>false</$value>
+<$value>true</$value>
 </baseButtonSetProperty_item>
 </baseButtonSetProperty>
 </buttons_item>
@@ -744,16 +756,12 @@ for (int i = 1; i <= 4; i++) {
 <$value>/system/tabAluno.xhtml</$value>
 </generatorSetProperty_item>
 <generatorSetProperty_item>
-<$key>XHTML_TEMPLATE</$key>
-<$value>/template/main.xhtml</$value>
-</generatorSetProperty_item>
-<generatorSetProperty_item>
 <$key>XHTML_REFERENCE</$key>
 <$value>/system/tabAluno.xhtml</$value>
 </generatorSetProperty_item>
 <generatorSetProperty_item>
 <$key>PREVIOUS_VIEW</$key>
-<$value>/system/tabAluno.xhtml</$value>
+<$value>/system/login.xhtml</$value>
 </generatorSetProperty_item>
 <generatorSetProperty_item>
 <$key>entity</$key>

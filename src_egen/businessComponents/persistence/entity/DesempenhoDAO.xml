@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <com.egen.tool.business.BusinessComponent>
 <class>com.egen.tool.business.BusinessComponent</class>
-<businessComponentAlias>DesempenhoDAO</businessComponentAlias>
 <businessComponentModule>persistence/entity</businessComponentModule>
-<businessComponentMasterTemplate>EntityCrudDAOTemplate</businessComponentMasterTemplate>
+<businessComponentAlias>DesempenhoDAO</businessComponentAlias>
 <businessComponentName>DesempenhoDAO</businessComponentName>
+<businessComponentMasterTemplate>EntityCrudDAOTemplate</businessComponentMasterTemplate>
 <variables>
 <variables_item>
 <class>com.egen.tool.business.BusinessVariable</class>
 <businessVariableName>desempenho</businessVariableName>
-<businessVariableDomainReference></businessVariableDomainReference>
-<businessVariableInitialization></businessVariableInitialization>
-<businessVariableDescription></businessVariableDescription>
-<businessVariableType>@entity(redes_digitais_controle_de_notas.domain.entity.Desempenho)</businessVariableType>
 <variableComponentType></variableComponentType>
+<businessVariableType>@entity(redes_digitais_controle_de_notas.domain.entity.Desempenho)</businessVariableType>
+<businessVariableDescription></businessVariableDescription>
+<businessVariableInitialization></businessVariableInitialization>
+<businessVariableDomainReference></businessVariableDomainReference>
 <businessVariableSetProperties>
 </businessVariableSetProperties>
 </variables_item>
 </variables>
-<businessComponentSetProperties>
-</businessComponentSetProperties>
-<inputParameters>
-</inputParameters>
+<outputParameters>
+</outputParameters>
 <businessCodeUnits>
 <businessCodeUnits_item>
 <class>com.egen.tool.business.BusinessCodeUnit</class>
@@ -181,25 +179,25 @@ public class DesempenhoDAO extends JPACrud<Desempenho, Integer> {
 <businessCodeUnitSetProperty>
 <businessCodeUnitSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyValue>br.gov.frameworkdemoiselle.template.JPACrud<[ENTITY], [ID_TYPE]></setPropertyValue>
 <setPropertyKey>extends</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
-<setPropertyValue>br.gov.frameworkdemoiselle.template.JPACrud<[ENTITY], [ID_TYPE]></setPropertyValue>
 </businessCodeUnitSetProperty_item>
 <businessCodeUnitSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyValue>src/main/java/redes_digitais_controle_de_notas/persistence/entity/DesempenhoDAO.java</setPropertyValue>
 <setPropertyKey>file</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
-<setPropertyValue>src/main/java/redes_digitais_controle_de_notas/persistence/entity/DesempenhoDAO.java</setPropertyValue>
 </businessCodeUnitSetProperty_item>
 </businessCodeUnitSetProperty>
 <businessCodeBlocks>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>PackageBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>package redes_digitais_controle_de_notas.persistence.entity;
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -207,7 +205,6 @@ public class DesempenhoDAO extends JPACrud<Desempenho, Integer> {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOImportBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>import java.util.*;
 import javax.inject.Inject;
@@ -220,20 +217,21 @@ import br.gov.frameworkdemoiselle.template.JPACrud;
 import javax.persistence.criteria.*;
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
 <intraCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>extraImport</businessCodeBlockIdentification>
 <businessCodeBlockTemplate></businessCodeBlockTemplate>
 <businessCodeBlockContent>import br.gov.frameworkdemoiselle.template.JPACrud;</businessCodeBlockContent>
+<businessCodeBlockIdentification>extraImport</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 <businessCodeBlockSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyValue>custom</setPropertyValue>
 <setPropertyKey>position</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
-<setPropertyValue>custom</setPropertyValue>
 </businessCodeBlockSetProperty_item>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -241,16 +239,16 @@ import javax.persistence.criteria.*;
 </intraCodeBlocks_item>
 <intraCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>extraImport_1</businessCodeBlockIdentification>
 <businessCodeBlockTemplate></businessCodeBlockTemplate>
 <businessCodeBlockContent>import javax.persistence.criteria.*;
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>extraImport_1</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 <businessCodeBlockSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyValue>custom</setPropertyValue>
 <setPropertyKey>position</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
-<setPropertyValue>custom</setPropertyValue>
 </businessCodeBlockSetProperty_item>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -260,7 +258,6 @@ import javax.persistence.criteria.*;
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOClassDefinitionBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>@PersistenceController
 public class DesempenhoDAO extends JPACrud<Desempenho, Integer> {
@@ -268,16 +265,17 @@ public class DesempenhoDAO extends JPACrud<Desempenho, Integer> {
 	private static final long serialVersionUID = 1L;
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
 <intraCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>serialVersionUID</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>SerialVersionUIDBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	private static final long serialVersionUID = 1L;
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>serialVersionUID</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -287,7 +285,6 @@ public class DesempenhoDAO extends JPACrud<Desempenho, Integer> {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>findByExample</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOFindByExampleBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	@Override
 	public List<Desempenho> findByExample(Desempenho example) {
@@ -298,6 +295,7 @@ public class DesempenhoDAO extends JPACrud<Desempenho, Integer> {
 	}
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>findByExample</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -305,7 +303,6 @@ public class DesempenhoDAO extends JPACrud<Desempenho, Integer> {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>findByCriteria</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOFindByCriteriaBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	public List<Desempenho> findByCriteria(java.util.Map<String, Object> parameters) {
 		if (parameters == null) {
@@ -430,6 +427,7 @@ public class DesempenhoDAO extends JPACrud<Desempenho, Integer> {
 		return results;
 	}
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>findByCriteria</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -437,9 +435,9 @@ public class DesempenhoDAO extends JPACrud<Desempenho, Integer> {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>ClosingCodeBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>}</businessCodeBlockContent>
+<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -485,7 +483,6 @@ public class DesempenhoDAOTest {
 	public void insert() {
 		Desempenho desempenho = new Desempenho();
 		desempenho.setMediaParcial(desempenho.getId().setMediaParcial(new Double("1.1"));
-		desempenho.setProvaFinal(desempenho.getId().setProvaFinal(new Double("1.1"));
 		desempenho.setMediaFinal(desempenho.getId().setMediaFinal(new Double("1.1"));
 		desempenho.setSituacao("XXXXXXXXXX");
 		desempenhoDAO.insert(desempenho);
@@ -498,7 +495,6 @@ public class DesempenhoDAOTest {
 	public void update() {
 		Desempenho desempenho = new Desempenho();
 		desempenho.setMediaParcial(new Double("1.1"));
-		desempenho.setProvaFinal(new Double("1.1"));
 		desempenho.setMediaFinal(new Double("1.1"));
 		desempenho.setSituacao("XXXXXXXXXX");
 		desempenhoDAO.insert(desempenho);
@@ -518,7 +514,6 @@ public class DesempenhoDAOTest {
 	public void delete() {
 		Desempenho desempenho = new Desempenho();
 		desempenho.setMediaParcial(new Double("1.1"));
-		desempenho.setProvaFinal(new Double("1.1"));
 		desempenho.setMediaFinal(new Double("1.1"));
 		desempenho.setSituacao("XXXXXXXXXX");
 		desempenhoDAO.insert(desempenho);
@@ -536,19 +531,19 @@ public class DesempenhoDAOTest {
 <businessCodeUnitSetProperty>
 <businessCodeUnitSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyValue>src/test/java/redes_digitais_controle_de_notas/persistence/entity/DesempenhoDAOTest.java</setPropertyValue>
 <setPropertyKey>file</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
-<setPropertyValue>src/test/java/redes_digitais_controle_de_notas/persistence/entity/DesempenhoDAOTest.java</setPropertyValue>
 </businessCodeUnitSetProperty_item>
 </businessCodeUnitSetProperty>
 <businessCodeBlocks>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>PackageBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>package redes_digitais_controle_de_notas.persistence.entity;
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -556,7 +551,6 @@ public class DesempenhoDAOTest {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestImportBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>import redes_digitais_controle_de_notas.domain.entity.*;
 import static org.junit.Assert.assertEquals;
@@ -569,6 +563,7 @@ import org.junit.runner.RunWith;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -576,12 +571,12 @@ import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestClassDefinitionBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>@RunWith(DemoiselleRunner.class)
 public class DesempenhoDAOTest {
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -589,12 +584,12 @@ public class DesempenhoDAOTest {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>attributes</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestAttributesBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	@Inject
 	private DesempenhoDAO desempenhoDAO;
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>attributes</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -602,7 +597,6 @@ public class DesempenhoDAOTest {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>setup</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestSetupBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	@Before
 	public void before() {
@@ -617,6 +611,7 @@ public class DesempenhoDAOTest {
 	}
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>setup</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -624,13 +619,11 @@ public class DesempenhoDAOTest {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>insert</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestInsertBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	@Test
 	public void insert() {
 		Desempenho desempenho = new Desempenho();
 		desempenho.setMediaParcial(desempenho.getId().setMediaParcial(new Double("1.1"));
-		desempenho.setProvaFinal(desempenho.getId().setProvaFinal(new Double("1.1"));
 		desempenho.setMediaFinal(desempenho.getId().setMediaFinal(new Double("1.1"));
 		desempenho.setSituacao("XXXXXXXXXX");
 		desempenhoDAO.insert(desempenho);
@@ -640,6 +633,7 @@ public class DesempenhoDAOTest {
 	}
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>insert</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -647,13 +641,11 @@ public class DesempenhoDAOTest {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>update</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestUpdateBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	@Test
 	public void update() {
 		Desempenho desempenho = new Desempenho();
 		desempenho.setMediaParcial(new Double("1.1"));
-		desempenho.setProvaFinal(new Double("1.1"));
 		desempenho.setMediaFinal(new Double("1.1"));
 		desempenho.setSituacao("XXXXXXXXXX");
 		desempenhoDAO.insert(desempenho);
@@ -670,6 +662,7 @@ public class DesempenhoDAOTest {
 	}
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>update</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -677,13 +670,11 @@ public class DesempenhoDAOTest {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>delete</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestDeleteBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	@Test
 	public void delete() {
 		Desempenho desempenho = new Desempenho();
 		desempenho.setMediaParcial(new Double("1.1"));
-		desempenho.setProvaFinal(new Double("1.1"));
 		desempenho.setMediaFinal(new Double("1.1"));
 		desempenho.setSituacao("XXXXXXXXXX");
 		desempenhoDAO.insert(desempenho);
@@ -696,6 +687,7 @@ public class DesempenhoDAOTest {
 	}
 
 </businessCodeBlockContent>
+<businessCodeBlockIdentification>delete</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -703,9 +695,9 @@ public class DesempenhoDAOTest {
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
-<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>ClosingCodeBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>}</businessCodeBlockContent>
+<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
 <businessCodeBlockSetProperty>
 </businessCodeBlockSetProperty>
 <intraCodeBlocks>
@@ -714,6 +706,8 @@ public class DesempenhoDAOTest {
 </businessCodeBlocks>
 </businessCodeUnits_item>
 </businessCodeUnits>
-<outputParameters>
-</outputParameters>
+<inputParameters>
+</inputParameters>
+<businessComponentSetProperties>
+</businessComponentSetProperties>
 </com.egen.tool.business.BusinessComponent>

@@ -4,8 +4,8 @@
 			<div id="blocoAlunoTitle" class="blocktitle">Cadastrar Novo Aluno</div>
 			<p:toolbar id="blocoAlunoToolbar">
 				<p:toolbarGroup id="blocoAlunoLeftToolbarGroup" align="left">
-					<p:commandButton id="back" value="#{messages['button.back']}" action="#{tabAlunoMB.getPreviousView}" immediate="true" ajax="false" title="#{messages['button.back']}" icon="ui-icon-arrowthick-1-w"></p:commandButton>
-					<p:commandButton id="save" value="#{messages['button.save']}" action="#{tabAlunoMB.save}" ajax="false" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
+					<p:commandButton id="back" value="#{messages['button.back']}" action="#{tabAlunoMB.getPreviousView}" immediate="true" ajax="true" process="@this,blocoAlunoPanel" update="blocoAlunoForm" title="#{messages['button.back']}" icon="ui-icon-arrowthick-1-w"></p:commandButton>
+					<p:commandButton id="save" value="#{messages['button.save']}" action="#{tabAlunoMB.save}" ajax="true" process="@this,blocoAlunoPanel" update="blocoAlunoForm" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
 				</p:toolbarGroup>
 				<p:toolbarGroup id="blocoAlunoRightToolbarGroup" align="right">
 					<ui:include src="/template/exportToolbar.xhtml">
