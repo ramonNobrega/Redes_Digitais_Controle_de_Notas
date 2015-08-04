@@ -22,7 +22,7 @@ import redes_digitais_controle_de_notas.exception.*;
 
 import redes_digitais_controle_de_notas.business.entity.AlunoBC;
 import redes_digitais_controle_de_notas.domain.entity.Aluno;
-
+import redes_digitais_controle_de_notas.security.ContextMB;
 @ViewController
 @PreviousView("/aluno/tabManterAluno.xhtml")
 @NextView("/aluno/tabManterAlunoDetail.xhtml")
@@ -40,30 +40,20 @@ public class TabManterAlunoMB extends AbstractListPageBean<Aluno, Long> {
 	@Inject
 	private AlunoBC alunoBC;
 	
-	public String newRecord() {
-		return getNextView();
-	}
+	@Inject
+	private ContextMB context;
 	
-	@Transactional
-	public String delete() {
-		boolean delete = false;
-		for (Iterator<Long> iter = getSelection().keySet().iterator(); iter.hasNext();) {
-			Long selectedId = iter.next();
-			delete = getSelection().get(selectedId);
-			if (delete) {
-				alunoBC.delete(selectedId);
-				iter.remove();
-			}
-		}
-		if (delete) {
-			messageContext.add(new DefaultMessage("{pages.msg.deletesuccess}"));
-		}
-		return getCurrentView();
-	}
-	
+	private List<Aluno> alunoResultList;
+
 	@Override
 	protected List<Aluno> handleResultList() {
-		return this.alunoBC.findAll();
+		alunoResultList = new ArrayList<Aluno>();
+		Aluno aluno = this.alunoBC.load(new Long(context.getUser().getId()));
+		alunoResultList.add(aluno);
+		return alunoResultList;
 	}
-
+	
+	public void setAlunoResultList(List<Aluno> alunoResultList) {
+		this.alunoResultList = alunoResultList;
+	}
 }
