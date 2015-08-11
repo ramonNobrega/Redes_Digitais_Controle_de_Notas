@@ -2,7 +2,7 @@
 	<h:form id="mainmenuForm">
 		<p:menubar id="mainmenuMenubar" styleClass="mainmenubar">
 			<p:menuitem id="mainmenu_2" rendered="#{securityContext.hasRole('aluno')}" value="Dados Pessoais do Aluno" url="/aluno/tabManterAluno.jsf" ajax="false"></p:menuitem>
-			<p:menuitem id="mainmenu_3" rendered="#{securityContext.hasRole('aluno')}" value="Desempenho por Bimestre" ajax="false"></p:menuitem>
+			<p:menuitem id="mainmenu_3" rendered="#{securityContext.hasRole('aluno')}" value="Desempenho por Bimestre" url="/aluno/tabDesempenhoBimestralAluno.jsf" ajax="false"></p:menuitem>
 			<p:menuitem id="mainmenu_4" rendered="#{securityContext.hasRole('aluno')}" value="Desempenho Geral" ajax="false"></p:menuitem>
 			<p:menuitem id="mainmenu_5" rendered="#{securityContext.hasRole('professor')}" value="Dados Pessoais do Professor" ajax="false"></p:menuitem>
 			<p:menuitem id="mainmenu_6" rendered="#{securityContext.hasRole('professor')}" value="Cadastro de Turmas" ajax="false"></p:menuitem>

@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+	<ui:define name="body">
+<!-- Block[desempenhoBimestralblock] -->
+		<h:form id="desempenhoBimestralblockForm">
+			<div id="desempenhoBimestralblockTitle" class="blocktitle">Desempenho por Bimestre</div>
+			<p:toolbar id="desempenhoBimestralblockToolbar">
+				
+			</p:toolbar>
+			<p:outputPanel id="desempenhoBimestralblockPanel">
+				<p:dataTable id="desempenhoBimestralblockDataTable" value="#{tabDesempenhoBimestralAlunoMB.desempenhoBimestralResultList}" var="bean" rows="5" paginator="true" rowsPerPageTemplate="5,10,15,20,50,100" rowIndexVar="rowIndexVar" resizableColumns="true" tableStyle="width:100%">
+					<p:column id="numBimestreDTColumn" style="text-align:right;" sortBy="#{bean.numBimestre}" filterBy="#{bean.numBimestre}" filterMatchMode="contains" exportable="true">
+						<f:facet name="header">
+							<h:outputText value="N&#250;mero do Bimestre"></h:outputText>
+						</f:facet>
+						<h:outputText id="numBimestre" value="#{bean.numBimestre}">
+						</h:outputText>
+					</p:column>
+					<p:column id="nota1DTColumn" style="text-align:right;" sortBy="#{bean.nota1}" filterBy="#{bean.nota1}" filterMatchMode="contains" exportable="true">
+						<f:facet name="header">
+							<h:outputText value="Nota 1"></h:outputText>
+						</f:facet>
+						<h:outputText id="nota1" value="#{bean.nota1}">
+							<f:convertNumber pattern="##,##0.00"/>
+						</h:outputText>
+					</p:column>
+					<p:column id="nota2DTColumn" style="text-align:right;" sortBy="#{bean.nota2}" filterBy="#{bean.nota2}" filterMatchMode="contains" exportable="true">
+						<f:facet name="header">
+							<h:outputText value="Nota 2"></h:outputText>
+						</f:facet>
+						<h:outputText id="nota2" value="#{bean.nota2}">
+							<f:convertNumber pattern="##,##0.00"/>
+						</h:outputText>
+					</p:column>
+					<p:column id="nota3DTColumn" style="text-align:right;" sortBy="#{bean.nota3}" filterBy="#{bean.nota3}" filterMatchMode="contains" exportable="true">
+						<f:facet name="header">
+							<h:outputText value="Nota 3"></h:outputText>
+						</f:facet>
+						<h:outputText id="nota3" value="#{bean.nota3}">
+							<f:convertNumber pattern="##,##0.00"/>
+						</h:outputText>
+					</p:column>
+					<p:column id="mediaBimestreDTColumn" style="text-align:right;" sortBy="#{bean.mediaBimestre}" filterBy="#{bean.mediaBimestre}" filterMatchMode="contains" exportable="true">
+						<f:facet name="header">
+							<h:outputText value="M&#233;dia Bimestral"></h:outputText>
+						</f:facet>
+						<h:outputText id="mediaBimestre" value="#{bean.mediaBimestre}">
+							<f:convertNumber pattern="##,##0.00"/>
+						</h:outputText>
+					</p:column>
+				</p:dataTable>
+			</p:outputPanel>
+		</h:form>
+<!-- Block[desempenhoBimestralblock] -->
+	</ui:define>
+</ui:composition>
