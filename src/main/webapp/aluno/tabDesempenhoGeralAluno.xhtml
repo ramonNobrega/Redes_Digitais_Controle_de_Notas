@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+	<ui:define name="body">
+		<h:form id="desempenhoblockForm">
+			<div id="desempenhoblockTitle" class="blocktitle">Situa&#231;&#227;o Final</div>
+			<p:toolbar id="desempenhoblockToolbar">
+			</p:toolbar>
+			<p:outputPanel id="desempenhoblockPanel">
+				<p:dataTable id="desempenhoblockDataTable" value="#{tabDesempenhoGeralAlunoMB.desempenhoResultList}" var="bean" rows="5" paginator="false" rowIndexVar="rowIndexVar" resizableColumns="true" tableStyle="width:100%">
+					<p:column id="mediaParcialDTColumn" style="text-align:right;" sortBy="#{bean.mediaParcial}" filterBy="#{bean.mediaParcial}" filterMatchMode="contains" exportable="true">
+						<f:facet name="header">
+							<h:outputText value="M&#233;dia Parcial"></h:outputText>
+						</f:facet>
+						<h:outputText id="mediaParcial" value="#{bean.mediaParcial}">
+							<f:convertNumber pattern="##,##0.00"/>
+						</h:outputText>
+					</p:column>
+					<p:column id="provaFinalDTColumn" style="text-align:right;" sortBy="#{bean.provaFinal}" filterBy="#{bean.provaFinal}" filterMatchMode="contains" exportable="true">
+						<f:facet name="header">
+							<h:outputText value="Prova Final"></h:outputText>
+						</f:facet>
+						<h:outputText id="provaFinal" value="#{bean.provaFinal}">
+							<f:convertNumber pattern="##,##0.00"/>
+						</h:outputText>
+					</p:column>
+					<p:column id="mediaFinalDTColumn" style="text-align:right;" sortBy="#{bean.mediaFinal}" filterBy="#{bean.mediaFinal}" filterMatchMode="contains" exportable="true">
+						<f:facet name="header">
+							<h:outputText value="M&#233;dia Final"></h:outputText>
+						</f:facet>
+						<h:outputText id="mediaFinal" value="#{bean.mediaFinal}">
+							<f:convertNumber pattern="##,##0.00"/>
+						</h:outputText>
+					</p:column>
+					<p:column id="situacaoDTColumn" sortBy="#{bean.situacao}" filterBy="#{bean.situacao}" filterMatchMode="contains" exportable="true">
+						<f:facet name="header">
+							<h:outputText value="Situa&#231;&#227;o"></h:outputText>
+						</f:facet>
+						<h:outputText id="situacao" value="#{bean.situacao}">
+						</h:outputText>
+					</p:column>
+				</p:dataTable>
+			</p:outputPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>

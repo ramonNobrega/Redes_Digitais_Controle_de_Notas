@@ -1,0 +1,78 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+	<ui:define name="body">
+		<h:form id="block0Form">
+			<div id="block0Title" class="blocktitle">teste</div>
+			<p:toolbar id="block0Toolbar">
+				<p:toolbarGroup id="block0RightToolbarGroup" align="right">
+					<ui:include src="/template/exportToolbar.xhtml">
+						<ui:param name="target" value="block0DataTable" />
+					</ui:include>
+				</p:toolbarGroup>
+			</p:toolbar>
+			<p:outputPanel id="block0Panel">
+				<p:dataTable id="block0DataTable" value="#{tabDesempenhoAlunoMB.desempenhoResultList}" var="bean" rows="5" paginator="true" rowsPerPageTemplate="5,10,15,20,50,100" rowIndexVar="rowIndexVar" resizableColumns="true" tableStyle="width:100%">
+					<p:column id="idDesempenhoDTColumn" style="text-align:right;" sortBy="#{bean.idDesempenho}" filterBy="#{bean.idDesempenho}" filterMatchMode="contains" exportable="true">
+						<f:facet name="header">
+							<h:outputText value="C&#243;digo de Desempenho"></h:outputText>
+						</f:facet>
+						<h:outputText id="idDesempenho" value="#{bean.idDesempenho}">
+						</h:outputText>
+					</p:column>
+					<p:column id="mediaParcialDTColumn" style="text-align:right;" sortBy="#{bean.mediaParcial}" filterBy="#{bean.mediaParcial}" filterMatchMode="contains" exportable="true">
+						<f:facet name="header">
+							<h:outputText value="M&#233;dia Parcial"></h:outputText>
+						</f:facet>
+						<h:outputText id="mediaParcial" value="#{bean.mediaParcial}">
+							<f:convertNumber pattern="##,##0.00"/>
+						</h:outputText>
+					</p:column>
+					<p:column id="provaFinalDTColumn" style="text-align:right;" sortBy="#{bean.provaFinal}" filterBy="#{bean.provaFinal}" filterMatchMode="contains" exportable="true">
+						<f:facet name="header">
+							<h:outputText value="Prova Final"></h:outputText>
+						</f:facet>
+						<h:outputText id="provaFinal" value="#{bean.provaFinal}">
+							<f:convertNumber pattern="##,##0.00"/>
+						</h:outputText>
+					</p:column>
+					<p:column id="mediaFinalDTColumn" style="text-align:right;" sortBy="#{bean.mediaFinal}" filterBy="#{bean.mediaFinal}" filterMatchMode="contains" exportable="true">
+						<f:facet name="header">
+							<h:outputText value="M&#233;dia Final"></h:outputText>
+						</f:facet>
+						<h:outputText id="mediaFinal" value="#{bean.mediaFinal}">
+							<f:convertNumber pattern="##,##0.00"/>
+						</h:outputText>
+					</p:column>
+					<p:column id="situacaoDTColumn" sortBy="#{bean.situacao}" filterBy="#{bean.situacao}" filterMatchMode="contains" exportable="true">
+						<f:facet name="header">
+							<h:outputText value="Situa&#231;&#227;o"></h:outputText>
+						</f:facet>
+						<h:outputText id="situacao" value="#{bean.situacao}">
+						</h:outputText>
+					</p:column>
+					<p:column id="alunoDTColumn" sortBy="#{bean.aluno}" filterBy="#{bean.aluno}" filterMatchMode="contains" exportable="true">
+						<f:facet name="header">
+							<h:outputText value="aluno"></h:outputText>
+						</f:facet>
+						<h:outputText id="aluno" value="#{bean.aluno}">
+						</h:outputText>
+					</p:column>
+					<p:column id="alunoUserIdDTColumn" style="text-align:right;" sortBy="#{bean.aluno.user.id}" filterBy="#{bean.aluno.user.id}" filterMatchMode="contains" exportable="true">
+						<f:facet name="header">
+							<h:outputText value="#{messages['C&#243;digo do Aluno']}"></h:outputText>
+						</f:facet>
+						<h:outputText id="alunoUserId" value="#{bean.aluno.user.id}">
+							<f:convertNumber pattern="##,###,##0"/>
+						</h:outputText>
+					</p:column>
+					<p:column id="alunoUserNameDTColumn" sortBy="#{bean.aluno.user.name}" filterBy="#{bean.aluno.user.name}" filterMatchMode="contains" exportable="true">
+						<f:facet name="header">
+							<h:outputText value="#{messages['Nome do Aluno']}"></h:outputText>
+						</f:facet>
+						<h:outputText id="alunoUserName" value="#{bean.aluno.user.name}">
+						</h:outputText>
+					</p:column>
+				</p:dataTable>
+			</p:outputPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>
