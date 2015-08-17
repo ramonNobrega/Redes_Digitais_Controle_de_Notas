@@ -143,7 +143,7 @@ import redes_digitais_controle_de_notas.persistence.entity.RoleDAO;</addImportAc
 </blocks_item>
 <blocks_item>
 <class>com.egen.develop.generator.form.BlockForm</class>
-<name>alunoTabForm</name>
+<name>professorTab</name>
 <title></title>
 <i18n></i18n>
 <database></database>
@@ -159,7 +159,7 @@ import redes_digitais_controle_de_notas.persistence.entity.RoleDAO;</addImportAc
 <script_template></script_template>
 <obs></obs>
 <maxRows>0</maxRows>
-<resultSetName></resultSetName>
+<resultSetName>professorTabResultList</resultSetName>
 <select_clause></select_clause>
 <where_clause></where_clause>
 <order_by></order_by>
@@ -177,7 +177,7 @@ import redes_digitais_controle_de_notas.persistence.entity.RoleDAO;</addImportAc
 <role_item></role_item>
 <roleinclude>false</roleinclude>
 <i18n_obs></i18n_obs>
-<tab_pos>aluno</tab_pos>
+<tab_pos>professor</tab_pos>
 <block_size></block_size>
 <block_position></block_position>
 <displayError></displayError>
@@ -201,9 +201,42 @@ import redes_digitais_controle_de_notas.persistence.entity.RoleDAO;</addImportAc
 <close_form>false</close_form>
 <formDisplayCondition></formDisplayCondition>
 <formSetProperty>
+<formSetProperty_item>
+<$key>focus_id</$key>
+<$value>professorTabFocus</$value>
+</formSetProperty_item>
 </formSetProperty>
 </form>
 <blockSetProperty>
+<blockSetProperty_item>
+<$key>toolbar_id</$key>
+<$value>professorTabToolbar</$value>
+</blockSetProperty_item>
+<blockSetProperty_item>
+<$key>exportToolbar</$key>
+<$value>false</$value>
+</blockSetProperty_item>
+<blockSetProperty_item>
+<$key>toolbarIsCustomized</$key>
+<$value>false</$value>
+</blockSetProperty_item>
+<blockSetProperty_item>
+<$key>toolbarCode</$key>
+<$value><p:toolbar id="professorTabToolbar">
+	<p:toolbarGroup id="professorTabLeftToolbarGroup" align="left">
+	</p:toolbarGroup>
+	<p:toolbarGroup id="professorTabRightToolbarGroup" align="right">
+		<ui:include src="/template/exportToolbar.xhtml">
+			<ui:param name="target" value="professorTabDataTable" />
+		</ui:include>
+	</p:toolbarGroup>
+</p:toolbar>
+</$value>
+</blockSetProperty_item>
+<blockSetProperty_item>
+<$key>toolbargroup_align</$key>
+<$value>left</$value>
+</blockSetProperty_item>
 </blockSetProperty>
 <gridProperties></gridProperties>
 <navigatorProperties></navigatorProperties>
@@ -250,6 +283,20 @@ import redes_digitais_controle_de_notas.persistence.entity.RoleDAO;</addImportAc
 <id>aluno</id>
 <title>Aluno</title>
 <src>/system/tabAluno.xhtml</src>
+<align></align>
+<space></space>
+<i18n></i18n>
+<role_item></role_item>
+<roleinclude>false</roleinclude>
+<tabLink></tabLink>
+<blockTabsSetProperty>
+</blockTabsSetProperty>
+</tabs_gen_item>
+<tabs_gen_item>
+<class>com.egen.develop.generator.BlockTabs</class>
+<id>professor</id>
+<title>Professor</title>
+<src>/system/tabProfessor.xhtml</src>
 <align></align>
 <space></space>
 <i18n></i18n>
