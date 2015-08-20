@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+	<ui:define name="body">
+		<h:form id="listForm">
+			<p:focus id="listFocus"/>
+			<div id="listTitle" class="blocktitle">Dados Pessoais do Professor</div>
+			<p:toolbar id="listToolbar">
+				<p:toolbarGroup id="listLeftToolbarGroup" align="left">
+				</p:toolbarGroup>
+			</p:toolbar>
+			<div id="listFormMessages" class="formmessages">
+				<p:messages id="listMessages" autoUpdate="true" closable="true"/>
+			</div>
+			<p:outputPanel id="listPanel">
+				<p:dataTable id="listDataTable" value="#{tabManterProfessorMB.resultList}" var="bean" rows="5" paginator="false" rowIndexVar="rowIndexVar" resizableColumns="true" tableStyle="width:100%">
+					<p:column id="userNameDTColumn" sortBy="#{bean.user.name}" filterBy="#{bean.user.name}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="Nome do Professor"></h:outputText>
+						</f:facet>
+						<h:outputText id="userName" value="#{bean.user.name}">
+						</h:outputText>
+					</p:column>
+					<p:column id="userEmailDTColumn" sortBy="#{bean.user.email}" filterBy="#{bean.user.email}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="E-mail do Professor"></h:outputText>
+						</f:facet>
+						<h:outputText id="userEmail" value="#{bean.user.email}">
+						</h:outputText>
+					</p:column>
+					<p:column id="disciplinaDTColumn" sortBy="#{bean.disciplina}" filterBy="#{bean.disciplina}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="disciplina"></h:outputText>
+						</f:facet>
+						<h:outputText id="disciplina" value="#{bean.disciplina}">
+						</h:outputText>
+					</p:column>
+					<p:column id="editLinkFieldDTColumn" style="text-align:center;" styleClass="gridstandardcolumn" exportable="false">
+						<p:commandLink action="#{tabManterProfessorMB.getNextView}" actionListener="#{tabManterProfessorMB.clear}" ajax="false" styleClass="ui-button ui-icon ui-icon-search">
+							<f:param name="id" value="#{bean.user.id}"></f:param>
+						</p:commandLink>
+					</p:column>
+				</p:dataTable>
+			</p:outputPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>

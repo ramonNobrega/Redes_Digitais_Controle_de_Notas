@@ -13,7 +13,7 @@ public class Professor implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@ManyToOne(optional=false)
+	@ManyToOne(cascade=CascadeType.ALL, optional=false)
 	@JoinColumn(name="id_professor", referencedColumnName="id_user")
 	private User user;
 

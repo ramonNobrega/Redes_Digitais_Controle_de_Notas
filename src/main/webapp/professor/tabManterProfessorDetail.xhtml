@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+	<ui:define name="body">
+		<h:form id="editForm">
+			<p:focus id="editFocus"/>
+			<div id="editTitle" class="blocktitle">#{messages['pages.app.edit']}</div>
+			<p:toolbar id="editToolbar">
+				<p:toolbarGroup id="editLeftToolbarGroup" align="left">
+					<p:commandButton id="back" value="#{messages['button.back']}" action="#{tabManterProfessorDetailMB.getPreviousView}" immediate="true" ajax="false" title="#{messages['button.back']}" icon="ui-icon-arrowthick-1-w"></p:commandButton>
+					<p:commandButton id="insert" rendered="#{!tabManterProfessorDetailMB.updateMode}" value="#{messages['button.save']}" action="#{tabManterProfessorDetailMB.insert}" ajax="false" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
+					<p:commandButton id="update" rendered="#{tabManterProfessorDetailMB.updateMode}" value="#{messages['button.save']}" action="#{tabManterProfessorDetailMB.update}" ajax="false" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
+				</p:toolbarGroup>
+			</p:toolbar>
+			<div id="editFormMessages" class="formmessages">
+				<p:messages id="editMessages" autoUpdate="true" closable="true"/>
+			</div>
+			<p:outputPanel id="editPanel">
+				<div class="formrow">
+					<div id="userNameformcell" class="formcell">
+						<p:outputLabel id="userNameLabel" value="Nome do Professor" for="userName" styleClass="text-input"></p:outputLabel>
+						<p:inputText id="userName" value="#{tabManterProfessorDetailMB.bean.user.name}" required="true" maxlength="60" size="60">
+						</p:inputText>
+					</div>
+				</div>
+				<div class="formrow">
+					<div id="userEmailformcell" class="formcell">
+						<p:outputLabel id="userEmailLabel" value="E-mail do Professor" for="userEmail" styleClass="text-input"></p:outputLabel>
+						<p:inputText id="userEmail" value="#{tabManterProfessorDetailMB.bean.user.email}" maxlength="100" size="100">
+						</p:inputText>
+					</div>
+				</div>
+				<div class="formrow">
+					<div id="disciplinaformcell" class="formcell">
+						<p:outputLabel id="disciplinaLabel" value="Disciplina" for="disciplina" styleClass="text-input"></p:outputLabel>
+						<p:inputText id="disciplina" value="#{tabManterProfessorDetailMB.bean.disciplina}" required="true" maxlength="100" size="100">
+						</p:inputText>
+					</div>
+				</div>
+			</p:outputPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>
