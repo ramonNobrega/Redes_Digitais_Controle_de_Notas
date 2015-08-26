@@ -18,9 +18,9 @@ public class TurmaDAOTest {
 
 	@Before
 	public void before() {
-		for (Turma turma : turmaDAO.findAll()) {
-		turmaDAO.delete(turma.getIdTurma());
-		}
+//		for (Turma turma : turmaDAO.findAll()) {
+//		turmaDAO.delete(turma.getIdTurma());
+//		}
 	}
 
 	@After
@@ -31,6 +31,7 @@ public class TurmaDAOTest {
 	@Test
 	public void insert() {
 		Turma turma = new Turma();
+		turma.setIdTurma(1);
 		turma.setNomeTurma("XXXXXXXXXXXXXXXXXXXX");
 		turmaDAO.insert(turma);
 		List<Turma> turmaList = turmaDAO.findAll();

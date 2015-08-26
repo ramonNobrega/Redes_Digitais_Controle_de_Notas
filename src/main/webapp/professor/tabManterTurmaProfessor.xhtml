@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+	<ui:define name="body">
+		<h:form id="listForm">
+			<p:focus id="listFocus"/>
+			<div id="listTitle" class="blocktitle">Turmas do Professor</div>
+			<p:toolbar id="listToolbar">
+				<p:toolbarGroup id="listLeftToolbarGroup" align="left">
+					<p:commandButton id="newRecord" value="#{messages['button.new']}" action="#{tabManterTurmaProfessorMB.newRecord}" actionListener="#{tabManterTurmaProfessorMB.clear}" immediate="true" ajax="false" title="#{messages['button.new']}" icon="ui-icon-document"></p:commandButton>
+					<p:commandButton id="delete" value="#{messages['button.delete']}" type="button" ajax="false" onclick="deleteConfirmation.show();" title="#{messages['button.delete']}" icon="ui-icon-trash"></p:commandButton>
+					<p:confirmDialog id="deleteConfirmDialog" widgetVar="deleteConfirmation" message="#{messages['label.confirm.delete']}" header="#{messages['label.dialog.delete']}" severity="alert">
+						<h:commandButton action="#{tabManterTurmaProfessorMB.delete}" actionListener="#{tabManterTurmaProfessorMB.clear}" value="#{messages['button.dialog.yes']}"></h:commandButton>
+						<h:commandButton onclick="deleteConfirmation.hide()" type="button" value="#{messages['button.dialog.no']}"></h:commandButton>
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+			<div id="listFormMessages" class="formmessages">
+				<p:messages id="listMessages" autoUpdate="true" closable="true"/>
+			</div>
+			<p:outputPanel id="listPanel">
+				<p:dataTable id="listDataTable" value="#{tabManterTurmaProfessorMB.resultList}" var="bean" rows="5" paginator="false" rowIndexVar="rowIndexVar" resizableColumns="true" tableStyle="width:100%">
+					<p:column id="selectionFieldDTColumn" style="text-align:center;" styleClass="gridstandardcolumn" exportable="false">
+						<h:selectBooleanCheckbox id="selectionField" value="#{tabManterTurmaProfessorMB.selection[bean]}"></h:selectBooleanCheckbox>
+					</p:column>
+					<p:column id="turmaNomeTurmaDTColumn" sortBy="#{bean.turma.nomeTurma}" filterBy="#{bean.turma.nomeTurma}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="Nome da Turma"></h:outputText>
+						</f:facet>
+						<h:outputText id="turmaNomeTurma" value="#{bean.turma.nomeTurma}">
+						</h:outputText>
+					</p:column>
+					<p:column id="editLinkFieldDTColumn" style="text-align:center;" styleClass="gridstandardcolumn" exportable="false">
+						<p:commandLink action="#{tabManterTurmaProfessorMB.getNextView}" actionListener="#{tabManterTurmaProfessorMB.clear}" ajax="false" styleClass="ui-button ui-icon ui-icon-search">
+							<f:param name="id" value="#{bean.turma.idTurma},#{bean.professor.user.id}"></f:param>
+						</p:commandLink>
+					</p:column>
+				</p:dataTable>
+			</p:outputPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>

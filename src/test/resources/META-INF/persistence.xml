@@ -14,12 +14,12 @@
         <class>redes_digitais_controle_de_notas.domain.entity.Desempenho</class>
         <class>redes_digitais_controle_de_notas.domain.entity.DesempenhoBimestral</class>
         <properties>
-            <property value="org.hsqldb.jdbcDriver" name="javax.persistence.jdbc.driver"/>
-            <property value="sa" name="javax.persistence.jdbc.user"/>
-            <property value="" name="javax.persistence.jdbc.password"/>
-            <property value="jdbc:hsqldb:hsql:." name="javax.persistence.jdbc.url"/>
+            <property value="com.mysql.jdbc.Driver" name="javax.persistence.jdbc.driver"/>
+            <property value="root" name="javax.persistence.jdbc.user"/>
+            <property value="malthus" name="javax.persistence.jdbc.password"/>
+            <property value="jdbc:mysql://localhost:3306/redesdigitais_controledenotas" name="javax.persistence.jdbc.url"/>
             <property value="FINE" name="eclipselink.logging.level"/>
-            <property value="drop-and-create-tables" name="eclipselink.ddl-generation"/>
+            <property value="create-tables" name="eclipselink.ddl-generation"/>
             <property value="database" name="eclipselink.ddl-generation.output-mode"/>
         </properties>
     </persistence-unit>

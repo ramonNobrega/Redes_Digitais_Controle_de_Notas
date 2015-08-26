@@ -18,9 +18,7 @@ public class DesempenhoBimestralDAOTest {
 
 	@Before
 	public void before() {
-		for (DesempenhoBimestral desempenhoBimestral : desempenhoBimestralDAO.findAll()) {
-		desempenhoBimestralDAO.delete(desempenhoBimestral.getIdBimestre());
-		}
+//		s
 	}
 
 	@After
@@ -32,9 +30,9 @@ public class DesempenhoBimestralDAOTest {
 	public void insert() {
 		DesempenhoBimestral desempenhoBimestral = new DesempenhoBimestral();
 		desempenhoBimestral.setNumBimestre(new Integer("1"));
-		desempenhoBimestral.setNota1(desempenhoBimestral.getId().setNota1(new Double("1.1"));
-		desempenhoBimestral.setNota2(desempenhoBimestral.getId().setNota2(new Double("1.1"));
-		desempenhoBimestral.setNota3(desempenhoBimestral.getId().setNota3(new Double("1.1"));
+		desempenhoBimestral.setNota1(new Double("1.1"));
+		desempenhoBimestral.setNota2(new Double("1.1"));
+		desempenhoBimestral.setNota3(new Double("1.1"));
 		desempenhoBimestralDAO.insert(desempenhoBimestral);
 		List<DesempenhoBimestral> desempenhoBimestralList = desempenhoBimestralDAO.findAll();
 		assertNotNull(desempenhoBimestralList);

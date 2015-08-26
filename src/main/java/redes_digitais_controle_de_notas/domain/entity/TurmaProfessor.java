@@ -14,7 +14,7 @@ public class TurmaProfessor implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="turma", referencedColumnName="id_turma")
 	private Turma turma;
 

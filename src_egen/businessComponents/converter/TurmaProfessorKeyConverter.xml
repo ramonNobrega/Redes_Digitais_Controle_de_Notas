@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <com.egen.tool.business.BusinessComponent>
 <class>com.egen.tool.business.BusinessComponent</class>
+<businessComponentMasterTemplate>ConverterMasterTemplate</businessComponentMasterTemplate>
 <businessComponentAlias>TurmaProfessorKeyConverter</businessComponentAlias>
 <businessComponentModule>converter</businessComponentModule>
-<businessComponentMasterTemplate>ConverterMasterTemplate</businessComponentMasterTemplate>
 <businessComponentName>TurmaProfessorKeyConverter</businessComponentName>
 <variables>
 <variables_item>
 <class>com.egen.tool.business.BusinessVariable</class>
+<businessVariableDescription></businessVariableDescription>
 <businessVariableName>turmaProfessorKey</businessVariableName>
 <businessVariableDomainReference></businessVariableDomainReference>
 <businessVariableInitialization></businessVariableInitialization>
-<businessVariableDescription></businessVariableDescription>
 <businessVariableType>@entity(redes_digitais_controle_de_notas.domain.entity.TurmaProfessorKey)</businessVariableType>
 <variableComponentType></variableComponentType>
 <businessVariableSetProperties>
@@ -22,10 +22,11 @@
 </businessComponentSetProperties>
 <inputParameters>
 </inputParameters>
+<outputParameters>
+</outputParameters>
 <businessCodeUnits>
 <businessCodeUnits_item>
 <class>com.egen.tool.business.BusinessCodeUnit</class>
-<businessCodeUnitIdentification>Converter</businessCodeUnitIdentification>
 <businessCodeUnitTemplate>ConverterClassUnit</businessCodeUnitTemplate>
 <businessCodeUnitContent>package redes_digitais_controle_de_notas.converter;
 
@@ -77,35 +78,36 @@ public class TurmaProfessorKeyConverter implements Converter {
 }
 
 </businessCodeUnitContent>
+<businessCodeUnitIdentification>Converter</businessCodeUnitIdentification>
 <businessCodeUnitSetProperty>
 <businessCodeUnitSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>implements</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyKey>implements</setPropertyKey>
 <setPropertyValue>javax.faces.convert.Converter</setPropertyValue>
 </businessCodeUnitSetProperty_item>
 <businessCodeUnitSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>annotation</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyKey>annotation</setPropertyKey>
 <setPropertyValue>@javax.faces.convert.FacesConverter(forClass = TurmaProfessorKey.class)</setPropertyValue>
 </businessCodeUnitSetProperty_item>
 <businessCodeUnitSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>annotation</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyKey>annotation</setPropertyKey>
 <setPropertyValue>@javax.faces.bean.ManagedBean(name = "turmaProfessorKeyConverter")</setPropertyValue>
 </businessCodeUnitSetProperty_item>
 <businessCodeUnitSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>annotation</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyKey>annotation</setPropertyKey>
 <setPropertyValue>@javax.inject.Named</setPropertyValue>
 </businessCodeUnitSetProperty_item>
 <businessCodeUnitSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>file</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyKey>file</setPropertyKey>
 <setPropertyValue>src/main/java/redes_digitais_controle_de_notas/converter/TurmaProfessorKeyConverter.java</setPropertyValue>
 </businessCodeUnitSetProperty_item>
 </businessCodeUnitSetProperty>
@@ -148,8 +150,8 @@ import redes_digitais_controle_de_notas.domain.entity.TurmaProfessorKey;
 <businessCodeBlockSetProperty>
 <businessCodeBlockSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>position</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyKey>position</setPropertyKey>
 <setPropertyValue>custom</setPropertyValue>
 </businessCodeBlockSetProperty_item>
 </businessCodeBlockSetProperty>
@@ -164,8 +166,8 @@ import redes_digitais_controle_de_notas.domain.entity.TurmaProfessorKey;
 <businessCodeBlockSetProperty>
 <businessCodeBlockSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>position</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyKey>position</setPropertyKey>
 <setPropertyValue>custom</setPropertyValue>
 </businessCodeBlockSetProperty_item>
 </businessCodeBlockSetProperty>
@@ -180,8 +182,8 @@ import redes_digitais_controle_de_notas.domain.entity.TurmaProfessorKey;
 <businessCodeBlockSetProperty>
 <businessCodeBlockSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>position</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyKey>position</setPropertyKey>
 <setPropertyValue>custom</setPropertyValue>
 </businessCodeBlockSetProperty_item>
 </businessCodeBlockSetProperty>
@@ -196,8 +198,8 @@ import redes_digitais_controle_de_notas.domain.entity.TurmaProfessorKey;
 <businessCodeBlockSetProperty>
 <businessCodeBlockSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>position</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyKey>position</setPropertyKey>
 <setPropertyValue>custom</setPropertyValue>
 </businessCodeBlockSetProperty_item>
 </businessCodeBlockSetProperty>
@@ -213,8 +215,8 @@ import redes_digitais_controle_de_notas.domain.entity.TurmaProfessorKey;
 <businessCodeBlockSetProperty>
 <businessCodeBlockSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>position</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyKey>position</setPropertyKey>
 <setPropertyValue>custom</setPropertyValue>
 </businessCodeBlockSetProperty_item>
 </businessCodeBlockSetProperty>
@@ -230,8 +232,8 @@ import redes_digitais_controle_de_notas.domain.entity.TurmaProfessorKey;
 <businessCodeBlockSetProperty>
 <businessCodeBlockSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>position</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyKey>position</setPropertyKey>
 <setPropertyValue>custom</setPropertyValue>
 </businessCodeBlockSetProperty_item>
 </businessCodeBlockSetProperty>
@@ -247,8 +249,8 @@ import redes_digitais_controle_de_notas.domain.entity.TurmaProfessorKey;
 <businessCodeBlockSetProperty>
 <businessCodeBlockSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>position</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyKey>position</setPropertyKey>
 <setPropertyValue>custom</setPropertyValue>
 </businessCodeBlockSetProperty_item>
 </businessCodeBlockSetProperty>
@@ -263,8 +265,8 @@ import redes_digitais_controle_de_notas.domain.entity.TurmaProfessorKey;
 <businessCodeBlockSetProperty>
 <businessCodeBlockSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>position</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyKey>position</setPropertyKey>
 <setPropertyValue>custom</setPropertyValue>
 </businessCodeBlockSetProperty_item>
 </businessCodeBlockSetProperty>
@@ -279,8 +281,8 @@ import redes_digitais_controle_de_notas.domain.entity.TurmaProfessorKey;
 <businessCodeBlockSetProperty>
 <businessCodeBlockSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>position</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyKey>position</setPropertyKey>
 <setPropertyValue>custom</setPropertyValue>
 </businessCodeBlockSetProperty_item>
 </businessCodeBlockSetProperty>
@@ -295,8 +297,8 @@ import redes_digitais_controle_de_notas.domain.entity.TurmaProfessorKey;
 <businessCodeBlockSetProperty>
 <businessCodeBlockSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>position</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyKey>position</setPropertyKey>
 <setPropertyValue>custom</setPropertyValue>
 </businessCodeBlockSetProperty_item>
 </businessCodeBlockSetProperty>
@@ -332,8 +334,8 @@ public class TurmaProfessorKeyConverter implements Converter {
 <businessCodeBlockSetProperty>
 <businessCodeBlockSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyKey>bundle</setPropertyKey>
 <setPropertyEnumeration></setPropertyEnumeration>
+<setPropertyKey>bundle</setPropertyKey>
 <setPropertyValue></setPropertyValue>
 </businessCodeBlockSetProperty_item>
 </businessCodeBlockSetProperty>
@@ -398,6 +400,4 @@ public class TurmaProfessorKeyConverter implements Converter {
 </businessCodeBlocks>
 </businessCodeUnits_item>
 </businessCodeUnits>
-<outputParameters>
-</outputParameters>
 </com.egen.tool.business.BusinessComponent>
