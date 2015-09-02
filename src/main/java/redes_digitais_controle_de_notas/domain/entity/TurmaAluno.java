@@ -14,7 +14,7 @@ public class TurmaAluno implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="turma", referencedColumnName="id_turma")
 	private Turma turma;
 

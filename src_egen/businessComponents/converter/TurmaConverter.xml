@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.egen.tool.business.BusinessComponent>
+<class>com.egen.tool.business.BusinessComponent</class>
+<businessCodeUnits></businessCodeUnits>
+<businessComponentName>TurmaConverter</businessComponentName>
+<businessComponentModule>converter</businessComponentModule>
+<businessComponentAlias></businessComponentAlias>
+<businessComponentMasterTemplate>ConverterMasterTemplate</businessComponentMasterTemplate>
+<variables>
+</variables>
+<outputParameters>
+</outputParameters>
+<inputParameters>
+</inputParameters>
+<businessComponentSetProperties>
+</businessComponentSetProperties>
+</com.egen.tool.business.BusinessComponent>

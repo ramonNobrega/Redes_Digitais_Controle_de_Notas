@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+	<ui:define name="body">
+		<h:form id="editForm">
+			<p:focus id="editFocus"/>
+			<div id="editTitle" class="blocktitle">#{messages['pages.app.edit']}</div>
+			<p:toolbar id="editToolbar">
+				<p:toolbarGroup id="editLeftToolbarGroup" align="left">
+					<p:commandButton id="back" value="#{messages['button.back']}" action="#{tabManterTurmaAlunoDetailMB.getPreviousView}" immediate="true" ajax="false" title="#{messages['button.back']}" icon="ui-icon-arrowthick-1-w"></p:commandButton>
+					<p:commandButton id="insert" rendered="#{!tabManterTurmaAlunoDetailMB.updateMode}" value="#{messages['button.save']}" action="#{tabManterTurmaAlunoDetailMB.insert}" ajax="false" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
+					<!-- Button[edit.update] -->
+					<p:commandButton id="update" rendered="#{tabManterTurmaAlunoDetailMB.updateMode}" value="#{messages['button.save']}" action="#{tabManterTurmaAlunoDetailMB.update}" ajax="false" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
+					<!-- Button[edit.update] -->
+					<!-- Button[edit.delete] -->
+					<!-- Button[edit.delete] -->
+				</p:toolbarGroup>
+			</p:toolbar>
+			<div id="editFormMessages" class="formmessages">
+				<p:messages id="editMessages" autoUpdate="true" closable="true"/>
+			</div>
+			<p:outputPanel id="editPanel">
+				<div class="formrow">
+					<div id="alunoformcell" class="formcell">
+						<p:outputLabel id="alunoLabel" value="aluno" for="aluno" styleClass="text-input"></p:outputLabel>
+						<p:selectOneMenu id="aluno" value="#{tabManterTurmaAlunoDetailMB.bean.aluno}" converter="#{alunoConverter}">
+							<f:selectItem itemLabel="" itemValue=""/>
+							<f:selectItems itemLabel="#{alunoItem.user.name}" itemValue="#{alunoItem}" value="#{tabManterTurmaAlunoDetailMB.alunoList}" var="alunoItem"/>
+						</p:selectOneMenu>
+					</div>
+				</div>
+				<!-- Field[edit.turma] -->
+				<p:outputLabel id="turmaLabel" value="turma" for="turma" styleClass="text-input"></p:outputLabel>
+				<p:selectOneMenu id="turma" value="#{tabManterTurmaAlunoDetailMB.bean.turma}" converter="#{turmaConverter}" required="true">
+					<f:selectItem itemLabel="" itemValue=""/>
+					<f:selectItems itemLabel="#{turmaItem.nomeTurma}" itemValue="#{turmaItem}" value="#{tabManterTurmaAlunoDetailMB.turmaList}" var="turmaItem"/>
+				</p:selectOneMenu><!-- Field[edit.turma] -->
+			</p:outputPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>
