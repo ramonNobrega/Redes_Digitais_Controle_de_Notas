@@ -6,7 +6,7 @@
 			<p:menuitem id="mainmenu_4" rendered="#{securityContext.hasRole('aluno')}" value="Desempenho Geral" url="/aluno/tabDesempenhoGeralAluno.jsf" ajax="false"></p:menuitem>
 			<p:menuitem id="mainmenu_5" rendered="#{securityContext.hasRole('professor')}" value="Dados Pessoais do Professor" url="/professor/tabManterProfessor.jsf" ajax="false"></p:menuitem>
 			<p:menuitem id="mainmenu_6" rendered="#{securityContext.hasRole('professor')}" value="Cadastro de Turmas" url="/professor/tabManterTurmaProfessor.jsf" ajax="false"></p:menuitem>
-			<p:menuitem id="mainmenu_7" rendered="#{securityContext.hasRole('professor')}" value="Edi&#231;&#227;o de Notas" ajax="false"></p:menuitem>
+			<p:menuitem id="mainmenu_7" rendered="#{securityContext.hasRole('professor')}" value="Edi&#231;&#227;o de Notas" url="/professor/tabManterDesempenhoBimestral.jsf" ajax="false"></p:menuitem>
 			<p:menuitem id="mainmenu_8" rendered="#{securityContext.hasRole('professor')}" value="Edi&#231;&#227;o de Turmas" url="/professor/tabManterTurmaAluno.jsf" ajax="false"></p:menuitem>
 			<p:menuitem id="mainmenu_9" rendered="#{securityContext.hasRole('professor')}" value="Situa&#231;&#227;o dos Alunos" ajax="false"></p:menuitem>
 		</p:menubar>

@@ -1,0 +1,67 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+	<ui:define name="body">
+		<h:form id="listForm">
+			<p:focus id="listFocus"/>
+			<div id="listTitle" class="blocktitle">Notas Bimestrais dos Alunos</div>
+			<p:toolbar id="listToolbar">
+				<p:toolbarGroup id="listLeftToolbarGroup" align="left">
+				</p:toolbarGroup>
+			</p:toolbar>
+			<div id="listFormMessages" class="formmessages">
+				<p:messages id="listMessages" autoUpdate="true" closable="true"/>
+			</div>
+			<p:outputPanel id="listPanel">
+				<p:dataTable id="listDataTable" value="#{tabManterDesempenhoBimestralMB.resultList}" var="bean" rows="5" paginator="true" rowsPerPageTemplate="5,10,15,20,50,100" rowIndexVar="rowIndexVar" resizableColumns="true" tableStyle="width:100%">
+					<p:column id="alunoUserNameDTColumn" sortBy="#{bean.aluno.user.name}" filterBy="#{bean.aluno.user.name}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="Nome do Aluno"></h:outputText>
+						</f:facet>
+						<h:outputText id="alunoUserName" value="#{bean.aluno.user.name}">
+						</h:outputText>
+					</p:column>
+					<p:column id="numBimestreDTColumn" style="text-align:right;" sortBy="#{bean.numBimestre}" filterBy="#{bean.numBimestre}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="N&#250;mero do Bimestre"></h:outputText>
+						</f:facet>
+						<h:outputText id="numBimestre" value="#{bean.numBimestre}">
+						</h:outputText>
+					</p:column>
+					<p:column id="nota1DTColumn" style="text-align:right;" sortBy="#{bean.nota1}" filterBy="#{bean.nota1}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="Nota 1"></h:outputText>
+						</f:facet>
+						<h:outputText id="nota1" value="#{bean.nota1}">
+						</h:outputText>
+					</p:column>
+					<p:column id="nota2DTColumn" style="text-align:right;" sortBy="#{bean.nota2}" filterBy="#{bean.nota2}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="Nota 2"></h:outputText>
+						</f:facet>
+						<h:outputText id="nota2" value="#{bean.nota2}">
+						</h:outputText>
+					</p:column>
+					<p:column id="nota3DTColumn" style="text-align:right;" sortBy="#{bean.nota3}" filterBy="#{bean.nota3}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="Nota 3"></h:outputText>
+						</f:facet>
+						<h:outputText id="nota3" value="#{bean.nota3}">
+						</h:outputText>
+					</p:column>
+					<p:column id="mediaBimestreDTColumn" style="text-align:right;" sortBy="#{bean.mediaBimestre}" filterBy="#{bean.mediaBimestre}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="M&#233;dia Bimestral"></h:outputText>
+						</f:facet>
+						<h:outputText id="mediaBimestre" value="#{bean.mediaBimestre}">
+							<f:convertNumber pattern="##,##0.00"/>
+						</h:outputText>
+					</p:column>
+					<p:column id="editLinkFieldDTColumn" style="text-align:center;" styleClass="gridstandardcolumn" exportable="false">
+						<p:commandLink action="#{tabManterDesempenhoBimestralMB.getNextView}" actionListener="#{tabManterDesempenhoBimestralMB.clear}" ajax="false" styleClass="ui-button ui-icon ui-icon-search">
+							<f:param name="id" value="#{bean.idBimestre}"></f:param>
+						</p:commandLink>
+					</p:column>
+				</p:dataTable>
+			</p:outputPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+	<ui:define name="body">
+		<h:form id="editForm">
+			<p:focus id="editFocus"/>
+			<div id="editTitle" class="blocktitle">Editar Notas</div>
+			<p:toolbar id="editToolbar">
+				<p:toolbarGroup id="editLeftToolbarGroup" align="left">
+					<p:commandButton id="back" value="#{messages['button.back']}" action="#{tabManterDesempenhoBimestralDetailMB.getPreviousView}" immediate="true" ajax="false" title="#{messages['button.back']}" icon="ui-icon-arrowthick-1-w"></p:commandButton>
+					<p:commandButton id="insert" rendered="#{!tabManterDesempenhoBimestralDetailMB.updateMode}" value="#{messages['button.save']}" action="#{tabManterDesempenhoBimestralDetailMB.insert}" ajax="false" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
+					<p:commandButton id="update" rendered="#{tabManterDesempenhoBimestralDetailMB.updateMode}" value="#{messages['button.save']}" action="#{tabManterDesempenhoBimestralDetailMB.update}" ajax="false" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
+					<!-- Button[edit.delete] -->
+					<!-- Button[edit.delete] -->
+				</p:toolbarGroup>
+			</p:toolbar>
+			<div id="editFormMessages" class="formmessages">
+				<p:messages id="editMessages" autoUpdate="true" closable="true"/>
+			</div>
+			<p:outputPanel id="editPanel">
+				<div class="formrow">
+					<div id="nota1formcell" class="formcell">
+						<p:outputLabel id="nota1Label" value="Nota 1" for="nota1" styleClass="text-input"></p:outputLabel>
+						<p:inputText id="nota1" value="#{tabManterDesempenhoBimestralDetailMB.bean.nota1}" required="true" maxlength="4" size="4" style="text-align:right;">
+							<f:convertNumber pattern="##,##0.00"/>
+						</p:inputText>
+					</div>
+				</div>
+				<div class="formrow">
+					<div id="nota2formcell" class="formcell">
+						<p:outputLabel id="nota2Label" value="Nota 2" for="nota2" styleClass="text-input"></p:outputLabel>
+						<p:inputText id="nota2" value="#{tabManterDesempenhoBimestralDetailMB.bean.nota2}" required="true" maxlength="4" size="4" style="text-align:right;">
+							<f:convertNumber pattern="##,##0.00"/>
+						</p:inputText>
+					</div>
+				</div>
+				<div class="formrow">
+					<div id="nota3formcell" class="formcell">
+						<p:outputLabel id="nota3Label" value="Nota 3" for="nota3" styleClass="text-input"></p:outputLabel>
+						<p:inputText id="nota3" value="#{tabManterDesempenhoBimestralDetailMB.bean.nota3}" required="true" maxlength="4" size="4" style="text-align:right;">
+							<f:convertNumber pattern="##,##0.00"/>
+						</p:inputText>
+					</div>
+				</div>
+			</p:outputPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>
