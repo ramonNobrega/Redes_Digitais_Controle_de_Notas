@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+	<ui:define name="body">
+		<h:form id="editForm">
+			<p:focus id="editFocus"/>
+			<div id="editTitle" class="blocktitle">Editar Situa&#231;&#227;o Final</div>
+			<p:toolbar id="editToolbar">
+				<p:toolbarGroup id="editLeftToolbarGroup" align="left">
+					<p:commandButton id="back" value="#{messages['button.back']}" action="#{tabManterDesempenhoDetailMB.getPreviousView}" immediate="true" ajax="false" title="#{messages['button.back']}" icon="ui-icon-arrowthick-1-w"></p:commandButton>
+					<p:commandButton id="insert" rendered="#{!tabManterDesempenhoDetailMB.updateMode}" value="#{messages['button.save']}" action="#{tabManterDesempenhoDetailMB.insert}" ajax="false" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
+					<p:commandButton id="update" rendered="#{tabManterDesempenhoDetailMB.updateMode}" value="#{messages['button.save']}" action="#{tabManterDesempenhoDetailMB.update}" ajax="false" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
+					<!-- Button[edit.delete] -->
+					<!-- Button[edit.delete] -->
+				</p:toolbarGroup>
+			</p:toolbar>
+			<div id="editFormMessages" class="formmessages">
+				<p:messages id="editMessages" autoUpdate="true" closable="true"/>
+			</div>
+			<p:outputPanel id="editPanel">
+				<div class="formrow">
+					<div id="provaFinalformcell" class="formcell">
+						<p:outputLabel id="provaFinalLabel" value="Prova Final" for="provaFinal" styleClass="text-input"></p:outputLabel>
+						<p:inputText id="provaFinal" value="#{tabManterDesempenhoDetailMB.bean.provaFinal}" required="true" maxlength="4" size="4" style="text-align:right;">
+							<f:convertNumber pattern="##,##0.00"/>
+						</p:inputText>
+					</div>
+				</div>
+			</p:outputPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>

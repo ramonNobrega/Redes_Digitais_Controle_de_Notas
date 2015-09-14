@@ -1,0 +1,62 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+	<ui:define name="body">
+		<h:form id="listForm">
+			<p:focus id="listFocus"/>
+			<div id="listTitle" class="blocktitle">Lista de Situa&#231;&#245;es</div>
+			<p:toolbar id="listToolbar">
+				<p:toolbarGroup id="listLeftToolbarGroup" align="left">
+				</p:toolbarGroup>
+			</p:toolbar>
+			<div id="listFormMessages" class="formmessages">
+				<p:messages id="listMessages" autoUpdate="true" closable="true"/>
+			</div>
+			<p:outputPanel id="listPanel">
+				<p:dataTable id="listDataTable" value="#{tabManterDesempenhoMB.resultList}" var="bean" rows="5" paginator="true" rowsPerPageTemplate="5,10,15,20,50,100" rowIndexVar="rowIndexVar" resizableColumns="true" tableStyle="width:100%">
+					<p:column id="alunoUserNameDTColumn" sortBy="#{bean.aluno.user.name}" filterBy="#{bean.aluno.user.name}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="Nome do Aluno"></h:outputText>
+						</f:facet>
+						<h:outputText id="alunoUserName" value="#{bean.aluno.user.name}">
+						</h:outputText>
+					</p:column>
+					<p:column id="mediaParcialDTColumn" style="text-align:right;" sortBy="#{bean.mediaParcial}" filterBy="#{bean.mediaParcial}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="M&#233;dia Parcial"></h:outputText>
+						</f:facet>
+						<h:outputText id="mediaParcial" value="#{bean.mediaParcial}">
+							<f:convertNumber pattern="##,##0.00"/>
+						</h:outputText>
+					</p:column>
+					<p:column id="provaFinalDTColumn" style="text-align:right;" sortBy="#{bean.provaFinal}" filterBy="#{bean.provaFinal}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="Prova Final"></h:outputText>
+						</f:facet>
+						<h:outputText id="provaFinal" value="#{bean.provaFinal}">
+							<f:convertNumber pattern="##,##0.00"/>
+						</h:outputText>
+					</p:column>
+					<p:column id="mediaFinalDTColumn" style="text-align:right;" sortBy="#{bean.mediaFinal}" filterBy="#{bean.mediaFinal}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="M&#233;dia Final"></h:outputText>
+						</f:facet>
+						<h:outputText id="mediaFinal" value="#{bean.mediaFinal}">
+							<f:convertNumber pattern="##,##0.00"/>
+						</h:outputText>
+					</p:column>
+					<p:column id="situacaoDTColumn" sortBy="#{bean.situacao}" filterBy="#{bean.situacao}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="Situa&#231;&#227;o"></h:outputText>
+						</f:facet>
+						<h:outputText id="situacao" value="#{bean.situacao}">
+						</h:outputText>
+					</p:column>
+					<p:column id="editLinkFieldDTColumn" style="text-align:center;" styleClass="gridstandardcolumn" exportable="false">
+						<p:commandLink action="#{tabManterDesempenhoMB.getNextView}" actionListener="#{tabManterDesempenhoMB.clear}" ajax="false" styleClass="ui-button ui-icon ui-icon-search">
+							<f:param name="id" value="#{bean.idDesempenho}"></f:param>
+						</p:commandLink>
+					</p:column>
+				</p:dataTable>
+			</p:outputPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>
