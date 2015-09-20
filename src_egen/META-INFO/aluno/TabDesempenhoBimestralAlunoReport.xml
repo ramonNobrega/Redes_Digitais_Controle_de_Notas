@@ -43,57 +43,8 @@
 <blockTemplate>StandardReportTemplate</blockTemplate>
 <isModelCodeCustomized>false</isModelCodeCustomized>
 <modelCode></modelCode>
-<isViewCodeCustomized>true</isViewCodeCustomized>
-<viewCode><h:form id="desempenhoBimestralblockForm">
-	<div id="desempenhoBimestralblockTitle" class="blocktitle">Desempenho por Bimestre</div>
-	<p:toolbar id="desempenhoBimestralblockToolbar">
-		
-	</p:toolbar>
-	<p:outputPanel id="desempenhoBimestralblockPanel">
-		<p:dataTable id="desempenhoBimestralblockDataTable" value="#{tabDesempenhoBimestralAlunoMB.desempenhoBimestralResultList}" var="bean" rows="5" paginator="true" rowsPerPageTemplate="5,10,15,20,50,100" rowIndexVar="rowIndexVar" resizableColumns="true" tableStyle="width:100%">
-			<p:column id="numBimestreDTColumn" style="text-align:right;" sortBy="#{bean.numBimestre}" filterBy="#{bean.numBimestre}" filterMatchMode="contains" exportable="true">
-				<f:facet name="header">
-					<h:outputText value="N&#250;mero do Bimestre"></h:outputText>
-				</f:facet>
-				<h:outputText id="numBimestre" value="#{bean.numBimestre}">
-				</h:outputText>
-			</p:column>
-			<p:column id="nota1DTColumn" style="text-align:right;" sortBy="#{bean.nota1}" filterBy="#{bean.nota1}" filterMatchMode="contains" exportable="true">
-				<f:facet name="header">
-					<h:outputText value="Nota 1"></h:outputText>
-				</f:facet>
-				<h:outputText id="nota1" value="#{bean.nota1}">
-					<f:convertNumber pattern="##,##0.00"/>
-				</h:outputText>
-			</p:column>
-			<p:column id="nota2DTColumn" style="text-align:right;" sortBy="#{bean.nota2}" filterBy="#{bean.nota2}" filterMatchMode="contains" exportable="true">
-				<f:facet name="header">
-					<h:outputText value="Nota 2"></h:outputText>
-				</f:facet>
-				<h:outputText id="nota2" value="#{bean.nota2}">
-					<f:convertNumber pattern="##,##0.00"/>
-				</h:outputText>
-			</p:column>
-			<p:column id="nota3DTColumn" style="text-align:right;" sortBy="#{bean.nota3}" filterBy="#{bean.nota3}" filterMatchMode="contains" exportable="true">
-				<f:facet name="header">
-					<h:outputText value="Nota 3"></h:outputText>
-				</f:facet>
-				<h:outputText id="nota3" value="#{bean.nota3}">
-					<f:convertNumber pattern="##,##0.00"/>
-				</h:outputText>
-			</p:column>
-			<p:column id="mediaBimestreDTColumn" style="text-align:right;" sortBy="#{bean.mediaBimestre}" filterBy="#{bean.mediaBimestre}" filterMatchMode="contains" exportable="true">
-				<f:facet name="header">
-					<h:outputText value="M&#233;dia Bimestral"></h:outputText>
-				</f:facet>
-				<h:outputText id="mediaBimestre" value="#{bean.mediaBimestre}">
-					<f:convertNumber pattern="##,##0.00"/>
-				</h:outputText>
-			</p:column>
-		</p:dataTable>
-	</p:outputPanel>
-</h:form>
-</viewCode>
+<isViewCodeCustomized>false</isViewCodeCustomized>
+<viewCode></viewCode>
 <isControllerCodeCustomized>false</isControllerCodeCustomized>
 <controllerCode></controllerCode>
 <script_block></script_block>
@@ -114,7 +65,7 @@
 <showparameter>false</showparameter>
 <message_type>no</message_type>
 <message_text></message_text>
-<banner_type></banner_type>
+<banner_type>titletoolbar</banner_type>
 <role_item></role_item>
 <roleinclude>false</roleinclude>
 <i18n_obs></i18n_obs>
@@ -159,7 +110,7 @@
 </blockSetProperty_item>
 <blockSetProperty_item>
 <$key>toolbarIsCustomized</$key>
-<$value>true</$value>
+<$value>false</$value>
 </blockSetProperty_item>
 <blockSetProperty_item>
 <$key>var</$key>
@@ -186,7 +137,7 @@
 </blockSetProperty_item>
 <blockSetProperty_item>
 <$key>paginator</$key>
-<$value>false</$value>
+<$value>true</$value>
 </blockSetProperty_item>
 <blockSetProperty_item>
 <$key>toolbargroup_align</$key>
@@ -236,6 +187,99 @@ public void setDesempenhoBimestralResultList(List<DesempenhoBimestral> desempenh
 }
 </datasetCode>
 <columns>
+<columns_item>
+<class>com.egen.develop.generator.report.Column</class>
+<name>professorUserName</name>
+<help></help>
+<i18nHelp></i18nHelp>
+<develHelp></develHelp>
+<block_name>desempenhoBimestralblock</block_name>
+<role_item></role_item>
+<database_column>professor.user.name</database_column>
+<roleinclude>false</roleinclude>
+<open_form>false</open_form>
+<close_form>false</close_form>
+<i18n></i18n>
+<show_help>false</show_help>
+<show_help_label>false</show_help_label>
+<tabs></tabs>
+<format></format>
+<title></title>
+<titleKey></titleKey>
+<i18nTitleKey></i18nTitleKey>
+<i18nLabelTitleKey></i18nLabelTitleKey>
+<left></left>
+<top></top>
+<z_index></z_index>
+<elementDisplayCondition></elementDisplayCondition>
+<domainReference></domainReference>
+<label>Professor</label>
+<type>java.lang.String</type>
+<columnWidth></columnWidth>
+<align></align>
+<layout>side</layout>
+<report_break>0</report_break>
+<is_break>false</is_break>
+<visible>true</visible>
+<base_table>true</base_table>
+<column_order>Both</column_order>
+<formula></formula>
+<column_fg_color></column_fg_color>
+<column_bg_color></column_bg_color>
+<column_font></column_font>
+<font_size></font_size>
+<font_bold></font_bold>
+<font_italic></font_italic>
+<style></style>
+<styleClass></styleClass>
+<columnRelation></columnRelation>
+<hidden>false</hidden>
+<header_bg_color></header_bg_color>
+<header_fg_color></header_fg_color>
+<header_font></header_font>
+<header_font_size></header_font_size>
+<header_style></header_style>
+<header_styleClass></header_styleClass>
+<header_title></header_title>
+<header_titleKey></header_titleKey>
+<header_i18nTitleKey></header_i18nTitleKey>
+<header_font_bold></header_font_bold>
+<header_font_italic></header_font_italic>
+<header_size></header_size>
+<round_value></round_value>
+<columnHeaderCodeCustomized>false</columnHeaderCodeCustomized>
+<columnHeaderCode></columnHeaderCode>
+<columnDisplayCodeCustomized>false</columnDisplayCodeCustomized>
+<columnDisplayCode></columnDisplayCode>
+<onclick></onclick>
+<ondblclick></ondblclick>
+<onmousedown></onmousedown>
+<onmousemove></onmousemove>
+<onmouseover></onmouseover>
+<onmouseup></onmouseup>
+<columnSetProperty>
+<columnSetProperty_item>
+<$key>column_filterBy</$key>
+<$value>#{bean.professor.user.name}</$value>
+</columnSetProperty_item>
+<columnSetProperty_item>
+<$key>column_filterMatchMode</$key>
+<$value>contains</$value>
+</columnSetProperty_item>
+<columnSetProperty_item>
+<$key>value</$key>
+<$value>#{bean.professor.user.name}</$value>
+</columnSetProperty_item>
+<columnSetProperty_item>
+<$key>column_sortBy</$key>
+<$value>#{bean.professor.user.name}</$value>
+</columnSetProperty_item>
+<columnSetProperty_item>
+<$key>column_exportable</$key>
+<$value>true</$value>
+</columnSetProperty_item>
+</columnSetProperty>
+</columns_item>
 <columns_item>
 <class>com.egen.develop.generator.report.Column</class>
 <name>numBimestre</name>

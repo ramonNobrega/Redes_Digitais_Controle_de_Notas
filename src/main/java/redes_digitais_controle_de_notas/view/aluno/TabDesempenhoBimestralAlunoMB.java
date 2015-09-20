@@ -54,7 +54,6 @@ public class TabDesempenhoBimestralAlunoMB extends AbstractPageBean {
 		return desempenhoBimestralResultList;
 	}
 	
-	
 	public void calculaMediaBimestral() {
 		for (DesempenhoBimestral item : desempenhoBimestralBC.findAll()) {
 			item.setMediaBimestre((item.getNota1() + item.getNota2() + item.getNota3())/3);
@@ -64,7 +63,6 @@ public class TabDesempenhoBimestralAlunoMB extends AbstractPageBean {
 	public void setDesempenhoBimestralResultList(List<DesempenhoBimestral> desempenhoBimestralResultList) {
 		this.desempenhoBimestralResultList = desempenhoBimestralResultList;
 	}
-	
 	/* DatasetCode[desempenhoBimestralblock] */
 
 }

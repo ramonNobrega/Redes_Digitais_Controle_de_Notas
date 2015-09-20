@@ -28,11 +28,11 @@
 <template_file>standard.xhtml</template_file>
 <addImportAction>import redes_digitais_controle_de_notas.business.entity.DesempenhoBimestralBC;
 import redes_digitais_controle_de_notas.domain.entity.DesempenhoBimestral;
-</addImportAction>
+import redes_digitais_controle_de_notas.security.ContextMB;</addImportAction>
 <addImportActionForm></addImportActionForm>
 <add_actionForm></add_actionForm>
 <scope_storage>request</scope_storage>
-<generatorMasterTemplate>CrudEditPresentationMasterTemplate</generatorMasterTemplate>
+<generatorMasterTemplate>StandardPresentationMasterTemplate</generatorMasterTemplate>
 <blocks>
 <blocks_item>
 <class>com.egen.develop.generator.form.BlockForm</class>
@@ -170,7 +170,7 @@ import redes_digitais_controle_de_notas.domain.entity.DesempenhoBimestral;
 <show_help>false</show_help>
 <show_help_label>false</show_help_label>
 <tabs></tabs>
-<format>##,##0.00</format>
+<format>##,##00.00</format>
 <title></title>
 <titleKey></titleKey>
 <i18nTitleKey></i18nTitleKey>
@@ -487,6 +487,123 @@ import redes_digitais_controle_de_notas.domain.entity.DesempenhoBimestral;
 <readonly>false</readonly>
 <maxlength>4</maxlength>
 </fields_item>
+<fields_item>
+<class>com.egen.develop.generator.form.Hidden</class>
+<name>variaveis</name>
+<help></help>
+<i18nHelp></i18nHelp>
+<develHelp></develHelp>
+<block_name></block_name>
+<role_item></role_item>
+<database_column></database_column>
+<roleinclude>false</roleinclude>
+<open_form>false</open_form>
+<close_form>false</close_form>
+<i18n></i18n>
+<show_help>false</show_help>
+<show_help_label>false</show_help_label>
+<tabs></tabs>
+<format></format>
+<title></title>
+<titleKey></titleKey>
+<i18nTitleKey></i18nTitleKey>
+<i18nLabelTitleKey></i18nLabelTitleKey>
+<left></left>
+<top></top>
+<z_index></z_index>
+<elementDisplayCondition></elementDisplayCondition>
+<domainReference></domainReference>
+<property></property>
+<value></value>
+<size></size>
+<label></label>
+<label_pos></label_pos>
+<label_bg_color></label_bg_color>
+<label_fg_color></label_fg_color>
+<label_size></label_size>
+<label_align></label_align>
+<label_font></label_font>
+<labelPropertytext></labelPropertytext>
+<label_bold>false</label_bold>
+<label_italic>false</label_italic>
+<justification></justification>
+<not_null>false</not_null>
+<type></type>
+<validate_message></validate_message>
+<validate_message_user></validate_message_user>
+<case_restriction></case_restriction>
+<break_line>true</break_line>
+<lovObject></lovObject>
+<lowest_value></lowest_value>
+<highest_value></highest_value>
+<validate_value>false</validate_value>
+<validate_type>false</validate_type>
+<validate_group>false</validate_group>
+<validate_email>false</validate_email>
+<validate_not_null>false</validate_not_null>
+<validate_minlength></validate_minlength>
+<validate_maxlength></validate_maxlength>
+<validate_regex></validate_regex>
+<src></src>
+<select_allowed>true</select_allowed>
+<update_allowed>true</update_allowed>
+<insert_allowed>true</insert_allowed>
+<isCustomized>false</isCustomized>
+<labelStyle></labelStyle>
+<labelTitle></labelTitle>
+<labelTitleKey></labelTitleKey>
+<i18nLabelTitleKey></i18nLabelTitleKey>
+<fieldGridSize></fieldGridSize>
+<queryOperator></queryOperator>
+<round_value></round_value>
+<field_prefix></field_prefix>
+<field_sufix></field_sufix>
+<write>false</write>
+<style></style>
+<styleClass></styleClass>
+<styleId>variaveis</styleId>
+<errorStyle></errorStyle>
+<errorStyleClass></errorStyleClass>
+<errorStyleId></errorStyleId>
+<accesskey></accesskey>
+<disabled>false</disabled>
+<onblur></onblur>
+<onchange></onchange>
+<onclick></onclick>
+<ondblclick></ondblclick>
+<onfocus></onfocus>
+<onkeydown></onkeydown>
+<onkeypress></onkeypress>
+<onkeyup></onkeyup>
+<onmousedown></onmousedown>
+<onmousemove></onmousemove>
+<onselect></onselect>
+<errorKey></errorKey>
+<tabindex></tabindex>
+<onmouseout></onmouseout>
+<onmouseover></onmouseover>
+<onmouseup></onmouseup>
+<field_relation></field_relation>
+<fieldSetProperty>
+<fieldSetProperty_item>
+<$key>controllerCode</$key>
+<$value>	@Inject
+	private DesempenhoBC desempenhoBC;
+	
+	@Inject
+	private ContextMB context;</$value>
+</fieldSetProperty_item>
+<fieldSetProperty_item>
+<$key>show</$key>
+<$value>false</$value>
+</fieldSetProperty_item>
+<fieldSetProperty_item>
+<$key>controllerCodeIsCustomized</$key>
+<$value>true</$value>
+</fieldSetProperty_item>
+</fieldSetProperty>
+<codeItem></codeItem>
+</fields_item>
 </fields>
 <buttons>
 <buttons_item>
@@ -736,11 +853,13 @@ import redes_digitais_controle_de_notas.domain.entity.DesempenhoBimestral;
 <businessProcess></businessProcess>
 <triggerTemplate></triggerTemplate>
 <triggerCode>public void calculaMediaBimestral() {
-		DesempenhoBimestral item = getBean();
-		item.setMediaBimestre((item.getNota1() + item.getNota2() + item.getNota3())/3);
-}
+			DesempenhoBimestral item = getBean();
+			item.setMediaBimestre((item.getNota1() + item.getNota2() + item.getNota3())/3);
+			this.desempenhoBimestralBC.update(getBean());
+	}
 </triggerCode>
-<triggerCallCode>calculaMediaBimestral();</triggerCallCode>
+<triggerCallCode>calculaMediaBimestral();
+</triggerCallCode>
 <develHelp></develHelp>
 <triggerSetProperty>
 </triggerSetProperty>
@@ -754,32 +873,41 @@ import redes_digitais_controle_de_notas.domain.entity.DesempenhoBimestral;
 <businessProcess></businessProcess>
 <triggerTemplate></triggerTemplate>
 <triggerCode>public void calculaMediaFinal() {
-			
-			DesempenhoBC desempenhoBC = new DesempenhoBC();
-			Double mediaParcial = 0.0;
-			List<DesempenhoBimestral> desempenhoBimestralList = getBean().getAluno().getDesempenhoBimestrais();
-			for (DesempenhoBimestral bimestre : desempenhoBimestralList) {
-				if(bimestre.getMediaBimestre() != null){
-					mediaParcial += bimestre.getMediaBimestre();
+				
+				ProfessorBC professorBC = new ProfessorBC();
+				Professor professor = professorBC.load(new Long(context.getUser().getId()));
+				Aluno aluno = getBean().getAluno();
+				HashMap<String, Object> parameters = new HashMap<String, Object>();
+				parameters.put("aluno", aluno);
+				Double mediaParcial = 0.0;
+				
+				for (DesempenhoBimestral bimestre : desempenhoBimestralBC.findByCriteria(parameters)) {
+					if(bimestre.getMediaBimestre() != null && bimestre.getProfessor().equals(professor)){
+						mediaParcial += bimestre.getMediaBimestre();
+					}
+				}
+				mediaParcial = mediaParcial / 4.0;
+				for(Desempenho desempenho : desempenhoBC.findByCriteria(parameters)){
+					
+					if(desempenho.getProfessor().equals(professor)){	
+						desempenho.setMediaParcial(mediaParcial);
+						if (mediaParcial >= 7) {
+							desempenho.setSituacao("APROVADO");
+							desempenho.setMediaFinal(mediaParcial);
+						} else if( mediaParcial < 7 && mediaParcial >= 4){
+							desempenho.setSituacao("FINAL");
+						}else {
+							desempenho.setSituacao("REPROVADO");
+							desempenho.setMediaFinal(mediaParcial);
+						}
+						desempenhoBC.update(desempenho);
+						
+					}
 				}
 			}
-			
-			Desempenho desempenho = getBean().getAluno().getDesempenhos().get(0);
-			mediaParcial = mediaParcial / desempenhoBimestralList.size();
-			desempenho.setMediaParcial(mediaParcial);
-			if (mediaParcial >= 7) {
-				desempenho.setSituacao("APROVADO");
-				desempenho.setMediaFinal(mediaParcial);
-			} else if( mediaParcial < 7 && mediaParcial >= 4){
-				desempenho.setSituacao("FINAL");
-			}else {
-				desempenho.setSituacao("REPROVADO");
-				desempenho.setMediaFinal(mediaParcial);
-			}
-			
-			desempenhoBC.update(desempenho);
-		}</triggerCode>
-<triggerCallCode>calculaMediaFinal();</triggerCallCode>
+</triggerCode>
+<triggerCallCode>calculaMediaFinal();
+</triggerCallCode>
 <develHelp></develHelp>
 <triggerSetProperty>
 </triggerSetProperty>

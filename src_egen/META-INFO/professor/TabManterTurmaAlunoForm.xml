@@ -32,7 +32,7 @@ import redes_digitais_controle_de_notas.security.ContextMB;</addImportAction>
 <addImportActionForm></addImportActionForm>
 <add_actionForm></add_actionForm>
 <scope_storage>request</scope_storage>
-<generatorMasterTemplate>CrudListPresentationMasterTemplate</generatorMasterTemplate>
+<generatorMasterTemplate>StandardPresentationMasterTemplate</generatorMasterTemplate>
 <blocks>
 <blocks_item>
 <class>com.egen.develop.generator.form.BlockForm</class>
@@ -639,6 +639,12 @@ import redes_digitais_controle_de_notas.security.ContextMB;</addImportAction>
 <fieldSetProperty_item>
 <$key>controllerCode</$key>
 <$value>	@Inject
+	private DesempenhoBimestralBC desempenhoBimestralBC;
+	
+	@Inject
+	private DesempenhoBC desempenhoBC;
+	
+	@Inject
 	private ContextMB context;
 </$value>
 </fieldSetProperty_item>
@@ -937,8 +943,12 @@ import redes_digitais_controle_de_notas.security.ContextMB;</addImportAction>
 <tabindex></tabindex>
 <bean_validate>true</bean_validate>
 <src>ui-icon-trash</src>
-<isCustomized>false</isCustomized>
-<codeItem></codeItem>
+<isCustomized>true</isCustomized>
+<codeItem><p:commandButton id="delete" value="#{messages['button.delete']}" type="button" ajax="false" onclick="deleteConfirmation.show();" title="#{messages['button.delete']}" icon="ui-icon-trash"></p:commandButton>
+<p:confirmDialog id="deleteConfirmDialog" widgetVar="deleteConfirmation" message="#{messages['label.confirm.delete']}" header="#{messages['label.dialog.delete']}" severity="alert">
+	<h:commandButton action="#{tabManterTurmaAlunoMB.delete}" actionListener="#{tabManterTurmaAlunoMB.clear}" value="#{messages['button.dialog.yes']}"></h:commandButton>
+	<h:commandButton onclick="deleteConfirmation.hide()" type="button" value="#{messages['button.dialog.no']}"></h:commandButton>
+</p:confirmDialog></codeItem>
 <buttonPosition>top</buttonPosition>
 <select_clause></select_clause>
 <where_clause></where_clause>
@@ -947,8 +957,40 @@ import redes_digitais_controle_de_notas.security.ContextMB;</addImportAction>
 <having_clause></having_clause>
 <button_db_object></button_db_object>
 <triggers></triggers>
-<template>DeleteSelectionCommandTemplate</template>
-<action_code></action_code>
+<template></template>
+<action_code>@Transactional
+public String delete() {
+	boolean delete = false;
+	ProfessorBC professorBC = new ProfessorBC();
+	Professor professor = professorBC.load(new Long(context.getUser().getId()));
+		
+	for (Iterator<Object> iter = getSelection().keySet().iterator(); iter.hasNext();) {
+		TurmaAluno turmaAlunoSelected = (TurmaAluno) iter.next();
+		delete = getSelection().get(turmaAlunoSelected);
+		if (delete) {
+			TurmaAlunoKey turmaAlunoKey= new TurmaAlunoKey(turmaAlunoSelected.getTurma().getIdTurma(), turmaAlunoSelected.getAluno().getUser().getId());
+				
+			List<DesempenhoBimestral> dbList = turmaAlunoSelected.getAluno().getDesempenhoBimestrais();
+			for(DesempenhoBimestral desempenho : dbList){		if(desempenho.getProfessor().getUser().getId().equals(professor.getUser().getId())){					desempenhoBimestralBC.delete(desempenho.getIdBimestre());
+					}
+				}
+			List<Desempenho> desempenhoList = turmaAlunoSelected.getAluno().getDesempenhos();
+			for(Desempenho desempenho : desempenhoList){
+					if(desempenho.getProfessor().getUser().getId().equals(professor.getUser().getId())){
+						desempenhoBC.delete(desempenho.getIdDesempenho());
+					}
+				}
+				turmaAlunoBC.delete(turmaAlunoKey);
+				iter.remove();
+			}
+		}
+		if (delete) {
+			messageContext.add(new DefaultMessage("{pages.msg.deletesuccess}"));
+		}
+		return getCurrentView();
+}
+
+</action_code>
 <property></property>
 <forward>current</forward>
 <forward_error></forward_error>

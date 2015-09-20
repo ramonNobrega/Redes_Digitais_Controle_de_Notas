@@ -11,7 +11,6 @@ import br.gov.frameworkdemoiselle.message.*;
 import br.gov.frameworkdemoiselle.stereotype.*;
 import br.gov.frameworkdemoiselle.template.*;
 import br.gov.frameworkdemoiselle.transaction.*;
-
 import redes_digitais_controle_de_notas.domain.entity.*;
 import redes_digitais_controle_de_notas.domain.enumeration.*;
 import redes_digitais_controle_de_notas.domain.view.*;
@@ -19,7 +18,7 @@ import redes_digitais_controle_de_notas.business.entity.*;
 import redes_digitais_controle_de_notas.business.process.*;
 import redes_digitais_controle_de_notas.constant.*;
 import redes_digitais_controle_de_notas.exception.*;
-
+import redes_digitais_controle_de_notas.security.ContextMB;
 import redes_digitais_controle_de_notas.business.entity.DesempenhoBimestralBC;
 import redes_digitais_controle_de_notas.domain.entity.DesempenhoBimestral;
 
@@ -40,7 +39,11 @@ public class TabManterDesempenhoBimestralDetailMB extends AbstractEditPageBean<D
 	@Inject
 	private DesempenhoBimestralBC desempenhoBimestralBC;
 	
-	@Override
+		@Inject
+		private DesempenhoBC desempenhoBC;
+		
+		@Inject
+		private ContextMB context;@Override
 	@Transactional
 	public String insert() {
 		this.desempenhoBimestralBC.insert(getBean());
@@ -64,39 +67,46 @@ public class TabManterDesempenhoBimestralDetailMB extends AbstractEditPageBean<D
 	
 	/* Trigger[edit.update.calculaMediaBimestral] */
 	public void calculaMediaBimestral() {
-			DesempenhoBimestral item = getBean();
-			item.setMediaBimestre((item.getNota1() + item.getNota2() + item.getNota3())/3);
-	}
-	
+				DesempenhoBimestral item = getBean();
+				item.setMediaBimestre((item.getNota1() + item.getNota2() + item.getNota3())/3);
+				this.desempenhoBimestralBC.update(getBean());
+		}
 	/* Trigger[edit.update.calculaMediaBimestral] */
 	
 	/* Trigger[edit.update.calculaMediaFinal] */
 	public void calculaMediaFinal() {
-				
-				DesempenhoBC desempenhoBC = new DesempenhoBC();
-				Double mediaParcial = 0.0;
-				List<DesempenhoBimestral> desempenhoBimestralList = getBean().getAluno().getDesempenhoBimestrais();
-				for (DesempenhoBimestral bimestre : desempenhoBimestralList) {
-					if(bimestre.getMediaBimestre() != null){
-						mediaParcial += bimestre.getMediaBimestre();
+					
+					ProfessorBC professorBC = new ProfessorBC();
+					Professor professor = professorBC.load(new Long(context.getUser().getId()));
+					Aluno aluno = getBean().getAluno();
+					HashMap<String, Object> parameters = new HashMap<String, Object>();
+					parameters.put("aluno", aluno);
+					Double mediaParcial = 0.0;
+					
+					for (DesempenhoBimestral bimestre : desempenhoBimestralBC.findByCriteria(parameters)) {
+						if(bimestre.getMediaBimestre() != null && bimestre.getProfessor().equals(professor)){
+							mediaParcial += bimestre.getMediaBimestre();
+						}
+					}
+					mediaParcial = mediaParcial / 4.0;
+					for(Desempenho desempenho : desempenhoBC.findByCriteria(parameters)){
+						
+						if(desempenho.getProfessor().equals(professor)){	
+							desempenho.setMediaParcial(mediaParcial);
+							if (mediaParcial >= 7) {
+								desempenho.setSituacao("APROVADO");
+								desempenho.setMediaFinal(mediaParcial);
+							} else if( mediaParcial < 7 && mediaParcial >= 4){
+								desempenho.setSituacao("FINAL");
+							}else {
+								desempenho.setSituacao("REPROVADO");
+								desempenho.setMediaFinal(mediaParcial);
+							}
+							desempenhoBC.update(desempenho);
+							
+						}
 					}
 				}
-				
-				Desempenho desempenho = getBean().getAluno().getDesempenhos().get(0);
-				mediaParcial = mediaParcial / desempenhoBimestralList.size();
-				desempenho.setMediaParcial(mediaParcial);
-				if (mediaParcial >= 7) {
-					desempenho.setSituacao("APROVADO");
-					desempenho.setMediaFinal(mediaParcial);
-				} else if( mediaParcial < 7 && mediaParcial >= 4){
-					desempenho.setSituacao("FINAL");
-				}else {
-					desempenho.setSituacao("REPROVADO");
-					desempenho.setMediaFinal(mediaParcial);
-				}
-				
-				desempenhoBC.update(desempenho);
-			}
 	/* Trigger[edit.update.calculaMediaFinal] */
 	
 	@Transactional

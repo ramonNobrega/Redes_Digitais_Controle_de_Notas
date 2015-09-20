@@ -1,13 +1,18 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 	<ui:define name="body">
-<!-- Block[desempenhoBimestralblock] -->
 		<h:form id="desempenhoBimestralblockForm">
 			<div id="desempenhoBimestralblockTitle" class="blocktitle">Desempenho por Bimestre</div>
 			<p:toolbar id="desempenhoBimestralblockToolbar">
-				
 			</p:toolbar>
 			<p:outputPanel id="desempenhoBimestralblockPanel">
-				<p:dataTable id="desempenhoBimestralblockDataTable" value="#{tabDesempenhoBimestralAlunoMB.desempenhoBimestralResultList}" var="bean" rows="5" paginator="true" rowsPerPageTemplate="5,10,15,20,50,100" rowIndexVar="rowIndexVar" resizableColumns="true" tableStyle="width:100%">
+				<p:dataTable id="desempenhoBimestralblockDataTable" value="#{tabDesempenhoBimestralAlunoMB.desempenhoBimestralResultList}" var="bean" rows="5" paginator="true" rowsPerPageTemplate="5,10,15,20,50,100" rowIndexVar="rowIndexVar" resizableColumns="false" tableStyle="width:100%">
+					<p:column id="professorUserNameDTColumn" sortBy="#{bean.professor.user.name}" filterBy="#{bean.professor.user.name}" filterMatchMode="contains" exportable="true">
+						<f:facet name="header">
+							<h:outputText value="Professor"></h:outputText>
+						</f:facet>
+						<h:outputText id="professorUserName" value="#{bean.professor.user.name}">
+						</h:outputText>
+					</p:column>
 					<p:column id="numBimestreDTColumn" style="text-align:right;" sortBy="#{bean.numBimestre}" filterBy="#{bean.numBimestre}" filterMatchMode="contains" exportable="true">
 						<f:facet name="header">
 							<h:outputText value="N&#250;mero do Bimestre"></h:outputText>
@@ -50,6 +55,5 @@
 				</p:dataTable>
 			</p:outputPanel>
 		</h:form>
-<!-- Block[desempenhoBimestralblock] -->
 	</ui:define>
 </ui:composition>

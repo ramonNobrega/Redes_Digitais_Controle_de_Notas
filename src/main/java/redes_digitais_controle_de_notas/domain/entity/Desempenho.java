@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.*;
 import javax.persistence.*;
 import redes_digitais_controle_de_notas.domain.entity.Aluno;
+import redes_digitais_controle_de_notas.domain.entity.Professor;
 
 @Entity
 @Table(name="tb_desempenho", schema="redesdigitais_controledenotas")
@@ -19,7 +20,7 @@ public class Desempenho implements Serializable {
 	@Column(name="media_parcial", nullable=false, columnDefinition="DECIMAL()(2) default 0.0")
 	private Double mediaParcial;
 
-	@Column(name="prova_final", columnDefinition="DECIMAL()(2) default 0.0")
+	@Column(name="prova_final", columnDefinition="DECIMAL()(4) default 0.0")
 	private Double provaFinal;
 
 	@Column(name="media_final", nullable=false, columnDefinition="DECIMAL()(2) default 0.0")
@@ -32,11 +33,15 @@ public class Desempenho implements Serializable {
 	@JoinColumn(name="aluno", referencedColumnName="id_aluno")
 	private Aluno aluno;
 
+	@ManyToOne(optional=false)
+	@JoinColumn(name="professor", referencedColumnName="id_professor")
+	private Professor professor;
+
 	public Desempenho() {
 		super();
 	}
 
-	public Desempenho(Integer idDesempenho, Double mediaParcial, Double provaFinal, Double mediaFinal, String situacao, Aluno aluno) {
+	public Desempenho(Integer idDesempenho, Double mediaParcial, Double provaFinal, Double mediaFinal, String situacao, Aluno aluno, Professor professor) {
 		this();
 		this.idDesempenho = idDesempenho;
 		this.mediaParcial = mediaParcial;
@@ -44,6 +49,7 @@ public class Desempenho implements Serializable {
 		this.mediaFinal = mediaFinal;
 		this.situacao = situacao;
 		this.aluno = aluno;
+		this.professor = professor;
 	}
 
 	public Integer getIdDesempenho() {
@@ -97,6 +103,17 @@ public class Desempenho implements Serializable {
 		this.aluno = aluno;
 	}
 
+	public Professor getProfessor() {
+		if (professor == null) {
+			professor= new Professor();
+		}
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -107,6 +124,7 @@ public class Desempenho implements Serializable {
 		result = prime * result + ((mediaFinal == null) ? 0 : mediaFinal.hashCode());
 		result = prime * result + ((situacao == null) ? 0 : situacao.hashCode());
 		result = prime * result + ((aluno == null) ? 0 : aluno.hashCode());
+		result = prime * result + ((professor == null) ? 0 : professor.hashCode());
 		return result;
 	}
 
@@ -162,6 +180,13 @@ public class Desempenho implements Serializable {
 					return false;
 				}
 			} else if (!aluno.equals(other.aluno)) {
+				return false;
+			}
+			if (professor == null) {
+				if (other.professor != null) {
+					return false;
+				}
+			} else if (!professor.equals(other.professor)) {
 				return false;
 			}
 		return true;

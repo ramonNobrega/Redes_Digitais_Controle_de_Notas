@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.*;
 import javax.persistence.*;
 import redes_digitais_controle_de_notas.domain.entity.Aluno;
+import redes_digitais_controle_de_notas.domain.entity.Professor;
 
 @Entity
 @Table(name="tb_desempenho_bimestral", schema="redesdigitais_controledenotas")
@@ -19,27 +20,31 @@ public class DesempenhoBimestral implements Serializable {
 	@Column(name="nu_bimestre", nullable=false)
 	private Integer numBimestre;
 
-	@Column(name="nota1", nullable=false, columnDefinition="DECIMAL()(2) default 0.0")
+	@Column(name="nota1", nullable=false, columnDefinition="DECIMAL()(4) default 0.0")
 	private Double nota1;
 
-	@Column(name="nota2", nullable=false, columnDefinition="DECIMAL()(2) default 0.0")
+	@Column(name="nota2", nullable=false, columnDefinition="DECIMAL()(4) default 0.0")
 	private Double nota2;
 
-	@Column(name="nota3", nullable=false, columnDefinition="DECIMAL()(2) default 0.0")
+	@Column(name="nota3", nullable=false, columnDefinition="DECIMAL()(4) default 0.0")
 	private Double nota3;
 
-	@Column(name="media_bimestre", columnDefinition="DECIMAL()(2) default 0.0")
+	@Column(name="media_bimestre", columnDefinition="DECIMAL()(4) default 0.0")
 	private Double mediaBimestre;
 
 	@ManyToOne
 	@JoinColumn(name="aluno", referencedColumnName="id_aluno")
 	private Aluno aluno;
 
+	@ManyToOne(optional=false)
+	@JoinColumn(name="professor", referencedColumnName="id_professor")
+	private Professor professor;
+
 	public DesempenhoBimestral() {
 		super();
 	}
 
-	public DesempenhoBimestral(Integer idBimestre, Integer numBimestre, Double nota1, Double nota2, Double nota3, Double mediaBimestre, Aluno aluno) {
+	public DesempenhoBimestral(Integer idBimestre, Integer numBimestre, Double nota1, Double nota2, Double nota3, Double mediaBimestre, Aluno aluno, Professor professor) {
 		this();
 		this.idBimestre = idBimestre;
 		this.numBimestre = numBimestre;
@@ -48,6 +53,7 @@ public class DesempenhoBimestral implements Serializable {
 		this.nota3 = nota3;
 		this.mediaBimestre = mediaBimestre;
 		this.aluno = aluno;
+		this.professor = professor;
 	}
 
 	public Integer getIdBimestre() {
@@ -109,6 +115,17 @@ public class DesempenhoBimestral implements Serializable {
 		this.aluno = aluno;
 	}
 
+	public Professor getProfessor() {
+		if (professor == null) {
+			professor= new Professor();
+		}
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -120,6 +137,7 @@ public class DesempenhoBimestral implements Serializable {
 		result = prime * result + ((nota3 == null) ? 0 : nota3.hashCode());
 		result = prime * result + ((mediaBimestre == null) ? 0 : mediaBimestre.hashCode());
 		result = prime * result + ((aluno == null) ? 0 : aluno.hashCode());
+		result = prime * result + ((professor == null) ? 0 : professor.hashCode());
 		return result;
 	}
 
@@ -182,6 +200,13 @@ public class DesempenhoBimestral implements Serializable {
 					return false;
 				}
 			} else if (!aluno.equals(other.aluno)) {
+				return false;
+			}
+			if (professor == null) {
+				if (other.professor != null) {
+					return false;
+				}
+			} else if (!professor.equals(other.professor)) {
 				return false;
 			}
 		return true;

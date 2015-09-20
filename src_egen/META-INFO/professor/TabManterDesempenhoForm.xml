@@ -998,13 +998,7 @@ import redes_digitais_controle_de_notas.security.ContextMB;</addImportAction>
 <fieldSetProperty_item>
 <$key>controllerCode</$key>
 <$value>	@Inject
-	private TurmaProfessorBC turmaProfessorBC;
-	
-	@Inject
 	private ProfessorBC professorBC;
-	
-	@Inject
-	private TurmaAlunoBC turmaAlunoBC;
 	
 	@Inject
 	private ContextMB context;
@@ -1170,28 +1164,24 @@ import redes_digitais_controle_de_notas.security.ContextMB;</addImportAction>
 </triggers_item>
 </triggers>
 <template></template>
-<action_code>	@Override
-	protected List<Desempenho> handleResultList() {
+<action_code>		@Override
+		protected List<Desempenho> handleResultList() {
+			
+			calculaMediaParcial();
+			calculaMediaFinal();
+			calculaSituacao();
 		
-		calculaMediaParcial();
-		calculaMediaFinal();
-		calculaSituacao();
-	
-		Professor professor = professorBC.load(new Long(context.getUser().getId()));
-		desempenhoResultList = new ArrayList<Desempenho>();
-		for (Desempenho db : desempenhoBC.findAll()){
-			for(TurmaAluno ta : turmaAlunoBC.findAll()){
-				for(TurmaProfessor tp : turmaProfessorBC.findAll()){
-					if(ta.getTurma().equals(tp.getTurma()) && ta.getAluno().equals(db.getAluno()) && tp.getProfessor().equals(professor)){
-						desempenhoResultList.add(db);
-						}
-					}		
+			Professor professor = professorBC.load(new Long(context.getUser().getId()));
+			desempenhoResultList = new ArrayList<Desempenho>();
+			for (Desempenho db : desempenhoBC.findAll()){
+				if(db.getProfessor().equals(professor)){
+					desempenhoResultList.add(db);					
 				}
 			}
-			
-		return desempenhoResultList;
-	
-	}</action_code>
+				
+			return desempenhoResultList;
+		
+		}</action_code>
 <property></property>
 <forward></forward>
 <forward_error></forward_error>

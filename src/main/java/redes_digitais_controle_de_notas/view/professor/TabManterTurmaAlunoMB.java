@@ -41,28 +41,51 @@ public class TabManterTurmaAlunoMB extends AbstractListPageBean<TurmaAluno, Obje
 	private TurmaAlunoBC turmaAlunoBC;
 	
 		@Inject
+		private DesempenhoBimestralBC desempenhoBimestralBC;
+		
+		@Inject
+		private DesempenhoBC desempenhoBC;
+		
+		@Inject
 		private ContextMB context;
 	public String newRecord() {
 		return getNextView();
 	}
 	
+	/* Button[list.delete] */
 	@Transactional
 	public String delete() {
 		boolean delete = false;
+		ProfessorBC professorBC = new ProfessorBC();
+		Professor professor = professorBC.load(new Long(context.getUser().getId()));
+			
 		for (Iterator<Object> iter = getSelection().keySet().iterator(); iter.hasNext();) {
 			TurmaAluno turmaAlunoSelected = (TurmaAluno) iter.next();
 			delete = getSelection().get(turmaAlunoSelected);
 			if (delete) {
 				TurmaAlunoKey turmaAlunoKey= new TurmaAlunoKey(turmaAlunoSelected.getTurma().getIdTurma(), turmaAlunoSelected.getAluno().getUser().getId());
-				turmaAlunoBC.delete(turmaAlunoKey);
-				iter.remove();
+					
+				List<DesempenhoBimestral> dbList = turmaAlunoSelected.getAluno().getDesempenhoBimestrais();
+				for(DesempenhoBimestral desempenho : dbList){		if(desempenho.getProfessor().getUser().getId().equals(professor.getUser().getId())){					desempenhoBimestralBC.delete(desempenho.getIdBimestre());
+						}
+					}
+				List<Desempenho> desempenhoList = turmaAlunoSelected.getAluno().getDesempenhos();
+				for(Desempenho desempenho : desempenhoList){
+						if(desempenho.getProfessor().getUser().getId().equals(professor.getUser().getId())){
+							desempenhoBC.delete(desempenho.getIdDesempenho());
+						}
+					}
+					turmaAlunoBC.delete(turmaAlunoKey);
+					iter.remove();
+				}
 			}
-		}
-		if (delete) {
-			messageContext.add(new DefaultMessage("{pages.msg.deletesuccess}"));
-		}
-		return getCurrentView();
+			if (delete) {
+				messageContext.add(new DefaultMessage("{pages.msg.deletesuccess}"));
+			}
+			return getCurrentView();
+	
 	}
+	/* Button[list.delete] */
 	
 	/* Button[list.handleResultList] */
 	@Override
@@ -81,7 +104,6 @@ public class TabManterTurmaAlunoMB extends AbstractListPageBean<TurmaAluno, Obje
 			}
 			return turmaList;
 		}
-	
 	/* Button[list.handleResultList] */
 
 }

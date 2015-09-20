@@ -156,6 +156,26 @@ public class DesempenhoBimestralDAO extends JPACrud<DesempenhoBimestral, Integer
 				}
 			}
 		}
+		parameter = parameters.get("professor");
+		if (parameter != null) {
+			Predicate expression = null;
+			if (parameter instanceof java.util.List<?>) {
+				@SuppressWarnings("unchecked")
+				List<Long> collection = (List<Long>)parameter;
+				expression = r.get("professor").get("user").get("id").in(collection);
+			} else if (parameter instanceof Long) {
+				expression = cb.equal(r.get("professor").get("user").get("id"), parameter);
+			} else if (parameter instanceof redes_digitais_controle_de_notas.domain.entity.Professor) {
+				expression = cb.equal(r.get("professor"), parameter);
+			}
+			if (expression != null) {
+				if (where == null) {
+					where = expression;
+				} else {
+					where = cb.and(where, expression);
+				}
+			}
+		}
 		List<DesempenhoBimestral> results = new ArrayList<DesempenhoBimestral>();
 		if (where != null) {
 			q.where(where);

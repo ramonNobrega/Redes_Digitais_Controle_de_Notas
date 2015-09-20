@@ -9,22 +9,23 @@
 <variables_item>
 <class>com.egen.tool.business.BusinessVariable</class>
 <businessVariableName>desempenhoBimestral</businessVariableName>
+<businessVariableInitialization></businessVariableInitialization>
+<businessVariableDomainReference></businessVariableDomainReference>
 <variableComponentType></variableComponentType>
 <businessVariableType>@entity(redes_digitais_controle_de_notas.domain.entity.DesempenhoBimestral)</businessVariableType>
 <businessVariableDescription></businessVariableDescription>
-<businessVariableInitialization></businessVariableInitialization>
-<businessVariableDomainReference></businessVariableDomainReference>
 <businessVariableSetProperties>
 </businessVariableSetProperties>
 </variables_item>
 </variables>
+<inputParameters>
+</inputParameters>
 <outputParameters>
 </outputParameters>
 <businessCodeUnits>
 <businessCodeUnits_item>
 <class>com.egen.tool.business.BusinessCodeUnit</class>
 <businessCodeUnitIdentification>DAO</businessCodeUnitIdentification>
-<businessCodeUnitTemplate>EntityDAOUnit</businessCodeUnitTemplate>
 <businessCodeUnitContent>package redes_digitais_controle_de_notas.persistence.entity;
 
 import java.util.*;
@@ -183,6 +184,26 @@ public class DesempenhoBimestralDAO extends JPACrud<DesempenhoBimestral, Integer
 				}
 			}
 		}
+		parameter = parameters.get("professor");
+		if (parameter != null) {
+			Predicate expression = null;
+			if (parameter instanceof java.util.List<?>) {
+				@SuppressWarnings("unchecked")
+				List<Long> collection = (List<Long>)parameter;
+				expression = r.get("professor").get("user").get("id").in(collection);
+			} else if (parameter instanceof Long) {
+				expression = cb.equal(r.get("professor").get("user").get("id"), parameter);
+			} else if (parameter instanceof redes_digitais_controle_de_notas.domain.entity.Professor) {
+				expression = cb.equal(r.get("professor"), parameter);
+			}
+			if (expression != null) {
+				if (where == null) {
+					where = expression;
+				} else {
+					where = cb.and(where, expression);
+				}
+			}
+		}
 		List<DesempenhoBimestral> results = new ArrayList<DesempenhoBimestral>();
 		if (where != null) {
 			q.where(where);
@@ -194,35 +215,23 @@ public class DesempenhoBimestralDAO extends JPACrud<DesempenhoBimestral, Integer
 }
 
 </businessCodeUnitContent>
-<businessCodeUnitSetProperty>
-<businessCodeUnitSetProperty_item>
-<class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyValue>br.gov.frameworkdemoiselle.template.JPACrud<[ENTITY], [ID_TYPE]></setPropertyValue>
-<setPropertyKey>extends</setPropertyKey>
-<setPropertyEnumeration></setPropertyEnumeration>
-</businessCodeUnitSetProperty_item>
-<businessCodeUnitSetProperty_item>
-<class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyValue>src/main/java/redes_digitais_controle_de_notas/persistence/entity/DesempenhoBimestralDAO.java</setPropertyValue>
-<setPropertyKey>file</setPropertyKey>
-<setPropertyEnumeration></setPropertyEnumeration>
-</businessCodeUnitSetProperty_item>
-</businessCodeUnitSetProperty>
+<businessCodeUnitTemplate>EntityDAOUnit</businessCodeUnitTemplate>
 <businessCodeBlocks>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>PackageBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>package redes_digitais_controle_de_notas.persistence.entity;
 
 </businessCodeBlockContent>
-<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
-<businessCodeBlockSetProperty>
-</businessCodeBlockSetProperty>
 <intraCodeBlocks>
 </intraCodeBlocks>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOImportBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>import java.util.*;
 import javax.inject.Inject;
@@ -235,47 +244,47 @@ import br.gov.frameworkdemoiselle.template.JPACrud;
 import javax.persistence.criteria.*;
 
 </businessCodeBlockContent>
-<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
-<businessCodeBlockSetProperty>
-</businessCodeBlockSetProperty>
 <intraCodeBlocks>
 <intraCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport</businessCodeBlockIdentification>
 <businessCodeBlockTemplate></businessCodeBlockTemplate>
 <businessCodeBlockContent>import br.gov.frameworkdemoiselle.template.JPACrud;</businessCodeBlockContent>
-<businessCodeBlockIdentification>extraImport</businessCodeBlockIdentification>
+<intraCodeBlocks>
+</intraCodeBlocks>
 <businessCodeBlockSetProperty>
 <businessCodeBlockSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyValue>custom</setPropertyValue>
 <setPropertyKey>position</setPropertyKey>
+<setPropertyValue>custom</setPropertyValue>
 <setPropertyEnumeration></setPropertyEnumeration>
 </businessCodeBlockSetProperty_item>
 </businessCodeBlockSetProperty>
-<intraCodeBlocks>
-</intraCodeBlocks>
 </intraCodeBlocks_item>
 <intraCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport_1</businessCodeBlockIdentification>
 <businessCodeBlockTemplate></businessCodeBlockTemplate>
 <businessCodeBlockContent>import javax.persistence.criteria.*;
 </businessCodeBlockContent>
-<businessCodeBlockIdentification>extraImport_1</businessCodeBlockIdentification>
+<intraCodeBlocks>
+</intraCodeBlocks>
 <businessCodeBlockSetProperty>
 <businessCodeBlockSetProperty_item>
 <class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyValue>custom</setPropertyValue>
 <setPropertyKey>position</setPropertyKey>
+<setPropertyValue>custom</setPropertyValue>
 <setPropertyEnumeration></setPropertyEnumeration>
 </businessCodeBlockSetProperty_item>
 </businessCodeBlockSetProperty>
-<intraCodeBlocks>
-</intraCodeBlocks>
 </intraCodeBlocks_item>
 </intraCodeBlocks>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOClassDefinitionBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>@PersistenceController
 public class DesempenhoBimestralDAO extends JPACrud<DesempenhoBimestral, Integer> {
@@ -283,26 +292,26 @@ public class DesempenhoBimestralDAO extends JPACrud<DesempenhoBimestral, Integer
 	private static final long serialVersionUID = 1L;
 
 </businessCodeBlockContent>
-<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
-<businessCodeBlockSetProperty>
-</businessCodeBlockSetProperty>
 <intraCodeBlocks>
 <intraCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>serialVersionUID</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>SerialVersionUIDBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	private static final long serialVersionUID = 1L;
 
 </businessCodeBlockContent>
-<businessCodeBlockIdentification>serialVersionUID</businessCodeBlockIdentification>
-<businessCodeBlockSetProperty>
-</businessCodeBlockSetProperty>
 <intraCodeBlocks>
 </intraCodeBlocks>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
 </intraCodeBlocks_item>
 </intraCodeBlocks>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>findByExample</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOFindByExampleBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	@Override
 	public List<DesempenhoBimestral> findByExample(DesempenhoBimestral example) {
@@ -313,14 +322,14 @@ public class DesempenhoBimestralDAO extends JPACrud<DesempenhoBimestral, Integer
 	}
 
 </businessCodeBlockContent>
-<businessCodeBlockIdentification>findByExample</businessCodeBlockIdentification>
-<businessCodeBlockSetProperty>
-</businessCodeBlockSetProperty>
 <intraCodeBlocks>
 </intraCodeBlocks>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>findByCriteria</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOFindByCriteriaBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	public List<DesempenhoBimestral> findByCriteria(java.util.Map<String, Object> parameters) {
 		if (parameters == null) {
@@ -455,6 +464,26 @@ public class DesempenhoBimestralDAO extends JPACrud<DesempenhoBimestral, Integer
 				}
 			}
 		}
+		parameter = parameters.get("professor");
+		if (parameter != null) {
+			Predicate expression = null;
+			if (parameter instanceof java.util.List<?>) {
+				@SuppressWarnings("unchecked")
+				List<Long> collection = (List<Long>)parameter;
+				expression = r.get("professor").get("user").get("id").in(collection);
+			} else if (parameter instanceof Long) {
+				expression = cb.equal(r.get("professor").get("user").get("id"), parameter);
+			} else if (parameter instanceof redes_digitais_controle_de_notas.domain.entity.Professor) {
+				expression = cb.equal(r.get("professor"), parameter);
+			}
+			if (expression != null) {
+				if (where == null) {
+					where = expression;
+				} else {
+					where = cb.and(where, expression);
+				}
+			}
+		}
 		List<DesempenhoBimestral> results = new ArrayList<DesempenhoBimestral>();
 		if (where != null) {
 			q.where(where);
@@ -463,28 +492,40 @@ public class DesempenhoBimestralDAO extends JPACrud<DesempenhoBimestral, Integer
 		return results;
 	}
 </businessCodeBlockContent>
-<businessCodeBlockIdentification>findByCriteria</businessCodeBlockIdentification>
-<businessCodeBlockSetProperty>
-</businessCodeBlockSetProperty>
 <intraCodeBlocks>
 </intraCodeBlocks>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>ClosingCodeBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>}</businessCodeBlockContent>
-<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
-<businessCodeBlockSetProperty>
-</businessCodeBlockSetProperty>
 <intraCodeBlocks>
 </intraCodeBlocks>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
 </businessCodeBlocks_item>
 </businessCodeBlocks>
+<businessCodeUnitSetProperty>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>extends</setPropertyKey>
+<setPropertyValue>br.gov.frameworkdemoiselle.template.JPACrud<[ENTITY], [ID_TYPE]></setPropertyValue>
+<setPropertyEnumeration></setPropertyEnumeration>
+</businessCodeUnitSetProperty_item>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>file</setPropertyKey>
+<setPropertyValue>src/main/java/redes_digitais_controle_de_notas/persistence/entity/DesempenhoBimestralDAO.java</setPropertyValue>
+<setPropertyEnumeration></setPropertyEnumeration>
+</businessCodeUnitSetProperty_item>
+</businessCodeUnitSetProperty>
 </businessCodeUnits_item>
 <businessCodeUnits_item>
 <class>com.egen.tool.business.BusinessCodeUnit</class>
 <businessCodeUnitIdentification>DAOTest</businessCodeUnitIdentification>
-<businessCodeUnitTemplate>EntityDAOTestUnit</businessCodeUnitTemplate>
 <businessCodeUnitContent>package redes_digitais_controle_de_notas.persistence.entity;
 
 import redes_digitais_controle_de_notas.domain.entity.*;
@@ -502,6 +543,9 @@ public class DesempenhoBimestralDAOTest {
 
 	@Inject
 	private DesempenhoBimestralDAO desempenhoBimestralDAO;
+
+	@Inject
+	private ProfessorDAO professorDAO;
 
 	@Before
 	public void before() {
@@ -522,6 +566,10 @@ public class DesempenhoBimestralDAOTest {
 		desempenhoBimestral.setNota1(desempenhoBimestral.getId().setNota1(new Double("1.1"));
 		desempenhoBimestral.setNota2(desempenhoBimestral.getId().setNota2(new Double("1.1"));
 		desempenhoBimestral.setNota3(desempenhoBimestral.getId().setNota3(new Double("1.1"));
+		Professor professor = new Professor();
+		professor.setDisciplina("XXXXXXXXXXXXXXXXXXXX");
+		professorDAO.insert(professor);
+		desempenhoBimestral.setProfessor(professor);
 		desempenhoBimestralDAO.insert(desempenhoBimestral);
 		List<DesempenhoBimestral> desempenhoBimestralList = desempenhoBimestralDAO.findAll();
 		assertNotNull(desempenhoBimestralList);
@@ -535,17 +583,21 @@ public class DesempenhoBimestralDAOTest {
 		desempenhoBimestral.setNota1(new Double("1.1"));
 		desempenhoBimestral.setNota2(new Double("1.1"));
 		desempenhoBimestral.setNota3(new Double("1.1"));
+		Professor professor = new Professor();
+		professor.setDisciplina("XXXXXXXXXXXXXXXXXXXX");
+		professorDAO.insert(professor);
+		desempenhoBimestral.setProfessor(professor);
 		desempenhoBimestralDAO.insert(desempenhoBimestral);
 		List<DesempenhoBimestral> desempenhoBimestralList = desempenhoBimestralDAO.findAll();
 		assertNotNull(desempenhoBimestralList);
 		assertTrue(desempenhoBimestralList.size()>0);
 		DesempenhoBimestral beforeUpdate = desempenhoBimestralList.get(0);
-		assertEquals(new Double("1.1"), beforeUpdate.getNota3());
-		beforeUpdate.setNota3(new Double("2.2"));
+		assertEquals(new Double("1.1"), beforeUpdate.getProfessor());
+		beforeUpdate.setProfessor(null);
 		desempenhoBimestralDAO.update(beforeUpdate);
 		desempenhoBimestralList = desempenhoBimestralDAO.findAll();
 		DesempenhoBimestral afterUpdate = desempenhoBimestralList.get(0);
-		assertEquals(new Double("2.2"), afterUpdate.getNota3());
+		assertEquals(null, afterUpdate.getProfessor());
 	}
 
 	@Test
@@ -555,6 +607,10 @@ public class DesempenhoBimestralDAOTest {
 		desempenhoBimestral.setNota1(new Double("1.1"));
 		desempenhoBimestral.setNota2(new Double("1.1"));
 		desempenhoBimestral.setNota3(new Double("1.1"));
+		Professor professor = new Professor();
+		professor.setDisciplina("XXXXXXXXXXXXXXXXXXXX");
+		professorDAO.insert(professor);
+		desempenhoBimestral.setProfessor(professor);
 		desempenhoBimestralDAO.insert(desempenhoBimestral);
 		List<DesempenhoBimestral> desempenhoBimestralList = desempenhoBimestralDAO.findAll();
 		assertNotNull(desempenhoBimestralList);
@@ -567,29 +623,23 @@ public class DesempenhoBimestralDAOTest {
 }
 
 </businessCodeUnitContent>
-<businessCodeUnitSetProperty>
-<businessCodeUnitSetProperty_item>
-<class>com.egen.tool.business.BusinessComponentSetProperty</class>
-<setPropertyValue>src/test/java/redes_digitais_controle_de_notas/persistence/entity/DesempenhoBimestralDAOTest.java</setPropertyValue>
-<setPropertyKey>file</setPropertyKey>
-<setPropertyEnumeration></setPropertyEnumeration>
-</businessCodeUnitSetProperty_item>
-</businessCodeUnitSetProperty>
+<businessCodeUnitTemplate>EntityDAOTestUnit</businessCodeUnitTemplate>
 <businessCodeBlocks>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>PackageBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>package redes_digitais_controle_de_notas.persistence.entity;
 
 </businessCodeBlockContent>
-<businessCodeBlockIdentification>package</businessCodeBlockIdentification>
-<businessCodeBlockSetProperty>
-</businessCodeBlockSetProperty>
 <intraCodeBlocks>
 </intraCodeBlocks>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestImportBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>import redes_digitais_controle_de_notas.domain.entity.*;
 import static org.junit.Assert.assertEquals;
@@ -602,40 +652,78 @@ import org.junit.runner.RunWith;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 
 </businessCodeBlockContent>
-<businessCodeBlockIdentification>import</businessCodeBlockIdentification>
-<businessCodeBlockSetProperty>
-</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraImport</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>import redes_digitais_controle_de_notas.domain.entity.Professor;</businessCodeBlockContent>
 <intraCodeBlocks>
 </intraCodeBlocks>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyValue>custom</setPropertyValue>
+<setPropertyEnumeration></setPropertyEnumeration>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+</intraCodeBlocks_item>
+</intraCodeBlocks>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestClassDefinitionBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>@RunWith(DemoiselleRunner.class)
 public class DesempenhoBimestralDAOTest {
 
 </businessCodeBlockContent>
-<businessCodeBlockIdentification>declaration</businessCodeBlockIdentification>
-<businessCodeBlockSetProperty>
-</businessCodeBlockSetProperty>
 <intraCodeBlocks>
 </intraCodeBlocks>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>attributes</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestAttributesBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	@Inject
 	private DesempenhoBimestralDAO desempenhoBimestralDAO;
 
+	@Inject
+	private ProfessorDAO professorDAO;
+
 </businessCodeBlockContent>
-<businessCodeBlockIdentification>attributes</businessCodeBlockIdentification>
-<businessCodeBlockSetProperty>
-</businessCodeBlockSetProperty>
+<intraCodeBlocks>
+<intraCodeBlocks_item>
+<class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>extraDAO</businessCodeBlockIdentification>
+<businessCodeBlockTemplate></businessCodeBlockTemplate>
+<businessCodeBlockContent>	@Inject
+	private ProfessorDAO professorDAO;
+
+</businessCodeBlockContent>
 <intraCodeBlocks>
 </intraCodeBlocks>
+<businessCodeBlockSetProperty>
+<businessCodeBlockSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>position</setPropertyKey>
+<setPropertyValue>custom</setPropertyValue>
+<setPropertyEnumeration></setPropertyEnumeration>
+</businessCodeBlockSetProperty_item>
+</businessCodeBlockSetProperty>
+</intraCodeBlocks_item>
+</intraCodeBlocks>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>setup</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestSetupBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	@Before
 	public void before() {
@@ -650,14 +738,14 @@ public class DesempenhoBimestralDAOTest {
 	}
 
 </businessCodeBlockContent>
-<businessCodeBlockIdentification>setup</businessCodeBlockIdentification>
-<businessCodeBlockSetProperty>
-</businessCodeBlockSetProperty>
 <intraCodeBlocks>
 </intraCodeBlocks>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>insert</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestInsertBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	@Test
 	public void insert() {
@@ -666,6 +754,10 @@ public class DesempenhoBimestralDAOTest {
 		desempenhoBimestral.setNota1(desempenhoBimestral.getId().setNota1(new Double("1.1"));
 		desempenhoBimestral.setNota2(desempenhoBimestral.getId().setNota2(new Double("1.1"));
 		desempenhoBimestral.setNota3(desempenhoBimestral.getId().setNota3(new Double("1.1"));
+		Professor professor = new Professor();
+		professor.setDisciplina("XXXXXXXXXXXXXXXXXXXX");
+		professorDAO.insert(professor);
+		desempenhoBimestral.setProfessor(professor);
 		desempenhoBimestralDAO.insert(desempenhoBimestral);
 		List<DesempenhoBimestral> desempenhoBimestralList = desempenhoBimestralDAO.findAll();
 		assertNotNull(desempenhoBimestralList);
@@ -673,14 +765,14 @@ public class DesempenhoBimestralDAOTest {
 	}
 
 </businessCodeBlockContent>
-<businessCodeBlockIdentification>insert</businessCodeBlockIdentification>
-<businessCodeBlockSetProperty>
-</businessCodeBlockSetProperty>
 <intraCodeBlocks>
 </intraCodeBlocks>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>update</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestUpdateBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	@Test
 	public void update() {
@@ -689,28 +781,32 @@ public class DesempenhoBimestralDAOTest {
 		desempenhoBimestral.setNota1(new Double("1.1"));
 		desempenhoBimestral.setNota2(new Double("1.1"));
 		desempenhoBimestral.setNota3(new Double("1.1"));
+		Professor professor = new Professor();
+		professor.setDisciplina("XXXXXXXXXXXXXXXXXXXX");
+		professorDAO.insert(professor);
+		desempenhoBimestral.setProfessor(professor);
 		desempenhoBimestralDAO.insert(desempenhoBimestral);
 		List<DesempenhoBimestral> desempenhoBimestralList = desempenhoBimestralDAO.findAll();
 		assertNotNull(desempenhoBimestralList);
 		assertTrue(desempenhoBimestralList.size()>0);
 		DesempenhoBimestral beforeUpdate = desempenhoBimestralList.get(0);
-		assertEquals(new Double("1.1"), beforeUpdate.getNota3());
-		beforeUpdate.setNota3(new Double("2.2"));
+		assertEquals(new Double("1.1"), beforeUpdate.getProfessor());
+		beforeUpdate.setProfessor(null);
 		desempenhoBimestralDAO.update(beforeUpdate);
 		desempenhoBimestralList = desempenhoBimestralDAO.findAll();
 		DesempenhoBimestral afterUpdate = desempenhoBimestralList.get(0);
-		assertEquals(new Double("2.2"), afterUpdate.getNota3());
+		assertEquals(null, afterUpdate.getProfessor());
 	}
 
 </businessCodeBlockContent>
-<businessCodeBlockIdentification>update</businessCodeBlockIdentification>
-<businessCodeBlockSetProperty>
-</businessCodeBlockSetProperty>
 <intraCodeBlocks>
 </intraCodeBlocks>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>delete</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>EntityDAOTestDeleteBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>	@Test
 	public void delete() {
@@ -719,6 +815,10 @@ public class DesempenhoBimestralDAOTest {
 		desempenhoBimestral.setNota1(new Double("1.1"));
 		desempenhoBimestral.setNota2(new Double("1.1"));
 		desempenhoBimestral.setNota3(new Double("1.1"));
+		Professor professor = new Professor();
+		professor.setDisciplina("XXXXXXXXXXXXXXXXXXXX");
+		professorDAO.insert(professor);
+		desempenhoBimestral.setProfessor(professor);
 		desempenhoBimestralDAO.insert(desempenhoBimestral);
 		List<DesempenhoBimestral> desempenhoBimestralList = desempenhoBimestralDAO.findAll();
 		assertNotNull(desempenhoBimestralList);
@@ -729,27 +829,32 @@ public class DesempenhoBimestralDAOTest {
 	}
 
 </businessCodeBlockContent>
-<businessCodeBlockIdentification>delete</businessCodeBlockIdentification>
-<businessCodeBlockSetProperty>
-</businessCodeBlockSetProperty>
 <intraCodeBlocks>
 </intraCodeBlocks>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
 </businessCodeBlocks_item>
 <businessCodeBlocks_item>
 <class>com.egen.tool.business.BusinessCodeBlock</class>
+<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
 <businessCodeBlockTemplate>ClosingCodeBlockTemplate</businessCodeBlockTemplate>
 <businessCodeBlockContent>}</businessCodeBlockContent>
-<businessCodeBlockIdentification>closing</businessCodeBlockIdentification>
-<businessCodeBlockSetProperty>
-</businessCodeBlockSetProperty>
 <intraCodeBlocks>
 </intraCodeBlocks>
+<businessCodeBlockSetProperty>
+</businessCodeBlockSetProperty>
 </businessCodeBlocks_item>
 </businessCodeBlocks>
+<businessCodeUnitSetProperty>
+<businessCodeUnitSetProperty_item>
+<class>com.egen.tool.business.BusinessComponentSetProperty</class>
+<setPropertyKey>file</setPropertyKey>
+<setPropertyValue>src/test/java/redes_digitais_controle_de_notas/persistence/entity/DesempenhoBimestralDAOTest.java</setPropertyValue>
+<setPropertyEnumeration></setPropertyEnumeration>
+</businessCodeUnitSetProperty_item>
+</businessCodeUnitSetProperty>
 </businessCodeUnits_item>
 </businessCodeUnits>
-<inputParameters>
-</inputParameters>
 <businessComponentSetProperties>
 </businessComponentSetProperties>
 </com.egen.tool.business.BusinessComponent>

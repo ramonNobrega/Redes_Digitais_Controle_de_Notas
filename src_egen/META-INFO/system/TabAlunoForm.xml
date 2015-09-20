@@ -624,40 +624,6 @@ import redes_digitais_controle_de_notas.business.entity.AlunoBC;
 <triggers>
 <triggers_item>
 <class>com.egen.develop.generator.form.Trigger</class>
-<name>cadastraDesempenho</name>
-<type>pre</type>
-<connectionType></connectionType>
-<transact>false</transact>
-<businessProcess></businessProcess>
-<triggerTemplate></triggerTemplate>
-<triggerCode>private void cadastraDesempenho(){
-for (int i = 1; i <= 4; i++) {
-			// Botao de insert
-			DesempenhoBimestral bimestral = new DesempenhoBimestral();
-			bimestral.setNumBimestre(i);
-			bimestral.setAluno(getAluno());
-			bimestral.setNota1(0.0);
-			bimestral.setNota2(0.0);
-			bimestral.setNota3(0.0);
-			getAluno().getDesempenhoBimestrais().add(bimestral);
-		}
-		
-		Desempenho desempenho = new Desempenho();
-		desempenho.setMediaFinal(0.0);
-		desempenho.setMediaParcial(0.0);
-		desempenho.setSituacao("REPROVADO");
-		desempenho.setAluno(getAluno());
-		aluno.getDesempenhos().add(desempenho);
-}
-</triggerCode>
-<triggerCallCode>cadastraDesempenho();
-</triggerCallCode>
-<develHelp></develHelp>
-<triggerSetProperty>
-</triggerSetProperty>
-</triggers_item>
-<triggers_item>
-<class>com.egen.develop.generator.form.Trigger</class>
 <name>cadastraPapel</name>
 <type>pre</type>
 <connectionType></connectionType>

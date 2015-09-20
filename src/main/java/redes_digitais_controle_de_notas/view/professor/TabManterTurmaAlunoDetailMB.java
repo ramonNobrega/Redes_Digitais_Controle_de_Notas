@@ -66,52 +66,98 @@ public class TabManterTurmaAlunoDetailMB extends AbstractEditPageBean<TurmaAluno
 			List<Turma> turmaList = new ArrayList<Turma>();
 			for (Turma turma : turmaBC.findAll()) {
 				for (TurmaProfessor turmaProfessor : turma.getTurmaProfessores())
-					if (turmaProfessor.getProfessor().equals(professor)){
+					if (turmaProfessor.getProfessor().getUser().getId().equals(professor.getUser().getId())){
 						turmaList.add(turma);
 					}
 				
 			}
 			
 			return turmaList;
-	}/* Options[edit.turma] */
+	}
+	/* Options[edit.turma] */
 		@Inject
-		private ContextMB context;private TurmaAluno antigoRegistro;@Override
+		private ContextMB context;
+	
+		@Inject
+		private DesempenhoBC desempenhoBC;private TurmaAluno antigoRegistro;
+	
+	
+	@Override
 	@Transactional
 	public String insert() {
+		/* TriggerCall[edit.insert.cadastraDesempenho] */
+		cadastraDesempenho();
+		/* TriggerCall[edit.insert.cadastraDesempenho] */
 		this.turmaAlunoBC.insert(getBean());
 		messageContext.add(new DefaultMessage("{pages.msg.insertsuccess}"));
 		return getPreviousView();
 	}
 	
+	/* Trigger[edit.insert.cadastraDesempenho] */
+	private void cadastraDesempenho(){
+		ProfessorBC professorBC = new ProfessorBC();
+		Professor professor = professorBC.load(new Long(context.getUser().getId()));
+		boolean naoTemProf = true;
+		for(Desempenho desempenho : desempenhoBC.findAll()){
+					if(desempenho.getAluno().equals(getBean().getAluno()) &&
+							desempenho.getProfessor().equals(professor)){
+				naoTemProf = false;
+			}
+		}
+				
+		if(naoTemProf){
+			for (int i = 1; i <= 4; i++) {
+							
+				DesempenhoBimestral bimestral = new DesempenhoBimestral();
+				bimestral.setNumBimestre(i);
+				bimestral.setAluno(getBean().getAluno());
+				bimestral.setNota1(0.0);
+				bimestral.setNota2(0.0);
+				bimestral.setNota3(0.0);
+				bimestral.setProfessor(professor);			getBean().getAluno().getDesempenhoBimestrais().add(bimestral);
+			}
+						
+			Desempenho desempenho = new Desempenho();
+			desempenho.setMediaFinal(0.0);
+			desempenho.setMediaParcial(0.0);
+			desempenho.setSituacao("REPROVADO");
+			desempenho.setAluno(getBean().getAluno());
+			desempenho.setProfessor(professor);
+				getBean().getAluno().getDesempenhos().add(desempenho);
+		}
+				
+	}
+	
+	/* Trigger[edit.insert.cadastraDesempenho] */
+	
 	/* Button[edit.update] */
 	@Override
-	@Transactional
-	public String update() {
-		TurmaAlunoKey turmaAlunoKey = new TurmaAlunoKey(antigoRegistro.getTurma().getIdTurma(), antigoRegistro.getAluno().getUser().getId());
-		this.turmaAlunoBC.delete(turmaAlunoKey);
-		this.turmaAlunoBC.update(getBean());
-		messageContext.add(new DefaultMessage("{pages.msg.updatesuccess}"));
-		return getPreviousView();
-	}
-	/* Button[edit.update] */
+		@Transactional
+		public String update() {
+			TurmaAlunoKey turmaAlunoKey = new TurmaAlunoKey(antigoRegistro.getTurma().getIdTurma(), antigoRegistro.getAluno().getUser().getId());
+			this.turmaAlunoBC.delete(turmaAlunoKey);
+			this.turmaAlunoBC.update(getBean());
+			messageContext.add(new DefaultMessage("{pages.msg.updatesuccess}"));
+			return getPreviousView();
+	}/* Button[edit.update] */
 	
-	/* Button[edit.delete] */
 	@Override
 	@Transactional
 	public String delete() {
-		
+		TurmaAlunoKey turmaAlunoKey = new TurmaAlunoKey(getBean().getTurma().getIdTurma(), getBean().getAluno().getUser().getId());
+		this.turmaAlunoBC.delete(turmaAlunoKey);
+		messageContext.add(new DefaultMessage("{pages.msg.deletesuccess}"));
 		return getPreviousView();
 	}
-	/* Button[edit.delete] */
 	
 	/* Button[edit.handleLoad] */
 	@Override
-	protected void handleLoad() {
-		antigoRegistro = this.turmaAlunoBC.load(getId());
-		setBean(new TurmaAluno());
-		getBean().setAluno(antigoRegistro.getAluno());
-		getBean().setTurma(antigoRegistro.getTurma());
-	}
+		protected void handleLoad() {
+			antigoRegistro = this.turmaAlunoBC.load(getId());
+			setBean(new TurmaAluno());
+			getBean().setAluno(antigoRegistro.getAluno());
+			getBean().setTurma(antigoRegistro.getTurma());
+		}
 	/* Button[edit.handleLoad] */
 
 }

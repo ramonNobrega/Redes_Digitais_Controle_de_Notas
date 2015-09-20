@@ -16,9 +16,14 @@ public class DesempenhoBimestralDAOTest {
 	@Inject
 	private DesempenhoBimestralDAO desempenhoBimestralDAO;
 
+	@Inject
+	private ProfessorDAO professorDAO;
+
 	@Before
 	public void before() {
-//		s
+		for (DesempenhoBimestral desempenhoBimestral : desempenhoBimestralDAO.findAll()) {
+		desempenhoBimestralDAO.delete(desempenhoBimestral.getIdBimestre());
+		}
 	}
 
 	@After
@@ -30,9 +35,13 @@ public class DesempenhoBimestralDAOTest {
 	public void insert() {
 		DesempenhoBimestral desempenhoBimestral = new DesempenhoBimestral();
 		desempenhoBimestral.setNumBimestre(new Integer("1"));
-		desempenhoBimestral.setNota1(new Double("1.1"));
-		desempenhoBimestral.setNota2(new Double("1.1"));
-		desempenhoBimestral.setNota3(new Double("1.1"));
+		desempenhoBimestral.setNota1(desempenhoBimestral.getId().setNota1(new Double("1.1"));
+		desempenhoBimestral.setNota2(desempenhoBimestral.getId().setNota2(new Double("1.1"));
+		desempenhoBimestral.setNota3(desempenhoBimestral.getId().setNota3(new Double("1.1"));
+		Professor professor = new Professor();
+		professor.setDisciplina("XXXXXXXXXXXXXXXXXXXX");
+		professorDAO.insert(professor);
+		desempenhoBimestral.setProfessor(professor);
 		desempenhoBimestralDAO.insert(desempenhoBimestral);
 		List<DesempenhoBimestral> desempenhoBimestralList = desempenhoBimestralDAO.findAll();
 		assertNotNull(desempenhoBimestralList);
@@ -46,17 +55,21 @@ public class DesempenhoBimestralDAOTest {
 		desempenhoBimestral.setNota1(new Double("1.1"));
 		desempenhoBimestral.setNota2(new Double("1.1"));
 		desempenhoBimestral.setNota3(new Double("1.1"));
+		Professor professor = new Professor();
+		professor.setDisciplina("XXXXXXXXXXXXXXXXXXXX");
+		professorDAO.insert(professor);
+		desempenhoBimestral.setProfessor(professor);
 		desempenhoBimestralDAO.insert(desempenhoBimestral);
 		List<DesempenhoBimestral> desempenhoBimestralList = desempenhoBimestralDAO.findAll();
 		assertNotNull(desempenhoBimestralList);
 		assertTrue(desempenhoBimestralList.size()>0);
 		DesempenhoBimestral beforeUpdate = desempenhoBimestralList.get(0);
-		assertEquals(new Double("1.1"), beforeUpdate.getNota3());
-		beforeUpdate.setNota3(new Double("2.2"));
+		assertEquals(new Double("1.1"), beforeUpdate.getProfessor());
+		beforeUpdate.setProfessor(null);
 		desempenhoBimestralDAO.update(beforeUpdate);
 		desempenhoBimestralList = desempenhoBimestralDAO.findAll();
 		DesempenhoBimestral afterUpdate = desempenhoBimestralList.get(0);
-		assertEquals(new Double("2.2"), afterUpdate.getNota3());
+		assertEquals(null, afterUpdate.getProfessor());
 	}
 
 	@Test
@@ -66,6 +79,10 @@ public class DesempenhoBimestralDAOTest {
 		desempenhoBimestral.setNota1(new Double("1.1"));
 		desempenhoBimestral.setNota2(new Double("1.1"));
 		desempenhoBimestral.setNota3(new Double("1.1"));
+		Professor professor = new Professor();
+		professor.setDisciplina("XXXXXXXXXXXXXXXXXXXX");
+		professorDAO.insert(professor);
+		desempenhoBimestral.setProfessor(professor);
 		desempenhoBimestralDAO.insert(desempenhoBimestral);
 		List<DesempenhoBimestral> desempenhoBimestralList = desempenhoBimestralDAO.findAll();
 		assertNotNull(desempenhoBimestralList);

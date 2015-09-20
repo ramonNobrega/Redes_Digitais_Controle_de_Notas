@@ -21,7 +21,7 @@
 				<div class="formrow">
 					<div id="alunoformcell" class="formcell">
 						<p:outputLabel id="alunoLabel" value="aluno" for="aluno" styleClass="text-input"></p:outputLabel>
-						<p:selectOneMenu id="aluno" value="#{tabManterTurmaAlunoDetailMB.bean.aluno}" converter="#{alunoConverter}">
+						<p:selectOneMenu id="aluno" value="#{tabManterTurmaAlunoDetailMB.bean.aluno}" converter="#{alunoConverter}" required="true">
 							<f:selectItem itemLabel="" itemValue=""/>
 							<f:selectItems itemLabel="#{alunoItem.user.name}" itemValue="#{alunoItem}" value="#{tabManterTurmaAlunoDetailMB.alunoList}" var="alunoItem"/>
 						</p:selectOneMenu>

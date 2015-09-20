@@ -11,6 +11,7 @@ import br.gov.frameworkdemoiselle.message.*;
 import br.gov.frameworkdemoiselle.stereotype.*;
 import br.gov.frameworkdemoiselle.template.*;
 import br.gov.frameworkdemoiselle.transaction.*;
+
 import redes_digitais_controle_de_notas.domain.entity.*;
 import redes_digitais_controle_de_notas.domain.enumeration.*;
 import redes_digitais_controle_de_notas.domain.view.*;
@@ -18,9 +19,9 @@ import redes_digitais_controle_de_notas.business.entity.*;
 import redes_digitais_controle_de_notas.business.process.*;
 import redes_digitais_controle_de_notas.constant.*;
 import redes_digitais_controle_de_notas.exception.*;
-import redes_digitais_controle_de_notas.security.ContextMB;
-import redes_digitais_controle_de_notas.business.entity.DesempenhoBC;
 
+import redes_digitais_controle_de_notas.business.entity.DesempenhoBC;
+import redes_digitais_controle_de_notas.security.ContextMB;
 @ViewController
 @PreviousView("/aluno/tabDesempenhoGeralAluno.xhtml")
 @NextView("/aluno/tabDesempenhoGeralAluno.xhtml")
@@ -43,7 +44,6 @@ public class TabDesempenhoGeralAlunoMB extends AbstractPageBean {
 	
 	@Inject
 	private ContextMB context;
-	
 		
 	public List<Desempenho> getDesempenhoResultList() {
 		AlunoBC alunoBc = new AlunoBC();
@@ -57,7 +57,6 @@ public class TabDesempenhoGeralAlunoMB extends AbstractPageBean {
 	public void setDesempenhoResultList(List<Desempenho> desempenhoResultList) {
 		this.desempenhoResultList = desempenhoResultList;
 	}
-	
 	/* DatasetCode[desempenhoblock] */
 
 }

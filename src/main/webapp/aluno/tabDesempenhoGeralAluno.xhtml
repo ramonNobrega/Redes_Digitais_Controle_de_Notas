@@ -5,7 +5,14 @@
 			<p:toolbar id="desempenhoblockToolbar">
 			</p:toolbar>
 			<p:outputPanel id="desempenhoblockPanel">
-				<p:dataTable id="desempenhoblockDataTable" value="#{tabDesempenhoGeralAlunoMB.desempenhoResultList}" var="bean" rows="5" paginator="false" rowIndexVar="rowIndexVar" resizableColumns="true" tableStyle="width:100%">
+				<p:dataTable id="desempenhoblockDataTable" value="#{tabDesempenhoGeralAlunoMB.desempenhoResultList}" var="bean" rows="5" paginator="true" rowsPerPageTemplate="5,10,15,20,50,100" rowIndexVar="rowIndexVar" resizableColumns="true" tableStyle="width:100%">
+					<p:column id="professorUserNameDTColumn" sortBy="#{bean.professor.user.name}" filterBy="#{bean.professor.user.name}" filterMatchMode="contains" exportable="true">
+						<f:facet name="header">
+							<h:outputText value="Professor"></h:outputText>
+						</f:facet>
+						<h:outputText id="professorUserName" value="#{bean.professor.user.name}">
+						</h:outputText>
+					</p:column>
 					<p:column id="mediaParcialDTColumn" style="text-align:right;" sortBy="#{bean.mediaParcial}" filterBy="#{bean.mediaParcial}" filterMatchMode="contains" exportable="true">
 						<f:facet name="header">
 							<h:outputText value="M&#233;dia Parcial"></h:outputText>

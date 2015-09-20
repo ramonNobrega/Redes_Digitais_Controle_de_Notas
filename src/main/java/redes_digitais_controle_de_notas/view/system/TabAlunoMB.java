@@ -51,9 +51,6 @@ public class TabAlunoMB extends AbstractPageBean {
 	
 	@Transactional
 	public String save() {
-		/* TriggerCall[blocoAluno.save.cadastraDesempenho] */
-		cadastraDesempenho();
-		/* TriggerCall[blocoAluno.save.cadastraDesempenho] */
 		/* TriggerCall[blocoAluno.save.cadastraPapel] */
 		cadastraPapel();
 		/* TriggerCall[blocoAluno.save.cadastraPapel] */
@@ -61,29 +58,6 @@ public class TabAlunoMB extends AbstractPageBean {
 		messageContext.add(new DefaultMessage("{pages.msg.updatesuccess}"));
 		return getCurrentView();
 	}
-	
-	/* Trigger[blocoAluno.save.cadastraDesempenho] */
-	private void cadastraDesempenho(){
-	for (int i = 1; i <= 4; i++) {
-				// Botao de insert
-				DesempenhoBimestral bimestral = new DesempenhoBimestral();
-				bimestral.setNumBimestre(i);
-				bimestral.setAluno(getAluno());
-				bimestral.setNota1(0.0);
-				bimestral.setNota2(0.0);
-				bimestral.setNota3(0.0);
-				getAluno().getDesempenhoBimestrais().add(bimestral);
-			}
-			
-			Desempenho desempenho = new Desempenho();
-			desempenho.setMediaFinal(0.0);
-			desempenho.setMediaParcial(0.0);
-			desempenho.setSituacao("REPROVADO");
-			desempenho.setAluno(getAluno());
-			aluno.getDesempenhos().add(desempenho);
-	}
-	
-	/* Trigger[blocoAluno.save.cadastraDesempenho] */
 	
 	/* Trigger[blocoAluno.save.cadastraPapel] */
 	private void cadastraPapel(){

@@ -41,41 +41,31 @@ public class TabManterDesempenhoMB extends AbstractListPageBean<Desempenho, Inte
 	private DesempenhoBC desempenhoBC;
 	
 		@Inject
-		private TurmaProfessorBC turmaProfessorBC;
-		
-		@Inject
 		private ProfessorBC professorBC;
-		
-		@Inject
-		private TurmaAlunoBC turmaAlunoBC;
 		
 		@Inject
 		private ContextMB context;
 	
 	        private List<Desempenho> desempenhoResultList;
 	/* Button[list.handleResultList] */
-		@Override
-		protected List<Desempenho> handleResultList() {
+			@Override
+			protected List<Desempenho> handleResultList() {
+				
+				calculaMediaParcial();
+				calculaMediaFinal();
+				calculaSituacao();
 			
-			calculaMediaParcial();
-			calculaMediaFinal();
-			calculaSituacao();
-		
-			Professor professor = professorBC.load(new Long(context.getUser().getId()));
-			desempenhoResultList = new ArrayList<Desempenho>();
-			for (Desempenho db : desempenhoBC.findAll()){
-				for(TurmaAluno ta : turmaAlunoBC.findAll()){
-					for(TurmaProfessor tp : turmaProfessorBC.findAll()){
-						if(ta.getTurma().equals(tp.getTurma()) && ta.getAluno().equals(db.getAluno()) && tp.getProfessor().equals(professor)){
-							desempenhoResultList.add(db);
-							}
-						}		
+				Professor professor = professorBC.load(new Long(context.getUser().getId()));
+				desempenhoResultList = new ArrayList<Desempenho>();
+				for (Desempenho db : desempenhoBC.findAll()){
+					if(db.getProfessor().equals(professor)){
+						desempenhoResultList.add(db);					
 					}
 				}
-				
-			return desempenhoResultList;
-		
-		}/* Button[list.handleResultList] */
+					
+				return desempenhoResultList;
+			
+			}/* Button[list.handleResultList] */
 	
 	/* Trigger[list.handleResultList.calculaMediaParcial] */
 	public void calculaMediaParcial() {
