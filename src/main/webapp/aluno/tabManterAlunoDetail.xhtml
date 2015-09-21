@@ -8,6 +8,11 @@
 					<p:commandButton id="back" value="#{messages['button.back']}" action="#{tabManterAlunoDetailMB.getPreviousView}" immediate="true" ajax="false" title="#{messages['button.back']}" icon="ui-icon-arrowthick-1-w"></p:commandButton>
 					<p:commandButton id="insert" rendered="#{!tabManterAlunoDetailMB.updateMode}" value="#{messages['button.save']}" action="#{tabManterAlunoDetailMB.insert}" ajax="false" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
 					<p:commandButton id="update" rendered="#{tabManterAlunoDetailMB.updateMode}" value="#{messages['button.save']}" action="#{tabManterAlunoDetailMB.update}" ajax="false" title="#{messages['button.save']}" icon="ui-icon-disk"></p:commandButton>
+					<p:commandButton id="delete" rendered="#{tabManterAlunoDetailMB.updateMode}" value="#{messages['button.delete']}" type="button" ajax="false" onclick="deleteConfirmation.show();" title="#{messages['button.delete']}" icon="ui-icon-trash"></p:commandButton>
+					<p:confirmDialog id="deleteConfirmDialog" widgetVar="deleteConfirmation" message="#{messages['label.confirm.delete']}" header="#{messages['label.dialog.delete']}" severity="alert">
+						<h:commandButton action="#{tabManterAlunoDetailMB.delete}" value="#{messages['button.dialog.yes']}"></h:commandButton>
+						<h:commandButton onclick="deleteConfirmation.hide()" type="button" value="#{messages['button.dialog.no']}"></h:commandButton>
+					</p:confirmDialog>
 				</p:toolbarGroup>
 			</p:toolbar>
 			<div id="editFormMessages" class="formmessages">
@@ -15,16 +20,9 @@
 			</div>
 			<p:outputPanel id="editPanel">
 				<div class="formrow">
-					<div id="userNameformcell" class="formcell">
-						<p:outputLabel id="userNameLabel" value="Nome do Aluno" for="userName" styleClass="text-input"></p:outputLabel>
-						<p:inputText id="userName" value="#{tabManterAlunoDetailMB.bean.user.name}" required="true" maxlength="60" size="60">
-						</p:inputText>
-					</div>
-				</div>
-				<div class="formrow">
-					<div id="userEmailformcell" class="formcell">
-						<p:outputLabel id="userEmailLabel" value="E-mail do Aluno" for="userEmail" styleClass="text-input"></p:outputLabel>
-						<p:inputText id="userEmail" value="#{tabManterAlunoDetailMB.bean.user.email}" required="true" maxlength="60" size="60">
+					<div id="userIdformcell" class="formcell">
+						<p:outputLabel id="userIdLabel" value="id_aluno" for="userId" styleClass="text-input"></p:outputLabel>
+						<p:inputText id="userId" value="#{tabManterAlunoDetailMB.bean.user.id}" required="true" maxlength="20" size="20" style="text-align:right;">
 						</p:inputText>
 					</div>
 				</div>

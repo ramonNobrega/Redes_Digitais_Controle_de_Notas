@@ -124,6 +124,7 @@ public class TabManterTurmaAlunoDetailMB extends AbstractEditPageBean<TurmaAluno
 			desempenho.setAluno(getBean().getAluno());
 			desempenho.setProfessor(professor);
 				getBean().getAluno().getDesempenhos().add(desempenho);
+				getBean().getAluno().getTurmaAlunos().add(getBean());
 		}
 				
 	}

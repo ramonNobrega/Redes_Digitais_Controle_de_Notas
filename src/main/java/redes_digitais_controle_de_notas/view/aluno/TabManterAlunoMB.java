@@ -56,4 +56,18 @@ public class TabManterAlunoMB extends AbstractListPageBean<Aluno, Long> {
 	public void setAlunoResultList(List<Aluno> alunoResultList) {
 		this.alunoResultList = alunoResultList;
 	}
+
+public String carregaNomeTurmas(Aluno aluno){
+		
+		String turmasDoAluno = new String();
+		List<TurmaAluno> turmaAlunos = aluno.getTurmaAlunos();
+		for (TurmaAluno turmaAluno : turmaAlunos) {
+			if(turmasDoAluno.length()>0){
+				turmasDoAluno += ", ";
+			}
+			turmasDoAluno += turmaAluno.getTurma().getNomeTurma();
+		}
+		return turmasDoAluno;
+		
+	}
 }

@@ -70,9 +70,23 @@ public class TabManterAlunoMB extends AbstractListPageBean<Aluno, Long> {
 	public void setAlunoResultList(List<Aluno> alunoResultList) {
 		this.alunoResultList = alunoResultList;
 	}
+
+public String carregaNomeTurmas(Aluno aluno){
+		
+		String turmasDoAluno = new String();
+		List<TurmaAluno> turmaAlunos = aluno.getTurmaAlunos();
+		for (TurmaAluno turmaAluno : turmaAlunos) {
+			if(turmasDoAluno.length()>0){
+				turmasDoAluno += ", ";
+			}
+			turmasDoAluno += turmaAluno.getTurma().getNomeTurma();
+		}
+		return turmasDoAluno;
+		
+	}
 }
 </actionCode>
-<jspTemplate>TabViewTemplate</jspTemplate>
+<jspTemplate>StandardViewTemplate</jspTemplate>
 <jspCode></jspCode>
 <help></help>
 <i18nHelp></i18nHelp>
@@ -91,7 +105,7 @@ import redes_digitais_controle_de_notas.security.ContextMB;</addImportAction>
 <addImportActionForm></addImportActionForm>
 <add_actionForm></add_actionForm>
 <scope_storage>request</scope_storage>
-<generatorMasterTemplate>StandardPresentationMasterTemplate</generatorMasterTemplate>
+<generatorMasterTemplate>CrudListPresentationMasterTemplate</generatorMasterTemplate>
 <blocks>
 <blocks_item>
 <class>com.egen.develop.generator.form.BlockForm</class>
@@ -134,7 +148,7 @@ import redes_digitais_controle_de_notas.security.ContextMB;</addImportAction>
 				<f:facet name="header">
 					<h:outputText value="Turmas"></h:outputText>
 				</f:facet>
-				<h:outputText id="turmaAlunos" value="#{bean.turmaAlunos}">
+				<h:outputText id="turmaAlunos" value="#{tabManterAlunoMB.carregaNomeTurmas(bean)}">
 				</h:outputText>
 			</p:column>
 			<p:column id="editLinkFieldDTColumn" style="text-align:center;" styleClass="gridstandardcolumn" exportable="false">
@@ -853,6 +867,127 @@ import redes_digitais_controle_de_notas.security.ContextMB;</addImportAction>
 </fieldSetProperty>
 <template>GridEditLinkFreeFieldTemplate</template>
 <codeItem></codeItem><script_free></script_free>
+</fields_item>
+<fields_item>
+<class>com.egen.develop.generator.form.Hidden</class>
+<name>carregaNomes</name>
+<help></help>
+<i18nHelp></i18nHelp>
+<develHelp></develHelp>
+<block_name></block_name>
+<role_item></role_item>
+<database_column></database_column>
+<roleinclude>false</roleinclude>
+<open_form>false</open_form>
+<close_form>false</close_form>
+<i18n></i18n>
+<show_help>false</show_help>
+<show_help_label>false</show_help_label>
+<tabs></tabs>
+<format></format>
+<title></title>
+<titleKey></titleKey>
+<i18nTitleKey></i18nTitleKey>
+<i18nLabelTitleKey></i18nLabelTitleKey>
+<left></left>
+<top></top>
+<z_index></z_index>
+<elementDisplayCondition></elementDisplayCondition>
+<domainReference></domainReference>
+<property></property>
+<value></value>
+<size></size>
+<label></label>
+<label_pos></label_pos>
+<label_bg_color></label_bg_color>
+<label_fg_color></label_fg_color>
+<label_size></label_size>
+<label_align></label_align>
+<label_font></label_font>
+<labelPropertytext></labelPropertytext>
+<label_bold>false</label_bold>
+<label_italic>false</label_italic>
+<justification></justification>
+<not_null>false</not_null>
+<type></type>
+<validate_message></validate_message>
+<validate_message_user></validate_message_user>
+<case_restriction></case_restriction>
+<break_line>true</break_line>
+<lovObject></lovObject>
+<lowest_value></lowest_value>
+<highest_value></highest_value>
+<validate_value>false</validate_value>
+<validate_type>false</validate_type>
+<validate_group>false</validate_group>
+<validate_email>false</validate_email>
+<validate_not_null>false</validate_not_null>
+<validate_minlength></validate_minlength>
+<validate_maxlength></validate_maxlength>
+<validate_regex></validate_regex>
+<src></src>
+<select_allowed>true</select_allowed>
+<update_allowed>true</update_allowed>
+<insert_allowed>true</insert_allowed>
+<isCustomized>false</isCustomized>
+<labelStyle></labelStyle>
+<labelTitle></labelTitle>
+<labelTitleKey></labelTitleKey>
+<i18nLabelTitleKey></i18nLabelTitleKey>
+<fieldGridSize></fieldGridSize>
+<queryOperator></queryOperator>
+<round_value></round_value>
+<field_prefix></field_prefix>
+<field_sufix></field_sufix>
+<write>false</write>
+<style></style>
+<styleClass></styleClass>
+<styleId>carregaNomes</styleId>
+<errorStyle></errorStyle>
+<errorStyleClass></errorStyleClass>
+<errorStyleId></errorStyleId>
+<accesskey></accesskey>
+<disabled>false</disabled>
+<onblur></onblur>
+<onchange></onchange>
+<onclick></onclick>
+<ondblclick></ondblclick>
+<onfocus></onfocus>
+<onkeydown></onkeydown>
+<onkeypress></onkeypress>
+<onkeyup></onkeyup>
+<onmousedown></onmousedown>
+<onmousemove></onmousemove>
+<onselect></onselect>
+<errorKey></errorKey>
+<tabindex></tabindex>
+<onmouseout></onmouseout>
+<onmouseover></onmouseover>
+<onmouseup></onmouseup>
+<field_relation></field_relation>
+<fieldSetProperty>
+<fieldSetProperty_item>
+<$key>controllerCode</$key>
+<$value>public String carregaNomeTurmas(Aluno aluno){
+		
+		String turmasDoAluno = new String();
+		List<TurmaAluno> turmaAlunos = aluno.getTurmaAlunos();
+		for (TurmaAluno turmaAluno : turmaAlunos) {
+			if(turmasDoAluno.length()>0){
+				turmasDoAluno += ", ";
+			}
+			turmasDoAluno += turmaAluno.getTurma().getNomeTurma();
+		}
+		return turmasDoAluno;
+		
+	}</$value>
+</fieldSetProperty_item>
+<fieldSetProperty_item>
+<$key>controllerCodeIsCustomized</$key>
+<$value>true</$value>
+</fieldSetProperty_item>
+</fieldSetProperty>
+<codeItem></codeItem>
 </fields_item>
 </fields>
 <buttons>

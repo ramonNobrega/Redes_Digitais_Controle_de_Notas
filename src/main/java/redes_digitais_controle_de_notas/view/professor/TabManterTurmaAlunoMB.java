@@ -64,7 +64,9 @@ public class TabManterTurmaAlunoMB extends AbstractListPageBean<TurmaAluno, Obje
 			delete = getSelection().get(turmaAlunoSelected);
 			if (delete) {
 				TurmaAlunoKey turmaAlunoKey= new TurmaAlunoKey(turmaAlunoSelected.getTurma().getIdTurma(), turmaAlunoSelected.getAluno().getUser().getId());
-					
+				turmaAlunoSelected.getAluno().getTurmaAlunos().remove(turmaAlunoSelected);
+				AlunoBC alunoBC = new AlunoBC();
+				alunoBC.update(turmaAlunoSelected.getAluno());	
 				List<DesempenhoBimestral> dbList = turmaAlunoSelected.getAluno().getDesempenhoBimestrais();
 				for(DesempenhoBimestral desempenho : dbList){		if(desempenho.getProfessor().getUser().getId().equals(professor.getUser().getId())){					desempenhoBimestralBC.delete(desempenho.getIdBimestre());
 						}
@@ -75,6 +77,7 @@ public class TabManterTurmaAlunoMB extends AbstractListPageBean<TurmaAluno, Obje
 							desempenhoBC.delete(desempenho.getIdDesempenho());
 						}
 					}
+					
 					turmaAlunoBC.delete(turmaAlunoKey);
 					iter.remove();
 				}

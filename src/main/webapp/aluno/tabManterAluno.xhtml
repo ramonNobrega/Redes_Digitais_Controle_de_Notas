@@ -31,7 +31,7 @@
 						<f:facet name="header">
 							<h:outputText value="Turmas"></h:outputText>
 						</f:facet>
-						<h:outputText id="turmaAlunos" value="#{bean.turmaAlunos}">
+						<h:outputText id="turmaAlunos" value="#{tabManterAlunoMB.carregaNomeTurmas(bean)}">
 						</h:outputText>
 					</p:column>
 					<p:column id="editLinkFieldDTColumn" style="text-align:center;" styleClass="gridstandardcolumn" exportable="false">
