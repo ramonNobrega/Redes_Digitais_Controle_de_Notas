@@ -170,7 +170,7 @@ import redes_digitais_controle_de_notas.security.ContextMB;
 </blockSetProperty_item>
 <blockSetProperty_item>
 <$key>paginator</$key>
-<$value>false</$value>
+<$value>true</$value>
 </blockSetProperty_item>
 </blockSetProperty>
 <gridProperties><class>com.egen.develop.generator.form.GridProperties</class>

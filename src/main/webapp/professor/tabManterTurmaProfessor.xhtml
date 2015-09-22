@@ -17,7 +17,7 @@
 				<p:messages id="listMessages" autoUpdate="true" closable="true"/>
 			</div>
 			<p:outputPanel id="listPanel">
-				<p:dataTable id="listDataTable" value="#{tabManterTurmaProfessorMB.resultList}" var="bean" rows="5" paginator="false" rowIndexVar="rowIndexVar" resizableColumns="true" tableStyle="width:100%">
+				<p:dataTable id="listDataTable" value="#{tabManterTurmaProfessorMB.resultList}" var="bean" rows="5" paginator="true" rowsPerPageTemplate="5,10,15,20,50,100" rowIndexVar="rowIndexVar" resizableColumns="true" tableStyle="width:100%">
 					<p:column id="selectionFieldDTColumn" style="text-align:center;" styleClass="gridstandardcolumn" exportable="false">
 						<h:selectBooleanCheckbox id="selectionField" value="#{tabManterTurmaProfessorMB.selection[bean]}"></h:selectBooleanCheckbox>
 					</p:column>
