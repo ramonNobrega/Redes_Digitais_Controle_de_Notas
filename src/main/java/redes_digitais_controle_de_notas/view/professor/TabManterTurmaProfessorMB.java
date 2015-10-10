@@ -41,47 +41,64 @@ public class TabManterTurmaProfessorMB extends AbstractListPageBean<TurmaProfess
 	@Inject
 	private TurmaProfessorBC turmaProfessorBC;
 	
-		@Inject
-		private ContextMB context;
+	@Inject
+	private ContextMB context;
 	
+	@Inject
+	private DesempenhoBimestralBC desempenhoBimestralBC;
+	
+	@Inject
+	private DesempenhoBC desempenhoBC;
 	
 	public String newRecord() {
 		return getNextView();
 	}
 	
+	/* Button[list.delete] */
 	@Transactional
-	public String delete() {
-		boolean delete = false;
-		for (Iterator<Object> iter = getSelection().keySet().iterator(); iter.hasNext();) {
-			TurmaProfessor turmaProfessorSelected = (TurmaProfessor) iter.next();
-			delete = getSelection().get(turmaProfessorSelected);
-			if (delete) {
-				TurmaProfessorKey turmaProfessorKey= new TurmaProfessorKey(turmaProfessorSelected.getTurma().getIdTurma(), turmaProfessorSelected.getProfessor().getUser().getId());
-				turmaProfessorBC.delete(turmaProfessorKey);
-				iter.remove();
+		public String delete() {
+			boolean delete = false;
+			for (Iterator<Object> iter = getSelection().keySet().iterator(); iter.hasNext();) {
+				TurmaProfessor turmaProfessorSelected = (TurmaProfessor) iter.next();
+				delete = getSelection().get(turmaProfessorSelected);
+				if (delete) {
+					TurmaProfessorKey turmaProfessorKey= new TurmaProfessorKey(turmaProfessorSelected.getTurma().getIdTurma(), turmaProfessorSelected.getProfessor().getUser().getId());
+					
+					List<TurmaAluno> turmaAluno = turmaProfessorSelected.getTurma().getTurmaAlunos();
+					for(TurmaAluno turma : turmaAluno){
+						for (DesempenhoBimestral desempenhoBimestral : turma.getAluno().getDesempenhoBimestrais()){
+							if(desempenhoBimestral.getAluno().equals(turma.getAluno())){
+								desempenhoBimestralBC.delete(desempenhoBimestral.getIdBimestre());
+							}
+						}
+						for(Desempenho desempenho : turma.getAluno().getDesempenhos()){
+							if(desempenho.getAluno().equals(turma.getAluno())){
+								desempenhoBC.delete(desempenho.getIdDesempenho());
+							}
+						}
+					}
+					turmaProfessorBC.delete(turmaProfessorKey);
+					iter.remove();
+				}
 			}
+			if (delete) {
+				messageContext.add(new DefaultMessage("{pages.msg.deletesuccess}"));
+			}
+			return getCurrentView();
 		}
-		if (delete) {
-			messageContext.add(new DefaultMessage("{pages.msg.deletesuccess}"));
-		}
-		return getCurrentView();
-	}
+	/* Button[list.delete] */
 	
 	/* Button[list.handleResultList] */
 	@Override
 		protected List<TurmaProfessor> handleResultList() {
 			ProfessorBC professorBC = new ProfessorBC();
 			Professor professor = professorBC.load(new Long(context.getUser().getId()));
-			HashMap<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("professor", professor);
 			List<TurmaProfessor> turmaList = new ArrayList<TurmaProfessor>();
 			for (TurmaProfessor turma : turmaProfessorBC.findAll()) {
 				if (turma.getProfessor().equals(professor))
 					turmaList.add(turma);
 			}
-			return turmaList;
-		}
-	
-	/* Button[list.handleResultList] */
+				return turmaList;
+		}/* Button[list.handleResultList] */
 
 }

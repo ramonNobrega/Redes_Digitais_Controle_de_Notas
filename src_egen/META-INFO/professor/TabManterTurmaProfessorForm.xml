@@ -159,11 +159,13 @@ import redes_digitais_controle_de_notas.security.ContextMB;
 <$value><p:toolbar id="listToolbar">
 	<p:toolbarGroup id="listLeftToolbarGroup" align="left">
 		<p:commandButton id="newRecord" value="#{messages['button.new']}" action="#{tabManterTurmaProfessorMB.newRecord}" actionListener="#{tabManterTurmaProfessorMB.clear}" immediate="true" ajax="false" title="#{messages['button.new']}" icon="ui-icon-document"></p:commandButton>
+		<!-- Button[list.delete] -->
 		<p:commandButton id="delete" value="#{messages['button.delete']}" type="button" ajax="false" onclick="deleteConfirmation.show();" title="#{messages['button.delete']}" icon="ui-icon-trash"></p:commandButton>
 		<p:confirmDialog id="deleteConfirmDialog" widgetVar="deleteConfirmation" message="#{messages['label.confirm.delete']}" header="#{messages['label.dialog.delete']}" severity="alert">
 			<h:commandButton action="#{tabManterTurmaProfessorMB.delete}" actionListener="#{tabManterTurmaProfessorMB.clear}" value="#{messages['button.dialog.yes']}"></h:commandButton>
 			<h:commandButton onclick="deleteConfirmation.hide()" type="button" value="#{messages['button.dialog.no']}"></h:commandButton>
 		</p:confirmDialog>
+		<!-- Button[list.delete] -->
 	</p:toolbarGroup>
 </p:toolbar>
 </$value>
@@ -821,8 +823,12 @@ import redes_digitais_controle_de_notas.security.ContextMB;
 <tabindex></tabindex>
 <bean_validate>true</bean_validate>
 <src>ui-icon-trash</src>
-<isCustomized>false</isCustomized>
-<codeItem></codeItem>
+<isCustomized>true</isCustomized>
+<codeItem><p:commandButton id="delete" value="#{messages['button.delete']}" type="button" ajax="false" onclick="deleteConfirmation.show();" title="#{messages['button.delete']}" icon="ui-icon-trash"></p:commandButton>
+<p:confirmDialog id="deleteConfirmDialog" widgetVar="deleteConfirmation" message="#{messages['label.confirm.delete']}" header="#{messages['label.dialog.delete']}" severity="alert">
+	<h:commandButton action="#{tabManterTurmaProfessorMB.delete}" actionListener="#{tabManterTurmaProfessorMB.clear}" value="#{messages['button.dialog.yes']}"></h:commandButton>
+	<h:commandButton onclick="deleteConfirmation.hide()" type="button" value="#{messages['button.dialog.no']}"></h:commandButton>
+</p:confirmDialog></codeItem>
 <buttonPosition>top</buttonPosition>
 <select_clause></select_clause>
 <where_clause></where_clause>
@@ -831,8 +837,39 @@ import redes_digitais_controle_de_notas.security.ContextMB;
 <having_clause></having_clause>
 <button_db_object></button_db_object>
 <triggers></triggers>
-<template>DeleteSelectionCommandTemplate</template>
-<action_code></action_code>
+<template></template>
+<action_code>@Transactional
+	public String delete() {
+		boolean delete = false;
+		for (Iterator<Object> iter = getSelection().keySet().iterator(); iter.hasNext();) {
+			TurmaProfessor turmaProfessorSelected = (TurmaProfessor) iter.next();
+			delete = getSelection().get(turmaProfessorSelected);
+			if (delete) {
+				TurmaProfessorKey turmaProfessorKey= new TurmaProfessorKey(turmaProfessorSelected.getTurma().getIdTurma(), turmaProfessorSelected.getProfessor().getUser().getId());
+				
+				List<TurmaAluno> turmaAluno = turmaProfessorSelected.getTurma().getTurmaAlunos();
+				for(TurmaAluno turma : turmaAluno){
+					for (DesempenhoBimestral desempenhoBimestral : turma.getAluno().getDesempenhoBimestrais()){
+						if(desempenhoBimestral.getAluno().equals(turma.getAluno())){
+							desempenhoBimestralBC.delete(desempenhoBimestral.getIdBimestre());
+						}
+					}
+					for(Desempenho desempenho : turma.getAluno().getDesempenhos()){
+						if(desempenho.getAluno().equals(turma.getAluno())){
+							desempenhoBC.delete(desempenho.getIdDesempenho());
+						}
+					}
+				}
+				turmaProfessorBC.delete(turmaProfessorKey);
+				iter.remove();
+			}
+		}
+		if (delete) {
+			messageContext.add(new DefaultMessage("{pages.msg.deletesuccess}"));
+		}
+		return getCurrentView();
+	}
+</action_code>
 <property></property>
 <forward>current</forward>
 <forward_error></forward_error>
@@ -990,17 +1027,13 @@ import redes_digitais_controle_de_notas.security.ContextMB;
 	protected List<TurmaProfessor> handleResultList() {
 		ProfessorBC professorBC = new ProfessorBC();
 		Professor professor = professorBC.load(new Long(context.getUser().getId()));
-		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("professor", professor);
-		List<Turma> turmaList = new ArrayList<Turma>();
-		for (Turma turma : turmaBC.findAll()) {
-			if (turma.getProfessores().contains(professor))
+		List<TurmaProfessor> turmaList = new ArrayList<TurmaProfessor>();
+		for (TurmaProfessor turma : turmaProfessorBC.findAll()) {
+			if (turma.getProfessor().equals(professor))
 				turmaList.add(turma);
 		}
-		return turmaList;
-	}
-
-</action_code>
+			return turmaList;
+	}</action_code>
 <property></property>
 <forward></forward>
 <forward_error></forward_error>

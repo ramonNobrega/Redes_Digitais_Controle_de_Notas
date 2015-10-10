@@ -6,11 +6,13 @@
 			<p:toolbar id="listToolbar">
 				<p:toolbarGroup id="listLeftToolbarGroup" align="left">
 					<p:commandButton id="newRecord" value="#{messages['button.new']}" action="#{tabManterTurmaProfessorMB.newRecord}" actionListener="#{tabManterTurmaProfessorMB.clear}" immediate="true" ajax="false" title="#{messages['button.new']}" icon="ui-icon-document"></p:commandButton>
+					<!-- Button[list.delete] -->
 					<p:commandButton id="delete" value="#{messages['button.delete']}" type="button" ajax="false" onclick="deleteConfirmation.show();" title="#{messages['button.delete']}" icon="ui-icon-trash"></p:commandButton>
 					<p:confirmDialog id="deleteConfirmDialog" widgetVar="deleteConfirmation" message="#{messages['label.confirm.delete']}" header="#{messages['label.dialog.delete']}" severity="alert">
 						<h:commandButton action="#{tabManterTurmaProfessorMB.delete}" actionListener="#{tabManterTurmaProfessorMB.clear}" value="#{messages['button.dialog.yes']}"></h:commandButton>
 						<h:commandButton onclick="deleteConfirmation.hide()" type="button" value="#{messages['button.dialog.no']}"></h:commandButton>
 					</p:confirmDialog>
+					<!-- Button[list.delete] -->
 				</p:toolbarGroup>
 			</p:toolbar>
 			<div id="listFormMessages" class="formmessages">
