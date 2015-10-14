@@ -62,7 +62,9 @@ public class TabManterTurmaProfessorDetailMB extends AbstractEditPageBean<TurmaP
 		Professor professor = professorBC.load(new Long(context.getUser().getId()));
 		getBean().setProfessor(professor);
 		professor.getTurmaProfessores().add(getBean());
+		getBean().getTurma().getTurmaProfessores().add(getBean());
 		professorBC.update(professor);
+		this.turmaProfessorBC.update(getBean());
 	}
 	/* Trigger[edit.insert.cadastrarTurmaProfessor] */
 	

@@ -61,10 +61,10 @@ public class TabManterTurmaAlunoDetailMB extends AbstractEditPageBean<TurmaAluno
 			
 			ProfessorBC professorBC = new ProfessorBC();
 			Professor professor = professorBC.load(new Long(context.getUser().getId()));
-			HashMap<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("professor", professor);
+			/*HashMap<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("professor", professor);*/
 			List<Turma> turmaList = new ArrayList<Turma>();
-			for (Turma turma : turmaBC.findAll()) {
+			for (Turma turma : turmaBC.findAll()) {			
 				for (TurmaProfessor turmaProfessor : turma.getTurmaProfessores())
 					if (turmaProfessor.getProfessor().getUser().getId().equals(professor.getUser().getId())){
 						turmaList.add(turma);
@@ -73,6 +73,8 @@ public class TabManterTurmaAlunoDetailMB extends AbstractEditPageBean<TurmaAluno
 			}
 			
 			return turmaList;
+			
+			
 	}
 	/* Options[edit.turma] */
 		@Inject

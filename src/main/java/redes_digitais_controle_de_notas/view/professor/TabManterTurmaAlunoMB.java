@@ -95,8 +95,6 @@ public class TabManterTurmaAlunoMB extends AbstractListPageBean<TurmaAluno, Obje
 	protected List<TurmaAluno> handleResultList() {
 		ProfessorBC professorBC = new ProfessorBC();
 		Professor professor = professorBC.load(new Long(context.getUser().getId()));
-		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("professor", professor);
 		List<TurmaAluno> turmaList = new ArrayList<TurmaAluno>();
 		for (TurmaAluno turma : turmaAlunoBC.findAll()) {
 			for (TurmaProfessor turmaProfessor : turma.getTurma().getTurmaProfessores()) {
